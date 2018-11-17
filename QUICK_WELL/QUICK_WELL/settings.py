@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from machina import get_apps as get_machina_apps
+from machina import MACHINA_MAIN_TEMPLATE_DIR
+from machina import MACHINA_MAIN_STATIC_DIR
+
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -32,6 +36,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'med.apps.MedConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,10 +44,20 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'docapp.apps.DocappConfig',
+    'force'
+    'accounts',
     'home.apps.HomeConfig',
+    'channels',
+    'chat',
+    # Machina related apps:
+    'mptt',
+    'haystack',
+    'widget_tweaks',
+    'ads',
+    'sekizai'
 
+] + get_machina_apps()
 
-]
     #'django_elasticsearch_dsl',
 
 
@@ -60,7 +75,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'machina.apps.forum_permission.middleware.ForumPermissionMiddleware',
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'quickwelldoctor@gmail.com'
+EMAIL_HOST_PASSWORD = 'doctor@123'
 
 ROOT_URLCONF = 'QUICK_WELL.urls'
 
@@ -76,6 +99,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'machina.core.context_processors.metadata',
+                'sekizai.context_processors.sekizai',
             ],
         },
     },
@@ -91,6 +116,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'quickwelldb'),
+        'TEST': {
+            'NAME': os.path.join(BASE_DIR, 'db_test.sqlite3')
+        }
     }
 }
 
@@ -132,3 +160,84 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+LOGOUT_REDIRECT_URL = 'accounts:home'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+ASGI_APPLICATION = 'quickwell.routing.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+    MACHINA_MAIN_STATIC_DIR,
+]
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    },
+    'machina_attachments': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': '/tmp',
+    },
+}
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    },
+}
+
+ADS_GOOGLE_ADSENSE_CLIENT = 'ca-pub-DEFAULT'  # OPTIONAL - DEFAULT TO None
+
+ADS_ZONES = {
+    'header': {
+        'name': ('Header'),
+        'ad_size': {
+            'xs': '720x150',
+            'sm': '800x90',
+            'md': '800x90',
+            'lg': '800x90'
+        },
+        'google_adsense_slot': 'DEFAULT',  # OPTIONAL - DEFAULT TO None
+        'google_adsense_format': 'auto',  # OPTIONAL - DEFAULT TO None
+    },
+    'content': {
+        'name': ('Content'),
+        'ad_size': {
+            'xs': '720x150',
+            'sm': '800x90',
+            'md': '800x90',
+            'lg': '800x90'
+        },
+        'google_adsense_slot': 'DEFAULT',  # OPTIONAL - DEFAULT TO None
+        'google_adsense_format': 'auto',  # OPTIONAL - DEFAULT TO None
+    },
+    'sidebar': {
+        'name': ('Sidebar'),
+        'ad_size': {
+            'xs': '720x150',
+            'sm': '800x90',
+            'md': '800x90',
+            'lg': '800x90'
+        },
+        'google_adsense_slot': 'DEFAULT',  # OPTIONAL - DEFAULT TO None
+        'google_adsense_format': 'auto',  # OPTIONAL - DEFAULT TO None
+    },
+}
+
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+
