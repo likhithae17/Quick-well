@@ -44,12 +44,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'docapp.apps.DocappConfig',
-    # 'force.apps.ForceConfig'
-    # 'accounts',
-     'force.apps.ForceConfig',
+    'force.apps.ForceConfig',
+    #'force'
+    'accounts',
     'home.apps.HomeConfig',
     'channels',
-    'accounts',
     'chat',
     # Machina related apps:
     'mptt',

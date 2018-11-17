@@ -32,7 +32,7 @@ class Qualification(models.Model):
 
 
 class Hospital_Affiliation(models.Model):
-    doc_name = models.ManyToManyField(Doctor,null=True,default='')
+    doc_name = models.ManyToManyField(Doctor,default='')
     hosp_name = models.CharField(max_length=200)
     hosp_photo = models.CharField(max_length=500, null=True,blank=True)
     city = models.CharField(max_length=100,blank=True)

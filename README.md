@@ -19,4 +19,12 @@ Jaswanth Balabommu
 
 Bhukya Devender Naik 
 
+Install 
+
+$ pip install django-machina
+$ pip install django-channels
+$ pip install django-ads
+$ pip install whoosh
+$ pip install docker
+$ pip install channel_redis
 
