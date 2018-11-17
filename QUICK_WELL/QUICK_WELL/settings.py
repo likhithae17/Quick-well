@@ -44,13 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'docapp.apps.DocappConfig',
-<<<<<<< HEAD
-    'schedule',
-    'djcelery',
+    'force'
     'accounts',
-=======
     'home.apps.HomeConfig',
-<<<<<<< HEAD
     'channels',
     'chat',
     # Machina related apps:
@@ -61,13 +57,7 @@ INSTALLED_APPS = [
     'sekizai'
 
 ] + get_machina_apps()
-=======
 
-
->>>>>>> 4a01926867813ef800198a2f3850b129efb7325e
-
-]
->>>>>>> 155432cf65498f268a7d3592193b8c77c576d0f5
     #'django_elasticsearch_dsl',
 
 
@@ -171,12 +161,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-<<<<<<< HEAD
+
 LOGOUT_REDIRECT_URL = 'accounts:home'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-=======
 ASGI_APPLICATION = 'quickwell.routing.application'
 CHANNEL_LAYERS = {
     'default': {
@@ -247,6 +236,8 @@ ADS_ZONES = {
     },
 }
 
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 
->>>>>>> 4a01926867813ef800198a2f3850b129efb7325e
