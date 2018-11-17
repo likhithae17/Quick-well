@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.contrib.auth import views as auth_views
 from . import views
 from django.views.generic import ListView, DetailView
-from .models import Post
+#from .models import Post
 
 app_name = 'accounts'
 
@@ -14,6 +14,6 @@ urlpatterns = [
     url(r'^contact', views.contact, name='contact'),
     url(r'^test', views.test, name='test'),
 #    url(r'^advt', views.advt, name='advt'),
-    url(r'^blog', ListView.as_view(queryset=Post.objects.all().order_by("-date")[:10], template_name="profile/includes/blog.html")),
-    url(r'^blog/blog/(?P<pk>\d+)$', DetailView.as_view(model=Post, template_name='profile/includes/post.html'))
+#     url(r'^blog', ListView.as_view(queryset=Post.objects.all().order_by("-date")[:10], template_name="profile/includes/blog.html")),
+#     url(r'^blog/blog/(?P<pk>\d+)$', DetailView.as_view(model=Post, template_name='profile/includes/post.html'))
 ]
