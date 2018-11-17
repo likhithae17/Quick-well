@@ -49,7 +49,7 @@ def register(request):
             Mail(request, UserForm.email)
             registered = True
         else:
-            return HttpResponse('Invalid Details!!')
+            return HttpResponse(form.errors)
     else:
         user_form = Signup_user_form()
         profile_form = Signup_profile_form()

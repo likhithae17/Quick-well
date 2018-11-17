@@ -1,3 +1,7 @@
+{% extends 'med/base.html' %}
+
+{% block body %}
+
     <h2>User : {{ order.user.first_name }}</h2>
     Your orders are:
 
@@ -28,3 +32,5 @@
 {% if order.get_cart_items %}
             <a href="{% url 'med:finalPrice' order.id %}" class="pull-right btn btn-primary">Proceed To Checkout</a>
           {% endif %}
+
+{% endblock %}

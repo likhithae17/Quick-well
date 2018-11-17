@@ -44,14 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'docapp.apps.DocappConfig',
-<<<<<<< HEAD
-    'schedule',
-    'djcelery',
-    'accounts',
-=======
     'home.apps.HomeConfig',
-<<<<<<< HEAD
     'channels',
+    'accounts',
     'chat',
     # Machina related apps:
     'mptt',
@@ -61,13 +56,10 @@ INSTALLED_APPS = [
     'sekizai'
 
 ] + get_machina_apps()
-=======
 
 
->>>>>>> 4a01926867813ef800198a2f3850b129efb7325e
 
-]
->>>>>>> 155432cf65498f268a7d3592193b8c77c576d0f5
+
     #'django_elasticsearch_dsl',
 
 
@@ -100,7 +92,7 @@ ROOT_URLCONF = 'QUICK_WELL.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'templates'),MACHINA_MAIN_TEMPLATE_DIR]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -171,13 +163,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-<<<<<<< HEAD
 LOGOUT_REDIRECT_URL = 'accounts:home'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-=======
-ASGI_APPLICATION = 'quickwell.routing.application'
+ASGI_APPLICATION = 'QUICK_WELL.routing.application'
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
@@ -249,4 +239,3 @@ ADS_ZONES = {
 
 
 
->>>>>>> 4a01926867813ef800198a2f3850b129efb7325e

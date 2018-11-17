@@ -13,11 +13,11 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
-class Post (models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    title = models.CharField(max_length=50)
-    body =models.TextField()
-    date =models.DateTimeField()
-
-    def __str__(self):
-        return self.title
+# class Post (models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+#     title = models.CharField(max_length=50)
+#     body =models.TextField()
+#     date =models.DateTimeField()
+#
+#     def __str__(self):
+#         return self.title
