@@ -2,6 +2,7 @@ from django.core.mail import send_mail, EmailMessage
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template.loader import render_to_string
+from django.contrib.auth.models import User
 
 
 def home(request):
@@ -9,9 +10,14 @@ def home(request):
 
 
 def Mail(request):
-   res = send_mail("hello karthik", "hi  ra", "b.jaswanth6@gmail.com", ['jaswanth.b17@iiits.in'])
-   return HttpResponse('%s'%res)
-
+    x = User.objects.all()
+    lis=[]
+    for a in x:
+        lis.append(a.email)
+    for i in range(0,len(lis)):
+        res = send_mail("Health Tips", "Today's health tip : drink 8 cups of water minimum in a day.", "qucikwelldoctor@gmail.com", [lis[i]])
+    return HttpResponse('tip sent')
+'''
 def email_one(request):
     subject = "I am a text email"
     to = ['jaswanth.b17@iiits.in']
@@ -26,4 +32,4 @@ def email_one(request):
 
     EmailMessage(subject, message, to=to, from_email=from_email).send()
 
-    return HttpResponse('email_one')
+    return HttpResponse('email_one')'''
