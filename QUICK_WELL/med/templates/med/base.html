@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}QuickWell{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'med/style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+        <!-- Header -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'med:index' %}">QuickWell</a>
+        </div>
+
+        <!--Items-->
+        <div class="collapse navbar-collapse" id="topNavBar">
+
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="{% url 'med:index' %}">
+                        <span class="fa fa-medkit" aria-hidden="true"></span>&nbsp
+                        All Products
+                    </a>
+                </li>
+                <li class="">
+                    <a href="#">
+                        <span class="fa fa-ambulance" aria-hidden="true"></span>&nbsp
+                        Order Now
+                    </a>
+                </li>
+            </ul>
+
+            <form class="navbar-form  navbar-left" role="search" method="get" action="/med/">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="q" value="" placeholder="Search medicines">
+                    <div class="input-group-btn">
+                      <button class="btn btn-default" type="submit">
+                        <i class="glyphicon glyphicon-search"></i>
+                      </button>
+                    </div>
+                </div>
+            </form>
+
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="">
+                    <a href="{% url 'med:order_summary' %}">
+                        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>&nbsp
+                        View Your Cart
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="{% url 'med:logout' %}">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp
+                        LogOut
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+</nav>
+
+
+{% block body %}
+{% endblock %}
+
+
+<!--<footer class="footer">
+  <p>Bootstrap Theme Made By <a href="https://www.w3schools.com">www.w3schools.com</a></p>
+</footer>-->
+</body>
+</html>

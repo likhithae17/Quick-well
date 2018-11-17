@@ -1,0 +1,10 @@
+
+.navbar{
+    position:sticky;
+    border-radius: 0;
+}
+
+.navbar-brand{
+    font-family:'Satisfy',cursive;
+}
+
