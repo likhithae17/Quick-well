@@ -75,7 +75,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'quick_well.wsgi.application'
+WSGI_APPLICATION = 'video_con.wsgi.application'
 
 
 # Database
