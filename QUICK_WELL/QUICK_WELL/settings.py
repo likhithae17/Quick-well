@@ -36,6 +36,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'med.apps.MedConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'docapp.apps.DocappConfig',
     'home.apps.HomeConfig',
+<<<<<<< HEAD
     'channels',
     'chat',
     # Machina related apps:
@@ -54,6 +56,12 @@ INSTALLED_APPS = [
     'sekizai'
 
 ] + get_machina_apps()
+=======
+
+
+
+]
+>>>>>>> 155432cf65498f268a7d3592193b8c77c576d0f5
     #'django_elasticsearch_dsl',
 
 

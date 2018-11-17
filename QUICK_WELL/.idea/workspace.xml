@@ -108,10 +108,51 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-1272507004">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.12" value="1" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.opened" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="py" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Python" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="8" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Python" value="8" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
+        <entry file="file://$PROJECT_DIR$/docapp/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2567">
+              <caret line="152" column="10" selection-start-line="152" selection-start-column="10" selection-end-line="152" selection-end-column="10" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+=======
         <entry file="file://$PROJECT_DIR$/docapp/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
@@ -128,6 +169,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="214">
               <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+>>>>>>> a3c5bad8992cda8884621c65ffb937e628588b41
             </state>
           </provider>
         </entry>
@@ -135,17 +177,30 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docapp/templates/docapp/base.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="153">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
+=======
             <state relative-caret-position="357">
               <caret line="21" selection-start-line="21" selection-end-line="21" />
+>>>>>>> a3c5bad8992cda8884621c65ffb937e628588b41
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/QUICK_WELL/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
+=======
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docapp/templates/docapp/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="219">
               <caret line="95" selection-start-line="95" selection-end-line="95" />
+>>>>>>> a3c5bad8992cda8884621c65ffb937e628588b41
             </state>
           </provider>
         </entry>
@@ -172,6 +227,32 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
+        <entry file="file://$PROJECT_DIR$/docapp/templates/docapp/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2210">
+              <caret line="130" column="14" selection-start-line="130" selection-start-column="14" selection-end-line="130" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docapp/templates/docapp/googlecal.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" column="45" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/QUICK_WELL/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+              <folding>
+                <element signature="e#634#666#0" expanded="true" />
+=======
         <entry file="file://$PROJECT_DIR$/home/admin.py">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
@@ -183,6 +264,7 @@
               <caret line="5" column="10" lean-forward="true" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
+>>>>>>> a3c5bad8992cda8884621c65ffb937e628588b41
               </folding>
             </state>
           </provider>
@@ -191,11 +273,16 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/QUICK_WELL/urls.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="1394">
+              <caret line="82" column="10" selection-start-line="82" selection-start-column="10" selection-end-line="82" selection-end-column="10" />
+=======
             <state relative-caret-position="323">
               <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
               <folding>
                 <element signature="e#634#666#0" expanded="true" />
               </folding>
+>>>>>>> a3c5bad8992cda8884621c65ffb937e628588b41
             </state>
           </provider>
         </entry>
@@ -203,12 +290,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docapp/views.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="68">
+              <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
+=======
             <state relative-caret-position="220">
               <caret line="36" column="33" lean-forward="true" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
               <folding>
                 <element signature="e#265#318#0" expanded="true" />
                 <marker date="1542394368972" expanded="true" signature="1129:1134" ph="..." />
               </folding>
+>>>>>>> a3c5bad8992cda8884621c65ffb937e628588b41
             </state>
           </provider>
         </entry>
@@ -254,6 +346,9 @@
         <option value="$PROJECT_DIR$/docapp/urls.py" />
         <option value="$PROJECT_DIR$/docapp/views.py" />
         <option value="$PROJECT_DIR$/docapp/templates/docapp/googlecal.html" />
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/QUICK_WELL/urls.py" />
+=======
         <option value="$PROJECT_DIR$/templates/QUICK_WELL/home.html" />
         <option value="$PROJECT_DIR$/home/templates/home.html" />
         <option value="$PROJECT_DIR$/QUICK_WELL/urls.py" />
@@ -261,6 +356,7 @@
         <option value="$PROJECT_DIR$/home/views.py" />
         <option value="$PROJECT_DIR$/docapp/templates/docapp/index.html" />
         <option value="$PROJECT_DIR$/home/templates/home/home.html" />
+>>>>>>> a3c5bad8992cda8884621c65ffb937e628588b41
         <option value="$PROJECT_DIR$/QUICK_WELL/settings.py" />
       </list>
     </option>
@@ -283,6 +379,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
+=======
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -322,6 +420,7 @@
           <select />
         </subPane>
       </pane>
+>>>>>>> a3c5bad8992cda8884621c65ffb937e628588b41
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -356,16 +455,27 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="QUICK_WELL" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ASE/project/Google-Calendar-API-django-python--master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="com.maddyhome.idea.vim.ui.VimEmulationConfigurable" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -388,7 +498,7 @@
         <env name="PYTHONUNBUFFERED" value="1" />
         <env name="DJANGO_SETTINGS_MODULE" value="QUICK_WELL.settings" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\emmad\AppData\Local\Programs\Python\Python37\python.exe" />
+      <option name="SDK_HOME" value="C:\Users\DELL\Desktop\Quick-well\QUICK_WELL\venv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -428,26 +538,40 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2065053" />
+=======
     <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16518219" />
+>>>>>>> a3c5bad8992cda8884621c65ffb937e628588b41
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3285968" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49311742" weight="0.1758437" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49311742" weight="0.3147541" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.18650089" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3285968" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+<<<<<<< HEAD
+      <window_info anchor="bottom" id="Database Changes" order="9" sideWeight="0.49924356" weight="0.32786885" />
+      <window_info anchor="bottom" id="manage.py@QUICK_WELL" order="10" sideWeight="0.49716598" weight="0.29129663" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50378215" side_tool="true" weight="0.33770493" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="12" sideWeight="0.49621785" visible="true" weight="0.2885246" />
+      <window_info anchor="bottom" id="Python Console" order="13" weight="0.32786885" />
+=======
       <window_info anchor="bottom" id="Database Changes" order="9" weight="0.3285968" />
       <window_info anchor="bottom" id="manage.py@QUICK_WELL" order="10" sideWeight="0.49716598" visible="true" weight="0.29129663" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5068826" side_tool="true" weight="0.22202487" />
       <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49716598" weight="0.339254" />
       <window_info anchor="bottom" id="Python Console" order="13" weight="0.3285968" />
+>>>>>>> a3c5bad8992cda8884621c65ffb937e628588b41
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -497,6 +621,13 @@
     </ignored-roots>
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/Django-2.1.2-py3.7.egg/django/__init__.py" />
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/Django-2.1.2-py3.7.egg/django/apps/registry.py" />
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/Django-2.1.2-py3.7.egg/django/contrib/admin/apps.py" />
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/Django-2.1.2-py3.7.egg/django/utils/module_loading.py" />
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/importlib/__init__.py" />
+=======
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/importlib/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1">
@@ -504,6 +635,7 @@
         </state>
       </provider>
     </entry>
+>>>>>>> a3c5bad8992cda8884621c65ffb937e628588b41
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pycharm/django_manage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
@@ -512,13 +644,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docapp/migrations/0002_auto_20181029_1335.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/runpy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1">
-          <caret line="84" selection-start-line="84" selection-end-line="84" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/runpy.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/Django-2.1.2-py3.7.egg/django/core/management/__init__.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/Django-2.1.2-py3.7.egg/django/contrib/admin/__init__.py" />
     <entry file="file://$PROJECT_DIR$/docapp/migrations/__init__.py">
@@ -546,9 +672,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../ASE/project/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../../ASE/project/index.html" />
     <entry file="file://$PROJECT_DIR$/docapp/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -556,13 +680,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/django/urls/conf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="69" selection-start-line="69" selection-end-line="69" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/django/urls/conf.py" />
     <entry file="file://$PROJECT_DIR$/docapp/templates/docapp/specialization_form.html" />
     <entry file="file://$PROJECT_DIR$/docapp/templates/docapp/maps.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -584,9 +702,7 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/docapp/migrations/0002_auto_20181115_1342.py" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/80fa8caa-4e93-44cc-8e48-f1428d365061/console.sql">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/80fa8caa-4e93-44cc-8e48-f1428d365061/console.sql" />
     <entry file="file://$PROJECT_DIR$/docapp/migrations/0002_auto_20181115_1411.py" />
     <entry file="file://$PROJECT_DIR$/docapp/migrations/0003_auto_20181116_0001.py" />
     <entry file="file://$PROJECT_DIR$/docapp/migrations/0002_auto_20181116_0007.py" />
@@ -607,21 +723,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/docapp/googlecal.py" />
+    <entry file="file://$PROJECT_DIR$/docapp/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/docapp/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
+        <state relative-caret-position="2567">
           <caret line="152" column="10" selection-start-line="152" selection-start-column="10" selection-end-line="152" selection-end-column="10" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
-            <marker date="1542309880785" expanded="true" signature="835:840" ph="..." />
-            <marker date="1542309880785" expanded="true" signature="9458:9506" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docapp/templates/docapp/confirm.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-66">
+        <state relative-caret-position="153">
           <caret line="9" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
@@ -633,6 +755,19 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/docapp/templates/docapp/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docapp/templates/docapp/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2210">
+          <caret line="130" column="14" selection-start-line="130" selection-start-column="14" selection-end-line="130" selection-end-column="14" />
+=======
     <entry file="file://$PROJECT_DIR$/docapp/googlecal.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -640,26 +775,42 @@
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
+>>>>>>> a3c5bad8992cda8884621c65ffb937e628588b41
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docapp/templates/docapp/booking.html">
+    <entry file="file://$PROJECT_DIR$/docapp/templates/docapp/googlecal.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="82" column="10" selection-start-line="82" selection-start-column="10" selection-end-line="82" selection-end-column="10" />
+        <state relative-caret-position="306">
+          <caret line="18" column="45" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="45" />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/QUICK_WELL/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+          <folding>
+            <element signature="e#634#666#0" expanded="true" />
+=======
     <entry file="file://$PROJECT_DIR$/templates/QUICK_WELL/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="436" column="31" selection-start-line="436" selection-start-column="31" selection-end-line="436" selection-end-column="31" />
           <folding>
             <element signature="n#style#0;n#img#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+>>>>>>> a3c5bad8992cda8884621c65ffb937e628588b41
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/docapp/templates/docapp/booking.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1394">
+          <caret line="82" column="10" selection-start-line="82" selection-start-column="10" selection-end-line="82" selection-end-column="10" />
+=======
     <entry file="file://$PROJECT_DIR$/docapp/templates/docapp/googlecal.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -699,11 +850,23 @@
           <folding>
             <element signature="e#0#46#0" expanded="true" />
           </folding>
+>>>>>>> a3c5bad8992cda8884621c65ffb937e628588b41
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docapp/views.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="68">
+          <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QUICK_WELL/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+=======
         <state relative-caret-position="220">
           <caret line="36" column="33" lean-forward="true" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
           <folding>
@@ -743,6 +906,7 @@
           <folding>
             <element signature="e#0#46#0" expanded="true" />
           </folding>
+>>>>>>> a3c5bad8992cda8884621c65ffb937e628588b41
         </state>
       </provider>
     </entry>

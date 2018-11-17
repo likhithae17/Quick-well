@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Congratulations {{ order.user.first_name }} !! Your order has been placed</h2>
+
+        {% for item in order.get_cart_items %}
+
+             <h2>{{ item.medicine.name }}  (Quantity : {{ item.quantity }})</h2>
+    {%  endfor %}
+<h2>total price you paid : {{ order.get_cart_total }}</h2>
+
+
+<a href="{% url 'med:index' %}" class="btn btn-warning pull-left">
+            go to home
+</a>
+
+</body>
+</html>
