@@ -15,9 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from machina.app import board
 
 urlpatterns = [
     path('', include('home.urls')),
     path('admin/', admin.site.urls),
     path('appointment/',include('docapp.urls')),
+    path('chat/', include('chat.urls')),
+    path('forum/', include(board.urls)),
+    path('ads/', include('ads.urls')),
 ]
