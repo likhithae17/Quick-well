@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>USER PROFILE</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <style>
+        .logout{
+            margin-left:95%;
+        }
+        /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+        .row.content {height: 1500px}
+
+        /* Set gray background color and 100% height */
+        .sidenav {
+            background-color: #f1f1f1;
+            height: 100%;
+        }
+
+        /* Set black background color, white text and some padding */
+        footer {
+            background-color: #555;
+            color: white;
+            padding: 15px;
+        }
+
+        /* On small screens, set height to 'auto' for sidenav and grid */
+        @media screen and (max-width: 767px) {
+            .sidenav {
+                height: auto;
+                padding: 15px;
+            }
+            .row.content {height: auto;}
+        }
+    </style>
+</head>
+<body>
+<div>
+    <center> <img src="{{ details.photo.url }}" style='height:150px;width:150px;border-radius:50px;' /><br>
+        {{ details.name }}
+    </center>
+    {{ form }}
+    <form action="{% url 'force.logout' %}" method="post">
+        {% csrf_token %}
+        <input class="logout" type = "submit" value = "Logout">
+    </form>
+</div>
+<body class="container-fluid">
+<div class="row content">
+    <div class="col-sm-3 sidenav">
+        <ul class="nav nav-pills nav-stacked">
+            <li><a href="/force/details/?profile=profile">PROFILE</a></li>
+            <li><a href="/force/appointment">APPOINTMENTS</a></li>
+            <li><a href="#">LAB REPORTS</a></li>
+            <li><a href="#">TRANSACTIONS</a></li>
+        </ul><br>
+    </div>
+    <div>
+        {% if dask %}
+            <table>
+                <tr>
+                    <td>
+                        Name:  {{ details.name }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Age:  {{ details.age }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date of Birth:  {{ details.dob }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Contact number: {{ details.contact_number }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Address:  {{ details.street_address }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        City:  {{ details.city }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        District: {{ details.district }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        State: {{ details.state }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Country:  {{ details.country }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Zipcode: {{ details.zipcode }}
+                    </td>
+                </tr>
+            </table>
+            We are in profile page
+        {% endif %}
+    </div>
+</div>
+<div>
+    {% if dask2 %}
+        <table>
+            <tr>
+                <td>
+                    Doctor: {{ details.doctor }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Specialisations: {{ details.specialisations }}
+                </td>
+            </tr>
+        </table>
+        we r in appointment page.
+    {% endif %}
+</div>
+</body>
+<footer class="container-fluid">
+    <p>Footer Text</p>
+</footer>
+</body>
+</html>

@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'docapp.apps.DocappConfig',
+    'force'
+    'accounts',
     'home.apps.HomeConfig',
     'channels',
     'accounts',
@@ -56,6 +58,7 @@ INSTALLED_APPS = [
     'sekizai'
 
 ] + get_machina_apps()
+
 
 
 
@@ -168,6 +171,8 @@ LOGOUT_REDIRECT_URL = 'accounts:home'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 ASGI_APPLICATION = 'QUICK_WELL.routing.application'
+ASGI_APPLICATION = 'quickwell.routing.application'
+
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
@@ -237,5 +242,8 @@ ADS_ZONES = {
     },
 }
 
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 
