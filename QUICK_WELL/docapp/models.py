@@ -169,6 +169,7 @@ class Office_Docavailability(models.Model):
     slot54 = models.TimeField(default='22:00')
     slot54_available = models.BooleanField(default=True)
     day = models.CharField(max_length=20)
+    #ap_date = models.DateField(null=True, blank=True)
     reason_unavailability = models.CharField(max_length=500,null=True,blank=True)
 
     def __str__(self):
