@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'docapp.apps.DocappConfig',
     'schedule',
     'djcelery',
+    'accounts',
 
 ]
     #'django_elasticsearch_dsl',
@@ -63,6 +64,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'quickwelldoctor@gmail.com'
+EMAIL_HOST_PASSWORD = 'doctor@123'
 
 ROOT_URLCONF = 'QUICK_WELL.urls'
 
@@ -134,3 +142,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGOUT_REDIRECT_URL = 'accounts:home'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+<body>
+
+    {% if user.is_authenticated %}
+
+        <h1>Already Logged In!!</h1>
+<form action=" {% url 'accounts:logout' %} ">
+    {% csrf_token %}
+    <input type="submit" value="logout">
+</form>
+
+    {% else %}
+
+        <form method="post">
+            {% csrf_token %}
+            Enter your username:<input type="text" name="username"><br>
+            Enter your password:<input type="password" name="password"><br>
+            <button type="submit">Login</button>
+        </form>
+    {% endif %}
+
+<!--<form class="site-form" action="{% url 'accounts:login' %}" method="post">-->
+    <!--{% csrf_token %}-->
+    <!--{{ form }}-->
+    <!--{% if request.GET.next %}-->
+        <!--<input type="hidden" name="next" value="{{ request.GET.next }}">-->
+    <!--{% endif %}-->
+    <!--<input type="submit" value="login">-->
+<!--</form>-->
+</body>
+</html>
