@@ -1,0 +1,30 @@
+    <h2>User : {{ order.user.first_name }}</h2>
+    Your orders are:
+
+        {% for item in order.get_cart_items %}
+
+             <h2>{{ item.medicine.name }}  ({{ item.quantity }})</h2>
+            <a href="{% url 'med:delete_item' item.id %}">
+                delete item
+              </a><br><br>
+                <h2>{{ item.medicine.price }}</h2>
+
+
+    {%  endfor %}
+
+    <br>
+    Order total:
+    {% if order.get_cart_total != None %}
+        <h2>Order total:</h2>
+        <h2>{{ order.get_cart_total }}</h2>
+    {% endif %}
+
+
+<a href="{% url 'med:index' %}" class="btn btn-warning pull-left">
+            {% if order %}Continue Shopping{% else %}Add Items to Cart {% endif %}
+</a>
+
+{#<a href="{% url 'med:finalPrice' %}" class="btn btn-info btn-lg">Checkout</a>#}
+{% if order.get_cart_items %}
+            <a href="{% url 'med:finalPrice' order.id %}" class="pull-right btn btn-primary">Proceed To Checkout</a>
+          {% endif %}
