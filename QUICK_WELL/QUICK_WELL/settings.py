@@ -47,11 +47,8 @@ INSTALLED_APPS = [
     'force.apps.ForceConfig',
     #'force'
     'accounts',
-    # 'force.apps.ForceConfig'
-    # 'accounts',
     'home.apps.HomeConfig',
     'channels',
-    'accounts',
     'chat',
     # Machina related apps:
     'mptt',
