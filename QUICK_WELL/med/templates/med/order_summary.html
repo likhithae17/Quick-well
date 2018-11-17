@@ -2,35 +2,64 @@
 
 {% block body %}
 
-    <h2>User : {{ order.user.first_name }}</h2>
-    Your orders are:
+    <h3>User name : {{ order.user.first_name }}</h3>
+    <h3>Your orders are:</h3>
+    <br><br>
+<section>
+   <div class="row" style="padding-left: 50px;padding-right: 50px">
+    <table class="table table-hover table-bordered text-center" >
+      <tr class="text-center">
+        <th class="text-center">no.</th>
+        <th class="text-center">Medicine</th>
+        <th class="text-center">Price</th>
+          <th class="text-center">Quantity</th>
+          <th class="text-center">Prescription Required</th>
+         </tr>
+      {% for item in order.get_cart_items %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>
+            {{ item.medicine.name }}
+            <span class="pull-right">
+              <a href="{% url 'med:delete_item' item.id %}" data-balloon="remove this item from cart" class="text-danger" >
+                <i class="fa fa-trash-o"></i>
+              </a>
+            </span>
+          </td>
+          <td>{{ item.medicine.price }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.medicine.pres_req }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan= 5> You have not added any items yet.</td>
+        </tr>
+      {% endfor %}
+     <tr>
+        {% if order.get_cart_total != None %}
+        <td colspan=2>
+          <strong class="pull-right">Order Total:</strong>
+        </td>
 
-        {% for item in order.get_cart_items %}
-
-             <h2>{{ item.medicine.name }}  ({{ item.quantity }})</h2>
-            <a href="{% url 'med:delete_item' item.id %}">
-                delete item
-              </a><br><br>
-                <h2>{{ item.medicine.price }}</h2>
-
-
-    {%  endfor %}
-
-    <br>
-    Order total:
-    {% if order.get_cart_total != None %}
-        <h2>Order total:</h2>
-        <h2>{{ order.get_cart_total }}</h2>
-    {% endif %}
-
-
-<a href="{% url 'med:index' %}" class="btn btn-warning pull-left">
+        <td colspan= 3>
+          $<strong>{{ order.get_cart_total }}</strong>
+        </td>
+        {% endif %}
+      </tr>
+    <tr>
+        <td colspan=1 >
+          <a href="{% url 'med:index' %}" class="btn btn-warning pull-left">
             {% if order %}Continue Shopping{% else %}Add Items to Cart {% endif %}
-</a>
-
-{#<a href="{% url 'med:finalPrice' %}" class="btn btn-info btn-lg">Checkout</a>#}
-{% if order.get_cart_items %}
+          </a>
+        </td>
+        <td colspan=4>
+          {% if order.get_cart_items %}
             <a href="{% url 'med:finalPrice' order.id %}" class="pull-right btn btn-primary">Proceed To Checkout</a>
           {% endif %}
+        </td>
+      </tr>
+    </table>
+   </div>
+ </section>
 
 {% endblock %}

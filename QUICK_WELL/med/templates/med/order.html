@@ -34,10 +34,12 @@
                         Please enter a valid email address for shipping updates.
                       </div>
                      <div class="mb-3">
+                     <br>
                          {% for item in order.get_cart_items %}
 
                             {% if item.medicine.pres_req == "yes" %}
                                 <h4><strong>Note:  Prescription is required for {{ item.medicine.name }}</strong></h4>
+                                 <input type="file" name="pic" accept="image/*">
                             {% endif %}
 
 
