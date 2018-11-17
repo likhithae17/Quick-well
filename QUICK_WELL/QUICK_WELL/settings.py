@@ -44,8 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'docapp.apps.DocappConfig',
-    'force'
-    'accounts',
+    # 'force.apps.ForceConfig'
+    # 'accounts',
+     'force.apps.ForceConfig',
     'home.apps.HomeConfig',
     'channels',
     'accounts',
