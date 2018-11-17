@@ -16,4 +16,5 @@ urlpatterns = [
 #    url(r'^advt', views.advt, name='advt'),
     #url(r'^blog', ListView.as_view(queryset=Post.objects.all().order_by("-date")[:10], template_name="profile/includes/blog.html")),
     #url(r'^blog/blog/(?P<pk>\d+)$', DetailView.as_view(model=Post, template_name='profile/includes/post.html'))
+
 ]

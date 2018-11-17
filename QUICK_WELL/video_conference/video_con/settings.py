@@ -57,7 +57,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'quick_well.urls'
+ROOT_URLCONF = 'video_con.urls'
 
 TEMPLATES = [
     {
@@ -75,7 +75,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'quick_well.wsgi.application'
+WSGI_APPLICATION = 'video_con.wsgi.application'
 
 
 # Database

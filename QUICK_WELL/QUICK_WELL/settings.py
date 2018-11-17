@@ -47,8 +47,11 @@ INSTALLED_APPS = [
     'force.apps.ForceConfig',
     #'force'
     'accounts',
+    # 'force.apps.ForceConfig'
+    # 'accounts',
     'home.apps.HomeConfig',
     'channels',
+    'accounts',
     'chat',
     # Machina related apps:
     'mptt',
@@ -58,6 +61,10 @@ INSTALLED_APPS = [
     'sekizai'
 
 ] + get_machina_apps()
+
+
+
+
 
     #'django_elasticsearch_dsl',
 
@@ -91,7 +98,7 @@ ROOT_URLCONF = 'QUICK_WELL.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'templates'),MACHINA_MAIN_TEMPLATE_DIR]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -162,12 +169,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
 LOGOUT_REDIRECT_URL = 'accounts:home'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+ASGI_APPLICATION = 'QUICK_WELL.routing.application'
 ASGI_APPLICATION = 'quickwell.routing.application'
+
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',

@@ -6,6 +6,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -35,9 +37,10 @@
       border-color: #f1f1f1;
   }
   .carousel-inner img {
-      -webkit-filter: grayscale(90%);
+      {#-webkit-filter: grayscale(90%);#}
       width: 100%; /* Set width to 100% */
       margin: auto;
+      height: 700px;
   }
   .carousel-caption h3 {
       color: #fff !important;
@@ -94,20 +97,22 @@
   .nav-tabs li a {
       color: #777;
   }
-  #googleMap {
+  googleMap {
       width: 100%;
       height: 400px;
-      -webkit-filter: grayscale(100%);
-      filter: grayscale(100%);
+      {#-webkit-filter: grayscale(100%);#}
+      {#filter: grayscale(100%);#}
   }
   .navbar {
       font-family: Montserrat, sans-serif;
       margin-bottom: 0;
-      background-color: #2d2d30;
+      background-color: #2b669a;
       border: 0;
-      font-size: 11px !important;
-      letter-spacing: 4px;
-      opacity: 0.9;
+      font-size: 15px !important;
+      {#letter-spacing: 1px;#}
+      opacity: 0.8;
+      padding-top: 10px;
+      padding-bottom: 10px;
   }
   .navbar li a, .navbar .navbar-brand {
       color: #d5d5d5 !important;
@@ -162,12 +167,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#myPage">Logo</a>
+      <a class="navbar-brand" href="{% url 'home:home' %}" style="font-family: 'Satisfy', cursive; font-size:25px">Quickwell</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#myPage">HOME</a></li>
-        <li><a href="appointment/">Book an Appointment</a></li>
+        <li><a href="appointment/"><span class="fa fa-ambulance" aria-hidden="true" ></span>&nbspBook an Appointment</a></li>
+        <li><a href="###">skot</a></li>
         <li><a href="med/">Order Medicines</a></li>
         <li><a href="#contact">CONTACT</a></li>
         <li class="dropdown">
@@ -196,7 +201,7 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="http://okadmission.com/front_assets/uploads/listingImg/1531499307y.jpg" alt="New York" width="1200" height="700">
+        <img src="http://okadmission.com/front_assets/uploads/listingImg/1531499307y.jpg" alt="New York" >
         <div class="carousel-caption">
           <h3>New York</h3>
           <p>The atmosphere in New York is lorem ipsum.</p>
@@ -204,7 +209,7 @@
       </div>
 
       <div class="item">
-        <img src="http://dprs.fospe.in/website_theme/img/palystore_banner.jpg" alt="Chicago" width="1200" height="700">
+{#        <img src="http://dprs.fospe.in/website_theme/img/palystore_banner.jpg" alt="Chicago" >
         <div class="carousel-caption">
           <h3>Chicago</h3>
           <p>Thank you, Chicago - A night we won't forget.</p>
@@ -212,7 +217,7 @@
       </div>
 
       <div class="item">
-        <img src="https://www.bajajfinserv.in/How_to_be_eligible_for_a_Doctor_Loan__790x345_15_How-to-be-eliguble-for-a-loan-for-doctors.jpg" alt="Los Angeles" width="1200" height="700">
+        <img src="https://www.bajajfinserv.in/How_to_be_eligible_for_a_Doctor_Loan__790x345_15_How-to-be-eliguble-for-a-loan-for-doctors.jpg" alt="Los Angeles" >
         <div class="carousel-caption">
           <h3>LA</h3>
           <p>Even though the traffic was a mess, we had the best time playing at Venice Beach!</p>
