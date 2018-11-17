@@ -5,11 +5,15 @@ urlpatterns = [
 
     path('', views.index, name='index'),
 
-    #/music/<album_id>/
-    re_path('(?P<spec_id>[0-9])/', views.detail, name='detail'),
+    # /music/<album_id>/
+    path('<int:pk>/', views.appbooking, name='appbooking'),
+    path('hospitalnearme/', views.maps, name='maps'),
+    path('book/<int:pk>/', views.confirm, name='confirm'),
+    path('cal/', views.calendar, name='calendar'),
 
-    #path('spec/add/',views.SpecializationCreate.as_view(), name='spec-add'),
+    # re_path('appbooking/?P<pk>[0-9]/',views.appbooking,name='appbooking'),
+    # path('spec/add/',views.SpecializationCreate.as_view(), name='spec-add'),
 
-    #/music/<album_id>/favorite/
-    #re_path('(?P<album_id>[0-9])/favorite/$', views.favorite, name='favorite'),
+    # /music/<album_id>/favorite/
+    # re_path('(?P<album_id>[0-9])/favorite/$', views.favorite, name='favorite'),
 ]

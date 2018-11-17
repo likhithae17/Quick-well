@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import djcelery
+djcelery.setup_loader()
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -38,9 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'docapp.apps.DocappConfig',
-#    'django_elasticsearch_dsl',
+    'schedule',
+    'djcelery',
 
 ]
+    #'django_elasticsearch_dsl',
+
+
 
 #ELASTICSEARCH_DSL = {
 #    'default':{

@@ -1,0 +1,123 @@
+{% extends 'docapp/base.html' %}
+{% load define_action %}
+
+{% block title %}Doctor Details{% endblock %}
+
+{% block body %}
+    <h4>{{ doctor.firstname }}</h4>
+    <h4>Select a time slot to book appointment</h4>
+
+    <div class="container">
+        <div class="col-xs-3">
+            <div class="input-group date" data-provide="datepicker">
+                <input type="text" class="form-control" placeholder="Select Date" id="date" name="date" value="">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+
+
+    <script type="text/javascript">
+
+        $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+        $('.datepicker').datepicker({
+            startDate: Date(),
+            default:Date(),
+            todayHighlight: true,
+            autoclose: true,
+        })
+
+        var ms=[];
+        ms[0] = "{{ appbook.slot1 }}";
+        ms[1] = "{{ appbook.slot2 }}";
+        ms[2] = "{{ appbook.slot3 }}";
+        ms[3] = "{{ appbook.slot4 }}";
+        ms[4] = "{{ appbook.slot5 }}";
+        ms[5] = "{{ appbook.slot6 }}";
+        ms[6] = "{{ appbook.slot7 }}";
+        ms[7] = "{{ appbook.slot8 }}";
+        ms[8] = "{{ appbook.slot9 }}";
+        ms[9] = "{{ appbook.slot10 }}";
+        ms[10] = "{{ appbook.slot11 }}";
+        ms[11] = "{{ appbook.slot12 }}";
+        ms[12] = "{{ appbook.slot13 }}";
+        ms[13] = "{{ appbook.slot14 }}";
+        ms[14] = "{{ appbook.slot15 }}";
+        ms[15] = "{{ appbook.slot16 }}";
+        ms[16] = "{{ appbook.slot17 }}";
+        ms[17] = "{{ appbook.slot18 }}";
+        ms[18] = "{{ appbook.slot19 }}";
+        ms[19] = "{{ appbook.slot20 }}";
+        ms[20] = "{{ appbook.slot21 }}";
+        ms[21] = "{{ appbook.slot22 }}";
+        ms[22] = "{{ appbook.slot23 }}";
+        ms[23] = "{{ appbook.slot24 }}";
+        ms[24] = "{{ appbook.slot25 }}";
+        ms[25] = "{{ appbook.slot26 }}";
+        ms[35] = "{{ appbook.slot36 }}";
+        ms[36] = "{{ appbook.slot37 }}";
+        ms[37] = "{{ appbook.slot38 }}";
+        ms[38] = "{{ appbook.slot39 }}";
+        ms[45] = "{{ appbook.slot46 }}";
+        ms[46] = "{{ appbook.slot47 }}";
+        ms[47] = "{{ appbook.slot48 }}";
+        ms[48] = "{{ appbook.slot49 }}";
+
+        /*
+        for(var i=1;i<13;i++)
+        {   var t1 = "appbook.slot"
+            var i1 = i
+            document.write(i1)
+            var temp = 'appbook.slot'+i
+            {# {% define t1.concat(i1) as action %}#}
+            var a =  {#"{{ action }}"#}
+            document.write(a)
+            ms[i-1] = {# "{{ appbook.temp }}" #}
+        }
+        */
+
+        //date = document.getElementsByClassName("date").value;
+        //document.write(date+"<br>")
+
+        document.write("&nbsp;<i class='fas fa-cloud-sun' ></i> Morning &nbsp;");
+        for(var i = 0; i <12 ; i++)
+        {
+
+            document.write("<button type=\"button\" class=\"btn btn-default\" onclick=\"window.location='{% url 'confirm'  pk=doctor.id %}'\">");
+            document.write(ms[i]);
+            document.write("</button>&nbsp;");
+        }
+
+        document.write("<br><br>&nbsp;<i class='fas fa-sun'></i> Afternoon &nbsp;");
+        for(var i = 12; i <=25 ; i++)
+        {
+
+            document.write("<button type=\"button\" class=\"btn btn-default\" onclick=\"window.location='{% url 'confirm'  pk=doctor.id  %}'\">");
+            document.write(ms[i]);
+            document.write("</button>&nbsp;");
+        }
+
+        document.write("<br><br>&nbsp;<i class='fas fa-moon-o'></i> Evening &nbsp;");
+        for(var i = 35; i <=38 ; i++)
+        {
+
+            document.write("<button type=\"button\" class=\"btn btn-default\" onclick=\"window.location='{% url 'confirm' pk=doctor.id %}'\">");
+            document.write(ms[i]);
+            document.write("</button>&nbsp;");
+        }
+
+        document.write("<br><br>&nbsp;<i class='fas fa-cloud-moon'></i> Night &nbsp;");
+        for(var i = 45; i <=48 ; i++)
+        {
+
+            document.write("<button type=\"button\" class=\"btn btn-default\" onclick=\"window.location='{% url 'confirm'  pk=doctor.id %}'\">");
+            document.write(ms[i]);
+            document.write("</button>&nbsp;");
+        }
+    </script>
+
+{% endblock %}
+
