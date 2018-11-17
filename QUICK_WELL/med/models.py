@@ -10,7 +10,7 @@ from django.db.models.signals import post_save
 class Medicine(models.Model):
     name = models.CharField(max_length=100)
     pharmacy = models.CharField(max_length=100)
-    image = models.FileField(null=True, blank=True)
+    about = models.CharField(max_length=1000, default='0000000')
     description = models.CharField(max_length=1000)
     mfg_date = models.DateField(null=True)
     exp_date = models.DateField(null=True)
