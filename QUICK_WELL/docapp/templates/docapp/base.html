@@ -23,7 +23,7 @@
 </head>
 
 <body>
-
+<!--
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -34,7 +34,7 @@
                 <li><a href="#">Page 1</a></li>
                 <li><a href="#">Page 2</a></li>
             </ul>
-            <form class="navbar-form navbar-left" action="{% url 'index' %}" method="get">
+            <form class="navbar-form navbar-left" action="{#{% url 'index' %}#}" method="get">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search" name="q" id="q">
                     <div class="input-group-btn">
@@ -47,7 +47,37 @@
             </form>
         </div>
     </nav>
+-->
 
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'home:home' %}" style="font-family: 'Satisfy', cursive; font-size:25px">Quickwell</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href=""><span class="fa fa-ambulance" aria-hidden="true" ></span>&nbspBook an Appointment</a></li>
+            <li><a href="med/"><span class="fa fa-medkit" aria-hidden="true"></span>&nbspOrder Medicines</a></li>
+            <li><a href="chat/">Chat with a doctor</a></li>
+            <li><a href="#video call">Video Call</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Book lab tests</a></li>
+                <li><a href="forum/">Forum</a></li>
+                <li><a href="#">Media</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     {% block body %}
     {% endblock %}
 
