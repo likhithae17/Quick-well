@@ -7,6 +7,7 @@ body
     border: none;
     border-radius: 0;
     margin-bottom: 0;
+
 }
 
 .navbar-brand{
@@ -17,6 +18,7 @@ body
       padding-top: 15px;
       padding-bottom: 15px;
       background-color: #060E2F;
+
   }
 
 .container-fluid-form{

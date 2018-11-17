@@ -44,19 +44,20 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'docapp.apps.DocappConfig',
-    # 'force.apps.ForceConfig'
-    # 'accounts',
-     'force.apps.ForceConfig',
+    'force.apps.ForceConfig',
+    #'force'
+    'accounts',
     'home.apps.HomeConfig',
     'channels',
-    'accounts',
     'chat',
     # Machina related apps:
     'mptt',
     'haystack',
     'widget_tweaks',
     'ads',
-    'sekizai'
+    'sekizai',
+    'crispy_forms',
+    'labtest.apps.LabtestConfig',
 
 ] + get_machina_apps()
 
@@ -247,4 +248,9 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'quickwelldoctor@gmail.com'
+EMAIL_HOST_PASSWORD = 'doctor@123'
