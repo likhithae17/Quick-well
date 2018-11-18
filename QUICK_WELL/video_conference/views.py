@@ -6,12 +6,25 @@ from django.contrib.auth.models import User
 import random
 import webbrowser
 import os
+from .forms import *
+from .models import *
 
-def home(request):
-    return HttpResponse('<h1>this is video conference page</h1>')
 
-def login():
-    cd = random.randint(100000,9999999)
+def requester(request):
+
+    if request.method == 'POST':
+        form = video_requestForm(request.POST)
+        if form.is_valid():
+            t = video_request(requester = form.cleaned_data['username'])
+            t.save()
+            return render(request, 'video_conference/conference.html' , {'form':form})
+
+    else:
+        form = video_requestForm()
+    return render(request,'video_conference/request.html',{'form':form})
+
+def login(request):
+    cd = random.randint(100000, 9999999)
     os.system("start \"\" http://appr.tc/r/"+str(cd))
 
 def Mail(request):
@@ -20,7 +33,7 @@ def Mail(request):
     for a in x:
         lis.append(a.email)
     for i in range(0,len(lis)):
-        res = send_mail("Health Tips", "Today's health tip : drink 8 cups of water minimum in a day.", "qucikwelldoctor@gmail.com", [lis[i]])
+        res = send_mail("Health Tips", "Today's health tip : drink 8 cups of water minimum a day.", "qucikwelldoctor@gmail.com", [lis[i]])
     return HttpResponse('tip sent')
 '''
 def email_one(request):

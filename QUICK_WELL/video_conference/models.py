@@ -6,15 +6,15 @@ from django.contrib.auth.models import User
 
 
 
-class video_con_request(models.Model):
-    requester = models.ForeignKey(User,on_delete=models.CASCADE)
+class video_request(models.Model):
     #doctor = models.ForeignKey(User,on_delete=models.CASCADE)
     date_requested = models.DateTimeField(auto_now_add= True)
-    request_id = models.CharField(max_length=12)
+    request_id = models.AutoField(primary_key=True)
+    requester = models.CharField(max_length=120)
 
 class video_con_pass(models.Model):
-    patient = models.ForeignKey(User,on_delete=models.CASCADE)
-    date_conference = models.DateTimeField(default=timezone.now)
+    patient = models.CharField(max_length=120)
+    date_conference = models.DateTimeField(auto_now_add=True)
     # doctor = models.ForeignKey(User,on_delete=models.CASCADE)
     conference_link = models.CharField(max_length=120)
 

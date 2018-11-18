@@ -1,5 +1,7 @@
 from django import forms
-'''class video_con_requestForm(forms.ModelForm):
-    class Meta:
-        model = models.Post
-        fields = ['title','description','description2','body','order','slug']'''
+from django.contrib.auth.forms import User
+from django.contrib.auth.forms import UserCreationForm
+from .models import *
+class video_requestForm(forms.Form):
+    email=forms.EmailField(widget=forms.TextInput(attrs={'placeholder':'Requester Email'}))
+    username=forms.CharField(max_length=50,widget=forms.TextInput(attrs={'placeholder':'Requester Name'}))
