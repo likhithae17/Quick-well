@@ -107,11 +107,11 @@
             </form>
         </div>
     </nav>
+
 -->
-
     {% for doc in doctor %}
-
-    <div class="row" style="">
+    <br><br>
+    <div class="row" style="margin: auto" >
         <div class="col-sm-4 col-xs-12">
             <div class="panel panel-default text-center">
 
@@ -126,8 +126,8 @@
                     <p>{{ doc.id }}</p>
                     <p>{{ doc.spec }}</p>
                     <p>{{ doc.firstname }}  {{ doc.lastname }}</p>
-                    <p>{{ doc.experience }}  years experience</p><br>
-
+                    <p>{{ doc.experience }}  years experience</p>
+                    <p><a href="">View Profile</a></p>
                 </div>
                 <div class="panel-footer">
                     <button onclick="window.location='{% url 'appbooking' pk=doc.id %}'" class="btn btn-primary active" >Book Appointment</button>
