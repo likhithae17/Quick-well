@@ -3,11 +3,16 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
-
+import random
+import webbrowser
+import os
 
 def home(request):
     return HttpResponse('<h1>this is video conference page</h1>')
 
+def login():
+    cd = random.randint(100000,9999999)
+    os.system("start \"\" http://appr.tc/r/"+str(cd))
 
 def Mail(request):
     x = User.objects.all()
