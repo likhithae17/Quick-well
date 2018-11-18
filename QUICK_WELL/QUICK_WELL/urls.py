@@ -30,6 +30,7 @@ urlpatterns = [
     path('forum/', include(board.urls)),
     path('ads/', include('ads.urls')),
     path('med/', include('med.urls')),
+    path('lab/', include('labtest.urls')),
 ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

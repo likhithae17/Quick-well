@@ -55,7 +55,9 @@ INSTALLED_APPS = [
     'haystack',
     'widget_tweaks',
     'ads',
-    'sekizai'
+    'sekizai',
+    'crispy_forms',
+    'labtest.apps.LabtestConfig',
 
 ] + get_machina_apps()
 

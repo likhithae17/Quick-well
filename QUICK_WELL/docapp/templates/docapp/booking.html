@@ -1,12 +1,18 @@
 {% extends 'docapp/base.html' %}
 {% load define_action %}
-
-{% block title %}Doctor Details{% endblock %}
+{% load crispy_forms_tags %}
+{% block title %}Appointment{% endblock %}
 
 {% block body %}
-    <h4>{{ doctor.firstname }}</h4>
-    <h4>Select a time slot to book appointment</h4>
+    <h4>Doctor : {{ doctor.firstname }} {{ doctor.lastname }}</h4>
+    <h4>Select a time slot to book appointment</h4><br>
 
+
+    <form action="{% url 'appbooking' pk=doctor.id %}" method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <br><br><button type="submit" class="btn btn-primary">Confirm Appointment</button>
+    </form>
 
     <!--
     <form action="docapp/confirm.html">
@@ -36,11 +42,11 @@
     <br>
 
 -->
-
+<!--
     <div class="container">
 
-            <form name ="form" action="{% url 'appbooking' pk=doctor.id %}" method="POST">
-                {% csrf_token %}
+            <form name ="form" action="{# {% url 'appbooking' pk=doctor.id %} #}" method="POST">
+                {# {% csrf_token %}#}
 
                 <div class="row">
                     <div class="col-xs-4">
@@ -87,6 +93,6 @@
         })
 
      </script>
-
+-->
 {% endblock %}
 

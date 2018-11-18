@@ -62,6 +62,7 @@ class Hospital_Affiliation(models.Model):
 class Office(models.Model):
     doc_id = models.ForeignKey(Doctor, on_delete=models.PROTECT,null=True,blank = True)
     hosp_affiliation_id = models.ForeignKey(Hospital_Affiliation, on_delete=models.PROTECT,null=True,blank=True)
+    lab_id = models.ForeignKey(LabTest, on_delete=models.PROTECT,null=True,blank = True)
     first_fee = models.FloatField(null=False)
     followup_fee = models.FloatField(null=False)
     street_address = models.CharField(max_length=500,blank=True)
@@ -227,7 +228,7 @@ class Appointment_Status(models.Model):
 
 class Appointment(models.Model):
     #client_accountid = models.ForeignKey(User, on_delete=models.PROTECT)
-    office_id = models.ForeignKey(Doctor, on_delete=models.PROTECT)
+    office_id = models.ForeignKey(Office, on_delete=models.PROTECT)
     #start_time =  models.DateTimeField()
     #end_time =  models.DateTimeField()
     user_name = models.CharField(max_length=50)

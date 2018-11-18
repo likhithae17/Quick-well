@@ -1,0 +1,11 @@
+{% extends 'docapp/base.html' %}
+
+{% block title %}Doctor Details{% endblock %}
+
+{% block body %}
+    <h3> Thank you {{ name }} for booking appointment.</h3><br>
+    <p>Appointment Details:</p>
+    <p>Doctor : {{ doctor.firstname }} {{ doctor.lastname }}</p>
+    <p>Time : {{ time }}</p>
+    <p>Date : {{ date }}</p>
+{% endblock %}

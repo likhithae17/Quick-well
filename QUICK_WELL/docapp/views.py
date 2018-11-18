@@ -6,13 +6,12 @@
 
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse
-from .models import Specialization, Doctor, Office_Docavailability, Office
+from .models import Specialization, Doctor, Office_Docavailability, Office, Appointment,LabTest, Tests_info
 
 from django.core.mail import EmailMessage
 
 from django.contrib.sites.shortcuts import get_current_site
 from .forms import AppointmentForm
-from .models import Appointment
 #from . import ref
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
@@ -40,8 +39,7 @@ def index(request):
         doc = Doctor.objects.all()
     return render(request, 'docapp/index.html', {'doctor': doc})
 
-def labtests(request):
-    return None
+
 
 def detail(request,spec_id):
     spec = get_object_or_404(Specialization,pk=spec_id)
@@ -73,23 +71,23 @@ def appbooking(request,pk):
         if form.is_valid():
             date = form.cleaned_data['date']
             time = form.cleaned_data['time']
-            user_name = form.cleaned_data['username']
-            email_id = form.cleaned_data['emailid']
-            appoint_no = ref.generate_app_id()
+            user_name = form.cleaned_data['user_name']
+            email_id = form.cleaned_data['email_id']
+            #appoint_no = ref.generate_app_id()
 
-            temp = Appointment.objects.create(date=date, time=time, appointment_id=appoint_no, user_name=user_name, email_id=email_id, office_id=office)
+            temp = Appointment.objects.create(date=date, time=time, user_name=user_name, email_id=email_id, office_id=office)
 
             subject = "Appointment booked"
             to_email = email_id
             print(to_email)
             context = {
                 'name': user_name,
-                'Appointment_id':appoint_no,
+                #'Appointment_id':appoint_no,
                 'time':time,
                 'date': date,
                 'doctor':doc,
             }
-            message = render_to_string('docapp/email.html', context)
+            message = render_to_string('docapp/emailtext.html', context)
             msg = EmailMessage(subject, message, to=[to_email])
             msg.content_subtype = 'html'
 
@@ -99,7 +97,7 @@ def appbooking(request,pk):
             except:
                 print('Unsuccessful')
 
-            return redirect('donate:thanks')
+            return render(request, 'docapp/greet.html', context)
 
     else:
         form = AppointmentForm()
@@ -112,7 +110,8 @@ def confirm(request,pk):
     #slot_selected = slot
     return render(request, 'docapp/confirm.html',{'doctor':doc})
 
-
+def greet(request):
+    return render(request, 'docapp/greet.html')
 """
 
 from django.shortcuts import get_object_or_404
