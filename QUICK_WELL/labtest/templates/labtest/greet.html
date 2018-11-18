@@ -11,11 +11,15 @@
             <div style="font-size: 25px">
                 <b><p>Appointment Details:</p></b>
             </div>
-            <div style="font-size: 18px"><p>Doctor : {{ doctor.firstname }} {{ doctor.lastname }}</p>
-                <p>Time : {{ time }}</p>
+            <div style="font-size: 18px">
+                <p>Name : {{ name }} </p>
+                <p>Test : {{ test.test_name }}</p>
+                <p>Lab : {{ lab.lab_name }} </p>
                 <p>Date : {{ date }}</p>
+                <p>Time : {{ time }} </p>
+                <p>cost : {{ test.cost }}</p>
+                <p>Preparations : {{ test.preparation }}</p>
             </div>
         </center>
     </div>
-
 {% endblock %}

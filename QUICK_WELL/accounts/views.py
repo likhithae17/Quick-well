@@ -3,14 +3,14 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.http import HttpResponse
 from .forms import *
 from django.core.mail import send_mail,EmailMessage
-from django.contrib.auth import get_user_model, login as auth_login, logout as out, logout
+from django.contrib.auth import get_user_model, login as auth_login, logout as out
 from django.conf import settings
 from .models import *
 from django.contrib.auth import authenticate
 import random
 
-# def home(request):
-#     return render(request, 'accounts/home.html')
+def home(request):
+    return render(request, 'accounts/home.html')
 
 def Mail(request,emailto):
    otp = random.randint(100000, 999999)
@@ -29,13 +29,15 @@ def login(request):
         form = AuthenticationForm()
     return render(request, 'accounts/login.html', {'form': form})
 
-def logout(request):
-    # if request.method == "POST":
-    #     out(request)
-    # return HttpResponse("logged out")
-    logout(request)
-    return redirect('home:home')
-
+# def logout_view(request):
+#     if request.method == 'POST':
+#     out(request)
+#     return render(request, 'accounts/index.html')
+#
+# def logout(request):
+#     if request.method == "POST":
+#         out(request)
+#     return HttpResponse("logged out")
 
 def register(request):
     registered = False
@@ -49,15 +51,19 @@ def register(request):
             ProfileForm = profile_form.save(commit=False)
             ProfileForm.user = UserForm
             ProfileForm.save()
-            Mail(request, UserForm.email)
+           # Mail(request, UserForm.email)
+            otp = random.randint(100000, 999999)
+            send_mail("hello doctor", "Thanks for registering " + str(otp) + " is your verification otp","quickwelldoctor@gmail.com", [UserForm.email])
             registered = True
         else:
-            return HttpResponse(form.errors)
+            return HttpResponse("Invalid details!")
     else:
         user_form = Signup_user_form()
         profile_form = Signup_profile_form()
     if registered:
-        return HttpResponse("Successfully created your account")
+        request.session['username'] = user_form.cleaned_data.get('username')
+        return render(request, 'accounts/mailconformation.html', {'otp': otp})
+    # return HttpResponse("Successfully created your account")
     else:
         return render(request, 'accounts/signup4.html', {'user_form': user_form, 'profile_form': profile_form})
 
@@ -71,5 +77,20 @@ def contact(request):
 
 def test(request):
     return render(request, 'profile/includes/test.html')
+
+def mail_conf(request):
+    if request.method=='POST':
+        otp = str(request.POST['otp'])
+        otp1 = str(request.POST['otp1'])
+        if otp == otp1:
+            return HttpResponse("mail verified")
+        else:
+            username = request.session['username']
+            dele = User.objects.get(username=username)
+            dele.delete()
+            return HttpResponse("mail unverified")
+    else:
+        return HttpResponse('404 error')
+
 
 # def advt

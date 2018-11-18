@@ -10,12 +10,9 @@ from .models import Specialization, Doctor, Office_Docavailability, Office, Appo
 
 from django.core.mail import EmailMessage
 
-from django.contrib.sites.shortcuts import get_current_site
 from .forms import AppointmentForm
 #from . import ref
 from django.template.loader import render_to_string
-from django.contrib.auth.models import User
-from django.conf import settings
 
 #from googleapiclient import discovery
 #from oauth2client import tools
@@ -59,6 +56,9 @@ def maps(request):
 #     app = get_object_or_404(Office_Docavailability, pk=pk)
 #     return render(request, 'docapp/booking.html', {'doctor':doc, 'appbook':app})
 
+def profile(request,pk):
+    doc = get_object_or_404(Doctor, pk=pk)
+    return render(request, 'profile/includes/basic.html', {'doc':doc})
 
 def appbooking(request,pk):
     doc = get_object_or_404(Doctor, pk=pk)

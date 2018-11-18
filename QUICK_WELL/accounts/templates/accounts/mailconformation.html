@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mail conformation</title>
+</head>
+<body>
+    <form action="http://127.0.0.1:8000/temp/verify/" method="POST">
+        {% csrf_token %}
+        <pre>Enter the otp:<input type="text" value="" name="otp1">
+                    <input type="hidden" name="otp" value="{{ otp }}">
+                    <input type="submit" value="submit">
+        </pre>
+
+    </form>
+</body>
+</html>

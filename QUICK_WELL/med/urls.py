@@ -16,7 +16,7 @@ urlpatterns = [
     path('login/', views.login_view, name="login"),
     path('logout/', views.logout_view, name="logout"),
     path('order-summary/', views.order_details , name="order_summary"),
-    # path('checked-products/', views.checked , name="checked"),
+    path('checked-products/', views.checked , name="checked"),
     #path('order-summary/', views.order_details , name="order_summary"),
     url(r'^item/delete/(?P<item_id>[0-9]+)/$', views.delete_from_cart, name='delete_item'),
 ]

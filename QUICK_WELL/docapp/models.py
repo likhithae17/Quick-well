@@ -62,7 +62,6 @@ class Hospital_Affiliation(models.Model):
 class Office(models.Model):
     doc_id = models.ForeignKey(Doctor, on_delete=models.PROTECT,null=True,blank = True)
     hosp_affiliation_id = models.ForeignKey(Hospital_Affiliation, on_delete=models.PROTECT,null=True,blank=True)
-    lab_id = models.ForeignKey(LabTest, on_delete=models.PROTECT,null=True,blank = True)
     first_fee = models.FloatField(null=False)
     followup_fee = models.FloatField(null=False)
     street_address = models.CharField(max_length=500,blank=True)
@@ -233,10 +232,18 @@ class Appointment(models.Model):
     #end_time =  models.DateTimeField()
     user_name = models.CharField(max_length=50)
     email_id = models.EmailField()
-    appointment_id = models.CharField(blank=False, null=False, max_length=200)
+    #appointment_id = models.CharField(blank=False, null=False, max_length=200)
     date = models.DateField(blank=True, null=True)
     time = models.TimeField(blank=True, null=True)
     #appoint_status_id = models.ForeignKey(Appointment_Status, on_delete=models.PROTECT)
 
-    def __str__(self):
-        return self.appointment_id
+
+
+class labAppointment(models.Model):
+    test_id = models.ForeignKey(Tests_info, on_delete=models.PROTECT)
+    user_name = models.CharField(max_length=50)
+    email_id = models.EmailField()
+    #appointment_id = models.CharField(blank=False, null=False, max_length=200)
+    date = models.DateField(blank=True, null=True)
+    time = models.TimeField(blank=True, null=True)
+    #appoint_status_id = models.ForeignKey(Appointment_Status, on_delete=models.PROTECT)

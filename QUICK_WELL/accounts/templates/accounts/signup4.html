@@ -1,43 +1,104 @@
-<!DOCTYPE html>
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Doctors Signup</title>#}
+{#    <style>#}
+{#        body  {#}
+{#            background-image: url("http://healthplansonline.com/images/health/stethoscope_background.jpg");#}
+{#            background-repeat: no-repeat;#}
+{#            background-size: cover;#}
+{#            background-color: #2aabd2;#}
+{#        }#}
+{#        .transbox {#}
+{#    margin: 30px;#}
+{#    background-color: #ffffff;#}
+{#    border: 1px solid black;#}
+{#    opacity: 0.8;#}
+{#}#}
+{##}
+{#</style>#}
+{#</head>#}
+{#<body>#}
+{#    <form method="POST" enctype="multipart/form-data">#}
+{#        {% csrf_token %}#}
+{#    <div><center>    <h1>Register here if you are a doctor</h1></center>#}
+{##}
+{#    <div class="transbox">#}
+{#   <center> <p>{% for field in user_form %}#}
+{#    {{ field.label_tag }}<br>#}
+{#    {{ field }}<br>#}
+{#    {% endfor %}</p>#}
+{#     <p>{% for field in profile_form %}#}
+{#    {{ field.label_tag }}<br>#}
+{#    {{ field }}<br>#}
+{#    {% endfor %}</p>#}
+{#        <button type="submit">SignUp</button>#}
+{#    <!--       {{ user_form }}#}
+{#        {{ profile_form }}#}
+{#    <input type="submit" value="Signup"> </center>--></center></div>#}
+{#    </div>#}
+{##}
+{#</form>#}
+{#</body>#}
+{#</html>#}
+<!-DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Doctors Signup</title>
     <style>
         body  {
-            background-image: url("http://healthplansonline.com/images/health/stethoscope_background.jpg");
+            /*background-image: url("http://healthplansonline.com/images/health/stethoscope_background.jpg");*/
+            background-image: url("https://image.freepik.com/free-photo/doctor-s-stethoscope-with-blue-background_23-2147652363.jpg");
             background-repeat: no-repeat;
             background-size: cover;
-            background-color: #2aabd2;
         }
         .transbox {
-    margin: 30px;
-    background-color: #ffffff;
-    border: 1px solid black;
-    opacity: 0.8;
-}
-
-</style>
+            margin: 50px;
+            background-color: #ffffff;
+            border: 1px solid black;
+            opacity: 0.8;
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 5px;
+        }
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
 </head>
 <body>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-    <div><center>    <h1>Register here if you are a doctor</h1></center>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <center>
+        <h1 class="well-lg">Register here if you are a doctor</h1>
+    </center>
 
-    <div class="transbox">
-   <center> <p>{% for field in user_form %}
-    {{ field.label_tag }}<br>
-    {{ field }}<br>
-    {% endfor %}</p>
-     <p>{% for field in profile_form %}
-    {{ field.label_tag }}<br>
-    {{ field }}<br>
-    {% endfor %}</p>
-        <button type="submit">SignUp</button>
-    <!--       {{ user_form }}
-        {{ profile_form }}
-    <input type="submit" value="Signup"> </center>--></center></div>
-    </div>
+       <div class="transbox">
+           <table>{% for field in user_form %}<tr>
+           <td>
+               <center>{{ field.label_tag }}</center>
+           </td>
+               <td>
+                   <center>{{ field }}</center></td>
+                          {% endfor %}</tr>
+     {% for field in profile_form %}
+   <tr> <td><center>{{ field.label_tag }}</center></td> <td><center>    {{ field }}</center></td></tr>
+       {% endfor %}
+                <!--       {{ user_form }}
+                    {{ profile_form }}
+                <input type="submit" value="Signup"> </center>--></table><br><center><button type="submit">SignUp</button></center><br></div>
 
 </form>
 </body>
