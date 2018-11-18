@@ -5,15 +5,14 @@
 {% block title %}Appointment{% endblock %}
 
 {% block body %}
+    <div class="container">
+        <h4>Test : {{ test.test_name }}</h4>
+        <h4>Select a time slot to book appointment</h4><br>
 
-    <h4>Test : {{ test.test_name }}</h4>
-    <h4>Select a time slot to book appointment</h4><br>
-
-
-    <form action="{% url 'labbook' pk=test.id %}" method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <br><br><button type="submit" class="btn btn-primary">Confirm Appointment</button>
-    </form>
-
+        <form action="{% url 'labbook' pk=test.id %}" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <br><br><button type="submit" class="btn btn-primary">Confirm Appointment</button>
+        </form>
+    </div>
 {% endblock %}
