@@ -13,6 +13,6 @@ class video_con_request(models.Model):
    # requester = models.ForeignKey(User,on_delete=models.CASCADE)
 
 class video_con_pass(models.Model):
-    patient = models.ForeignKey(User.username,on_delete=models.CASCADE)
+    patient = models.ForeignKey(User,on_delete=models.CASCADE)
     date_conference = models.DateTimeField(default=timezone.now)
 

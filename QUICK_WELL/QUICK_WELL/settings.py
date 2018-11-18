@@ -36,7 +36,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'med.apps.MedConfig',
+    #'med.apps.MedConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'force.apps.ForceConfig',
     #'force'
     'accounts',
-    'credits.apps.CreditsConfig',
+    #'credits.apps.CreditsConfig',
     'home.apps.HomeConfig',
     'channels',
     'chat',
@@ -59,6 +59,8 @@ INSTALLED_APPS = [
     'sekizai',
     'crispy_forms',
     'labtest.apps.LabtestConfig',
+    'video_conference',
+    'med',
 
 ] + get_machina_apps()
 
@@ -85,13 +87,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'machina.apps.forum_permission.middleware.ForumPermissionMiddleware',
 ]
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'quickwelldoctor@gmail.com'
-EMAIL_HOST_PASSWORD = 'doctor@123'
 
 ROOT_URLCONF = 'QUICK_WELL.urls'
 

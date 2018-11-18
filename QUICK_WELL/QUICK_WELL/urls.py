@@ -25,15 +25,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('appointment/', include('docapp.urls')),
     path('force/', include('force.urls')),
-
     path('', include('accounts.urls')),
     path('chat/', include('chat.urls')),
     path('forum/', include(board.urls)),
     path('ads/', include('ads.urls')),
     path('med/', include('med.urls')),
-    path('credits/', include('credits.urls')),
+    #path('credits/', include('credits.urls')),
     path('lab/', include('labtest.urls')),
-
+    path('video_conference/',include('video_conference.urls')),
 ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
