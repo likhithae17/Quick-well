@@ -8,7 +8,7 @@ app_name = 'accounts'
 
 urlpatterns = [
     url(r'^login/$', views.login, name="login"),
-    url(r'^logout/$', views.logout, name="logout"),
+    url(r'^logout/$', auth_views.LogoutView.as_view(template_name=""), name="logout"),
     url(r'^signup4/$', views.register, name="signup4"),
     # url(r'^home/', views.index, name='index'),
     url(r'^contact', views.contact, name='contact'),

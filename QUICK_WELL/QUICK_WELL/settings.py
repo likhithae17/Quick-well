@@ -169,7 +169,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGOUT_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home:home'
 # LOGOUT_REDIRECT_URL = 'accounts:home'
 
 
