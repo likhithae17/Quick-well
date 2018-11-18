@@ -75,6 +75,8 @@ def appbooking(request,pk):
             email_id = form.cleaned_data['email_id']
             #appoint_no = ref.generate_app_id()
 
+
+
             temp = Appointment.objects.create(date=date, time=time, user_name=user_name, email_id=email_id, office_id=office)
 
             subject = "Appointment booked"
