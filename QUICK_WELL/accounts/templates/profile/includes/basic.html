@@ -1,6 +1,8 @@
 {% extends 'profile/header.html' %}
 {% block content %}
-    {% for c in content %}
-        <p>{{c}}</p>
-    {% endfor %}
+
+        <p>&nbsp;Doctor Name : {{ doc.firstname}} {{ doc.lastname }}</p>
+        <p>&nbsp;Experience : {{ doc.experience }}</p>
+        <p>&nbsp; Specialization: {{ doc.spec }}</p>
+
 {% endblock %}
