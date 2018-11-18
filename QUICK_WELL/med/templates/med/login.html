@@ -2,7 +2,10 @@
 
 {% block body %}
     <div class="container">
+    <br><br><br>
+    <br><br>
       <h1>Log in</h1>
+    <br>
       <form class="site-form" action="{% url 'med:login' %}" method="post">
           {% csrf_token %}
           {{ form }}

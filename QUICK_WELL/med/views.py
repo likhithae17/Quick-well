@@ -24,6 +24,15 @@ def generate_order_id():
 
 
 
+# def get_user_checked_order(request):
+#     # get order for the correct user
+#     user_profile = get_object_or_404(UserProfile, user=request.user)
+#     order = Order.objects.filter(user=user_profile, is_ordered=True)
+#     if order.exists():
+#         # get the only order in the list of filtered orders
+#         return order[0]
+#     return 0
+
 def get_user_pending_order(request):
     # get order for the correct user
     user_profile = get_object_or_404(UserProfile, user=request.user)
@@ -142,6 +151,14 @@ def order_details(request, **kwargs):
         'order': existing_order
     }
     return render(request, 'med/order_summary.html', context)
+
+# @login_required(login_url='/med/login')
+# def checked(request, **kwargs):
+#     checked_order = get_user_checked_order(request)
+#     context = {
+#         'order': checked_order
+#     }
+#     return render(request, 'med/order_checked.html', context)
 
 
 
