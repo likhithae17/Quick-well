@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>video_conference request</h2>
+
+<form method="POST" action="">
+  {%csrf_token%}
+  Email:<br>
+  {{form.email}}
+  <br>
+  User Name:<br>
+  {{form.username}}
+  <br><br>
+  <input type="submit" value="Request">
+</form>
+
+
+
+</body>
+</html>
