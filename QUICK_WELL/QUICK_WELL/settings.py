@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'force.apps.ForceConfig',
     #'force'
     'accounts',
+    'credits.apps.CreditsConfig',
     'home.apps.HomeConfig',
     'channels',
     'chat',
@@ -166,7 +167,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGOUT_REDIRECT_URL = 'accounts:home'
+# LOGOUT_REDIRECT_URL = 'accounts:home'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

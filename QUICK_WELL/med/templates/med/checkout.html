@@ -1,22 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'med/base.html' %}
+{#<title>{% block title %}checked out{% endblock %}</title>#}
+{% block body %}
+
+    <div class="container"><br><br><br>
+    <br><br>
 <h2>Congratulations {{ order.user.first_name }} !! Your order has been placed</h2>
 
         {% for item in order.get_cart_items %}
 
-             <h2>{{ item.medicine.name }}  (Quantity : {{ item.quantity }})</h2>
+             <h2>{{ item.medicine.name }} (Quantity : {{ item.quantity }})</h2>
+            <img src="{{ item.medicine.description }}" width="250px" height="250px">
     {%  endfor %}
+
 <h2>total price you paid : {{ order.get_cart_total }}</h2>
 
 
 <a href="{% url 'med:index' %}" class="btn btn-warning pull-left">
             go to home
 </a>
+<br><br><br><br><br>
+</div>
 
-</body>
-</html>
+{% endblock %}

@@ -3,14 +3,14 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.http import HttpResponse
 from .forms import *
 from django.core.mail import send_mail,EmailMessage
-from django.contrib.auth import get_user_model, login as auth_login, logout as out
+from django.contrib.auth import get_user_model, login as auth_login, logout as out, logout
 from django.conf import settings
 from .models import *
 from django.contrib.auth import authenticate
 import random
 
-def home(request):
-    return render(request, 'accounts/home.html')
+# def home(request):
+#     return render(request, 'accounts/home.html')
 
 def Mail(request,emailto):
    otp = random.randint(100000, 999999)
@@ -30,9 +30,12 @@ def login(request):
     return render(request, 'accounts/login.html', {'form': form})
 
 def logout(request):
-    if request.method == "POST":
-        out(request)
-    return HttpResponse("logged out")
+    # if request.method == "POST":
+    #     out(request)
+    # return HttpResponse("logged out")
+    logout(request)
+    return redirect('home:home')
+
 
 def register(request):
     registered = False
