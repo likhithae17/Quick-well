@@ -37,7 +37,7 @@ div {
 <h3>Fill the following details to chat with our doctor</h3>
 
 <div>
-  <form action="{% url 'consult' %}" method="POST">
+  <form action="{% url 'chat:consult' %}" method="POST">
     {%   csrf_token %}
 
     <label for="patientname">Patient Name</label>
