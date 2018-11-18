@@ -1,0 +1,41 @@
+{% load static from staticfiles %}
+<!-doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patients Signup</title>
+    <style>
+        body  {
+            background-image: url("http://chcw.org/wp-content/uploads/2017/04/doctor-with-patient_rK3-KhQRBo.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: #2aabd2;
+        }
+        .transbox {
+    margin: 30px;
+    background-color: #ffffff;
+    border: 1px solid black;
+    opacity: 0.8;
+}
+</style>
+
+</head>
+<body>
+<form class="site-form" action="/force/signup/" method="POST">
+    {% csrf_token %}
+    <div>
+        <center>  <h1>Register here if you are a Patient</h1></center>
+    <br>
+    <br>
+        <div class="transbox">
+   <center> <p>{% for field in form %}
+    {{ field.label_tag }}<br>
+    {{ field }}<br>
+    {% endfor %}</p>
+    <input type="submit" value="Signup"> </center></div>
+    </div>
+    <br>
+
+</form>
+</body>
+</html>

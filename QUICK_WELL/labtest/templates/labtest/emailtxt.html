@@ -5,18 +5,18 @@
     <title>Appointment confirmed</title>
 </head>
 <body>
-    <p style="font-size: 16px">Dear {{ name }}, your appointment for {{ test.test_name }} test  in {{ lab.lab_name }} has been booked in the following slot:<br>
-        <ul style="font-size: 16px">for
+    <p style="font-size: 16px">Dear {{ name }}, your appointment for {{ test.test_name }} test has been booked in the following slot:<br>
+    <ul style="font-size: 16px">for
         <li>Date: {{ date }}</li>
         <li>Time: {{ time }}</li>
+    </ul>
+    <p>These are the preparations to be made before the test:</p>
+    <p>{{ test.preparation }}</p>
 
-        These are the preparations to be made before the test:
-        {{ test.preparation }}
-    </ul></p>
 
-        Thank you.
+    <p>Thank you.</p>
+    <p>QuickWell</p>
 
-    </p>
 
 </body>
 </html>

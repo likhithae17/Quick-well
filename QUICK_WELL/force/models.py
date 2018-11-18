@@ -1,15 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
 # Create your models here.
-'''class userlog(models.Model):
-    userlogid = models.AutoField(primary_key=True)
-    fullname=models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
-
-class equationlog(models.Model):
-    mass = models.FloatField(null=False)
-    acceleration = models.FloatField(null=False)
-    force = models.FloatField(null=False)
-    userlogid = models.ForeignKey(userlog, on_delete=models.PROTECT)'''
 
 class user_profile(models.Model):
     name = models.CharField(max_length=150)

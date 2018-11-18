@@ -51,7 +51,6 @@ def labbook(request,pk):
                 #'Appointment_id':appoint_no,
                 'time':time,
                 'date': date,
-                'lab':lab,
                 'test':test,
             }
             message = render_to_string('labtest/emailtxt.html', context)

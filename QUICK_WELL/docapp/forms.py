@@ -24,3 +24,5 @@ class AppointmentForm(ModelForm):
             raise forms.ValidationError("Sorry, Invalid Date!")
         return date
 
+
+
