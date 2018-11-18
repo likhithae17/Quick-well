@@ -31,7 +31,8 @@ urlpatterns = [
     path('forum/', include(board.urls)),
     path('ads/', include('ads.urls')),
     path('med/', include('med.urls')),
-    path('credits/', include('credits.urls'))
+    path('credits/', include('credits.urls')),
+    path('lab/', include('labtest.urls')),
 
 ]
 urlpatterns += staticfiles_urlpatterns()
