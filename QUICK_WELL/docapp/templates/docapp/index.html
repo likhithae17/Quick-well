@@ -126,7 +126,7 @@
                     <p>{{ doc.spec }}</p>
                     <p>{{ doc.firstname }}  {{ doc.lastname }}</p>
                     <p>{{ doc.experience }}  years experience</p>
-                    <p><a href="">View Profile</a></p>
+                    <p><a href="{% url 'profile' pk=doc.id %}">View Profile</a></p>
                 </div>
                 <div class="panel-footer">
                     <button onclick="window.location='{% url 'appbooking' pk=doc.id %}'" class="btn btn-primary active" >Book Appointment</button>

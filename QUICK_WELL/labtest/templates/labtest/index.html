@@ -108,7 +108,7 @@
                            <p><a href="{% url 'details' pk=test.id%}">View Details</a></p>
                        </div>
                        <div class="panel-footer">
-                           <button onclick="window.location=''" class="btn btn-primary active" >Book Appointment</button>
+                           <button onclick="window.location='{% url 'labbook' pk=test.id %}'" class="btn btn-primary active" >Book Appointment</button>
                        </div>
                    </div>
                </div>

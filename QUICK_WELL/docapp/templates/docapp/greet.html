@@ -3,9 +3,19 @@
 {% block title %}Doctor Details{% endblock %}
 
 {% block body %}
-    <h3> Thank you {{ name }} for booking appointment.</h3><br>
-    <p>Appointment Details:</p>
-    <p>Doctor : {{ doctor.firstname }} {{ doctor.lastname }}</p>
-    <p>Time : {{ time }}</p>
-    <p>Date : {{ date }}</p>
+
+    <div class="container">
+        <br>
+        <center>
+            <div class="well"><h3> Thank you {{ name }} for booking appointment.</h3><br></div>
+            <div style="font-size: 25px">
+                <b><p>Appointment Details:</p></b>
+            </div>
+            <div style="font-size: 18px"><p>Doctor : {{ doctor.firstname }} {{ doctor.lastname }}</p>
+                <p>Time : {{ time }}</p>
+                <p>Date : {{ date }}</p>
+            </div>
+        </center>
+    </div>
+
 {% endblock %}

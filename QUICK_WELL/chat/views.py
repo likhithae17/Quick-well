@@ -8,9 +8,11 @@ from .models import Patientdetails
 from django.http import HttpResponseRedirect
 
 # Create your views here.
+@login_required(login_url='http://127.0.0.1:8000/')
 def index(request):
     return render(request, 'chat/form.html', {})
 
+@login_required(login_url='http://127.0.0.1:8000/')
 def form(request):
     return render(request, 'chat/form.html')
 

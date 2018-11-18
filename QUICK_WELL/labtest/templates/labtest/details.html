@@ -4,16 +4,20 @@
 
 {% block body %}
 
-    {% if lab.lab_photo %}
-        <img src={{ lab.lab_photo }}/>
-    {% else %}
-        <img src="https://foodsafetynewsfullservice.marlersites.com/files/2016/04/laboratorytesting-406.jpg" height="150" width="150"/>
-    {% endif %}
-
-    <p>Test Name: {{ test.test_name }}</p>
-    <p>Lab name: {{ lab.lab_name }}</p>
-    <p>Procedure : {{ test.procedure }}</p>
-    <p>Preparation : {{ test.preparation }}</p>
-    <p>Cost : <i class="fa fa-rupee"></i> {{ test.cost }}</p>
-
+    <div class="container">
+        <center>
+            {% if lab.lab_photo %}
+                <img src={{ lab.lab_photo }}/>
+            {% else %}
+                <img src="https://foodsafetynewsfullservice.marlersites.com/files/2016/04/laboratorytesting-406.jpg" height="150" width="150"/>
+            {% endif %}
+        </center>
+        <div style="font-size: 20px">
+            <p><b>Test Name :</b> {{ test.test_name }}</p>
+            <p><b>Lab name : </b>{{ lab.lab_name }}</p>
+            <p><b>Procedure :</b> {{ test.procedure }}</p>
+            <p><b>Preparation : </b>{{ test.preparation }}</p>
+            <p><b>Cost : </b><i class="fa fa-rupee"></i> {{ test.cost }}</p>
+        </div>
+    </div>
 {% endblock %}

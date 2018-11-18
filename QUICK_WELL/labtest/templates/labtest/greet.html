@@ -1,0 +1,25 @@
+{% extends 'docapp/base.html' %}
+
+{% block title %}Doctor Details{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <br>
+        <center>
+            <div class="well"><h3> Thank you {{ name }} for booking appointment.</h3><br></div>
+            <div style="font-size: 25px">
+                <b><p>Appointment Details:</p></b>
+            </div>
+            <div style="font-size: 18px">
+                <p>Name : {{ name }} </p>
+                <p>Test : {{ test.test_name }}</p>
+                <p>Lab : {{ lab.lab_name }} </p>
+                <p>Date : {{ date }}</p>
+                <p>Time : {{ time }} </p>
+                <p>cost : {{ test.cost }}</p>
+                <p>Preparations : {{ test.preparation }}</p>
+            </div>
+        </center>
+    </div>
+{% endblock %}
