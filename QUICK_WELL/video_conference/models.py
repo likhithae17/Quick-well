@@ -1,14 +1,18 @@
 
 from django.db import models
 from django.utils import timezone
-from django.contrin.auth.models import User
+from django.contrib.auth.models import User
 
-class User(models.Model):
-    User_Name = models.CharField(max_length=150),
-    User_Email = models.CharField(max_length=150),
- 
 
- class video_con_request(models.Model):
-     requester = models.ForeignKey(User),
-     date_requested = models.DateTimeField(default=timezone.now),
-     requester = models.ForeignKey(User,on_delete=models.CASCADE()),
+
+
+class video_con_request(models.Model):
+    requester = models.ForeignKey(User,on_delete=models.CASCADE)
+    date_requested = models.DateTimeField(default=timezone.now)
+  #  video_con_id =
+   # requester = models.ForeignKey(User,on_delete=models.CASCADE)
+
+class video_con_pass(models.Model):
+    patient = models.ForeignKey(User.username,on_delete=models.CASCADE)
+    date_conference = models.DateTimeField(default=timezone.now)
+

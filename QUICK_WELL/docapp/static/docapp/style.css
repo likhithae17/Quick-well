@@ -4,7 +4,49 @@
     border-radius: 0;
 }
 
-.navbar-brand{
-    font-family:'Satisfy',cursive;
-}
 
+.bg-1 {
+      background: #2d2d30;
+      color: #bdbdbd;
+  }
+
+.bg-1 h3 {color: #fff;}
+.bg-1 p {font-style: italic;}
+
+.nav-tabs li a {
+      color: #777;
+  }
+
+  .navbar {
+      font-family: Montserrat, sans-serif;
+      margin-bottom: 0;
+      background-color: #2b669a;
+      border: 0;
+      font-size: 15px !important;
+      opacity: 0.8;
+      padding-top: 10px;
+      padding-bottom: 10px;
+  }
+  .navbar li a, .navbar .navbar-brand {
+      color: #d5d5d5 !important;
+  }
+  .navbar-nav li a:hover {
+      color: #fff !important;
+  }
+  .navbar-nav li.active a {
+      color: #fff !important;
+      background-color: #29292c !important;
+  }
+  .navbar-default .navbar-toggle {
+      border-color: transparent;
+  }
+  .open .dropdown-toggle {
+      color: #fff;
+      background-color: #555 !important;
+  }
+  .dropdown-menu li a {
+      color: #000 !important;
+  }
+  .dropdown-menu li a:hover {
+      background-color: red !important;
+  }

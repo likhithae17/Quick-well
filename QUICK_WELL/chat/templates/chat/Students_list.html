@@ -1,5 +1,5 @@
 
-{% load ads_tags %}
+
 
 <!DOCTYPE html>
 {% load ads_tags %}
@@ -20,8 +20,8 @@
     <style>
       </style>
     <script>
-    MyBanners=new Array('banner1.jpg','banner2.jpg')
-    MyBannerLinks=new Array('vbtutor.net/','excelvbatutor.com/')
+    MyBanners=new Array('http://www.digitaltrends.com/wp-content/uploads/2013/02/Lenovo-ThinkPad-Tablet-2-Review-windows-8-netflix.jpg','https://www.tubefilter.com/wp-content/uploads/2016/06/youtube-gears.jpg')
+    MyBannerLinks=new Array('netflix.com/','youtube.com/')
     banner=0
     function ShowLinks(){
     document.location.href="http://www."+MyBannerLinks[banner]
@@ -39,12 +39,9 @@
   </head>
   <body  onload="ShowBanners()">
 
-  <center
-  {% render_ads_zone 'content' %}
-  </center>
     <center>
     <a href="javascript: ShowLinks()">
-    <img src="banner1.jpg" width="900" height="120" name="ChangeBanner"/></a>
+    <img src="http://www.digitaltrends.com/wp-content/uploads/2013/02/Lenovo-ThinkPad-Tablet-2-Review-windows-8-netflix.jpg" width="900" height="120" name="ChangeBanner"/></a>
     </center>
 
       <div class="container">

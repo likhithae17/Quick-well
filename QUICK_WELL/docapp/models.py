@@ -14,7 +14,7 @@ class Specialization(models.Model):
 class Doctor(models.Model):
     firstname = models.CharField(max_length=150)
     lastname = models.CharField(max_length=150)
-    experience = models.FloatField(null=True)
+    experience = models.IntegerField(null=True)
     doc_photo = models.CharField(max_length=500, null=True,blank=True)
     email_id = models.CharField(max_length=150,null=True,blank=True)
     phone_num = models.BigIntegerField(null=True,blank=True)
@@ -23,6 +23,21 @@ class Doctor(models.Model):
 
     def __str__(self):
         return self.firstname+' '+self.lastname+' - '+str(self.spec)
+
+class Tests_info(models.Model):
+    test_name = models.CharField(max_length=150)
+    preparation = models.TextField()
+    procedure = models.TextField()
+    cost = models.FloatField()
+
+
+class LabTest(models.Model):
+    lab_name = models.CharField(max_length=150)
+    lab_photo = models.FileField(null=True, blank=True)
+    email_id = models.EmailField(null=True, blank=True)
+    phone_num = models.BigIntegerField(null=True, blank=True)
+    tests_available = models.ManyToManyField(Tests_info)
+
 
 class Qualification(models.Model):
     doc_name = models.ManyToManyField(Doctor)
@@ -47,6 +62,7 @@ class Hospital_Affiliation(models.Model):
 class Office(models.Model):
     doc_id = models.ForeignKey(Doctor, on_delete=models.PROTECT,null=True,blank = True)
     hosp_affiliation_id = models.ForeignKey(Hospital_Affiliation, on_delete=models.PROTECT,null=True,blank=True)
+    lab_id = models.ForeignKey(LabTest, on_delete=models.PROTECT,null=True,blank = True)
     first_fee = models.FloatField(null=False)
     followup_fee = models.FloatField(null=False)
     street_address = models.CharField(max_length=500,blank=True)
@@ -211,9 +227,16 @@ class Appointment_Status(models.Model):
 
 
 class Appointment(models.Model):
-    client_accountid = models.ForeignKey(User, on_delete=models.PROTECT)
-    office_id = models.ForeignKey(Doctor, on_delete=models.PROTECT)
-    start_time =  models.DateTimeField()
-    end_time =  models.DateTimeField()
-    appoint_status_id = models.ForeignKey(Appointment_Status, on_delete=models.PROTECT)
-    appoint_date = models.DateField(null=False)
+    #client_accountid = models.ForeignKey(User, on_delete=models.PROTECT)
+    office_id = models.ForeignKey(Office, on_delete=models.PROTECT)
+    #start_time =  models.DateTimeField()
+    #end_time =  models.DateTimeField()
+    user_name = models.CharField(max_length=50)
+    email_id = models.EmailField()
+    appointment_id = models.CharField(blank=False, null=False, max_length=200)
+    date = models.DateField(blank=True, null=True)
+    time = models.TimeField(blank=True, null=True)
+    #appoint_status_id = models.ForeignKey(Appointment_Status, on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.appointment_id
