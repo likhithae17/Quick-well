@@ -22,3 +22,4 @@ def detail(request,pk):
     test = get_object_or_404(Tests_info, pk=pk)
     lab = LabTest.objects.filter(tests_available__test_name__icontains=test)
     return render(request, 'labtest/details.html', {'lab':lab,'test':test})
+
