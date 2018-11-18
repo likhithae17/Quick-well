@@ -15,6 +15,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+    <script>
+    function myfunction() {
+        alert("Login required to chat with doctors");
+    }
+    </script>
 
   <style>
 
@@ -183,7 +188,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="appointment/"><span class="fa fa-ambulance" aria-hidden="true" ></span>&nbspBook an Appointment</a></li>
         <li><a href="med/"><span class="fa fa-medkit" aria-hidden="true"></span>&nbspOrder Medicines</a></li>
-        <li><a href="chat/">Chat with a doctor</a></li>
+        <li onclick="myfunction()"><a href="chat/">Chat with a doctor</a></li>
         <li><a href="video_conference/">Video Call</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE

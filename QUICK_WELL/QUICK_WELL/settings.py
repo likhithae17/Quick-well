@@ -164,7 +164,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGOUT_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home:home'
 # LOGOUT_REDIRECT_URL = 'accounts:home'
 
 
@@ -252,3 +252,5 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'quickwelldoctor@gmail.com'
 EMAIL_HOST_PASSWORD = 'doctor@123'
+
+LOGOUT_REDIRECT_URL = 'http://127.0.0.1:8000/home/'
