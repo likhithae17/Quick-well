@@ -4,8 +4,9 @@
 <div class="container">
 <br><br><br>
     <br><br>
+<h4> ALL FUNCTIONALITIES NOT IMPLEMENTED ...PAGE UNDER CONSTRUCTION</h4>
     <h3>User name : {{ order.user.first_name }}</h3>
-    <h3>Your orders are:</h3>
+    <h3>Your Brought:</h3>
     <br><br>
 <section>
    <div class="row" style="padding-left: 50px;padding-right: 50px">
@@ -22,42 +23,24 @@
           <td>{{ forloop.counter }}</td>
           <td>
             {{ item.medicine.name }}
-            <span class="pull-right">
-              <a href="{% url 'med:delete_item' item.id %}" data-balloon="remove this item from cart" class="text-danger" >
-                <i class="fa fa-trash-o"></i>
-              </a>
-            </span>
           </td>
           <td>{{ item.medicine.price }}</td>
         <td>{{ item.quantity }}</td>
         <td>{{ item.medicine.pres_req }}</td>
         </tr>
         {% empty %}
-        <tr>
-          <td colspan= 5> You have not added any items yet.</td>
-        </tr>
-      {% endfor %}
-     <tr>
-        {% if order.get_cart_total != None %}
-        <td colspan=2>
-          <strong class="pull-right">Order Total:</strong>
-        </td>
 
-        <td colspan= 3>
-          $<strong>{{ order.get_cart_total }}</strong>
-        </td>
-        {% endif %}
-      </tr>
+      {% endfor %}
+
     <tr>
         <td colspan=1 >
           <a href="{% url 'med:index' %}" class="btn btn-warning pull-left">
-            {% if order %}Continue Shopping{% else %}Add Items to Cart {% endif %}
+            Wanna Shop some more?
+
           </a>
         </td>
         <td colspan=4>
-          {% if order.get_cart_items %}
-            <a href="{% url 'med:finalPrice' order.id %}" class="pull-right btn btn-primary">Proceed To Checkout</a>
-          {% endif %}
+            Thanks for purchasing
         </td>
       </tr>
     </table>
