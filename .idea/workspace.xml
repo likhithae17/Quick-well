@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b6562c0a-2590-4a23-a351-da034ac0d3e1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Quick-well.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Quick-well.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QUICK_WELL/QUICK_WELL/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/QUICK_WELL/QUICK_WELL/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QUICK_WELL/QUICK_WELL/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/QUICK_WELL/QUICK_WELL/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QUICK_WELL/quickwelldb" beforeDir="false" afterPath="$PROJECT_DIR$/QUICK_WELL/quickwelldb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QUICK_WELL/video_conference/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/QUICK_WELL/video_conference/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QUICK_WELL/video_conference/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/QUICK_WELL/video_conference/models.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,30 +63,128 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-1766865730">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="py" value="9" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Python" value="9" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="Python Console" value="2" />
+          <entry key="py" value="14" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Python" value="16" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/QUICK_WELL/docapp/static/docapp/style.css">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/QUICK_WELL/QUICK_WELL/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="239" column="21" lean-forward="true" selection-start-line="239" selection-start-column="21" selection-end-line="239" selection-end-column="21" />
+            <state relative-caret-position="526">
+              <caret line="254" selection-start-line="254" selection-end-line="254" />
+              <folding>
+                <element signature="e#311#320#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/QUICK_WELL/QUICK_WELL/urls.py">
+        <entry file="file://$PROJECT_DIR$/QUICK_WELL/video_conference/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+            <state relative-caret-position="204">
+              <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
               <folding>
-                <element signature="e#634#666#0" expanded="true" />
+                <element signature="e#1#29#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/QUICK_WELL/video_conference/apps.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/QUICK_WELL/video_conference/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#52#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/QUICK_WELL/video_conference/admin.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/QUICK_WELL/video_conference/__init__.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/QUICK_WELL/video_conference/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/QUICK_WELL/home/admin.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/QUICK_WELL/force/admin.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/QUICK_WELL/chat/admin.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -99,6 +199,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/QUICK_WELL/QUICK_WELL/urls.py" />
+        <option value="$PROJECT_DIR$/QUICK_WELL/video_conference/admin.py" />
+        <option value="$PROJECT_DIR$/QUICK_WELL/video_conference/models.py" />
       </list>
     </option>
   </component>
@@ -109,9 +211,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="697" />
-    <option name="width" value="663" />
-    <option name="height" value="741" />
+    <option name="x" value="683" />
+    <option name="width" value="683" />
+    <option name="height" value="728" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -135,7 +237,57 @@
               <item name="Quick-well" type="b2602c69:ProjectViewProjectNode" />
               <item name="Quick-well" type="462c0819:PsiDirectoryNode" />
               <item name="QUICK_WELL" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Quick-well" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Quick-well" type="462c0819:PsiDirectoryNode" />
               <item name="QUICK_WELL" type="462c0819:PsiDirectoryNode" />
+              <item name="accounts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Quick-well" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Quick-well" type="462c0819:PsiDirectoryNode" />
+              <item name="QUICK_WELL" type="462c0819:PsiDirectoryNode" />
+              <item name="accounts" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Quick-well" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Quick-well" type="462c0819:PsiDirectoryNode" />
+              <item name="QUICK_WELL" type="462c0819:PsiDirectoryNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Quick-well" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Quick-well" type="462c0819:PsiDirectoryNode" />
+              <item name="QUICK_WELL" type="462c0819:PsiDirectoryNode" />
+              <item name="force" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Quick-well" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Quick-well" type="462c0819:PsiDirectoryNode" />
+              <item name="QUICK_WELL" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Quick-well" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Quick-well" type="462c0819:PsiDirectoryNode" />
+              <item name="QUICK_WELL" type="462c0819:PsiDirectoryNode" />
+              <item name="QUICK_WELL" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Quick-well" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Quick-well" type="462c0819:PsiDirectoryNode" />
+              <item name="QUICK_WELL" type="462c0819:PsiDirectoryNode" />
+              <item name="video_conference" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Quick-well" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Quick-well" type="462c0819:PsiDirectoryNode" />
+              <item name="QUICK_WELL" type="462c0819:PsiDirectoryNode" />
+              <item name="video_conference" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -174,13 +326,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.118003026" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14599092" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -191,12 +340,16 @@
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="SciView" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.3289689" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
+      <window_info anchor="right" id="R Graphics" />
+      <window_info anchor="right" id="R Packages" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="SciView" order="4" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,12 +372,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/QUICK_WELL/QUICK_WELL/settings.py">
+    <entry file="file://$PROJECT_DIR$/QUICK_WELL/home/admin.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QUICK_WELL/force/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="239" column="21" lean-forward="true" selection-start-line="239" selection-start-column="21" selection-end-line="239" selection-end-column="21" />
+        <state>
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QUICK_WELL/chat/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QUICK_WELL/video_conference/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QUICK_WELL/video_conference/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QUICK_WELL/QUICK_WELL/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="526">
+          <caret line="254" selection-start-line="254" selection-end-line="254" />
+          <folding>
+            <element signature="e#311#320#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QUICK_WELL/video_conference/apps.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QUICK_WELL/video_conference/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QUICK_WELL/video_conference/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+          <folding>
+            <element signature="e#1#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QUICK_WELL/video_conference/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
