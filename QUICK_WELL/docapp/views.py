@@ -6,7 +6,7 @@
 
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse
-from .models import Specialization, Doctor, Office_Docavailability, Office, Appointment,LabTest, Tests_info
+from home.models import Specialization, Doctor, Office_Docavailability, Office, Appointment,LabTest, Tests_info
 
 from django.core.mail import EmailMessage
 

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import user_profile, user_appointment
+from home.models import user_profile
 from . import forms
 from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm
@@ -48,13 +48,18 @@ def login(request):
     else:
         form = AuthenticationForm()
     return render(request, 'force/login.html', {'form': form})
+
+
 def logout(request):
     if request.method == "POST":
         out(request)
     return HttpResponse("logged out")
 
+
 def test(request):
     return render(request, 'force/test.html')
+
+
 '''
 def index(request):
     return render(request,'force/profile.html')'''
@@ -82,7 +87,7 @@ def view_profile(request):
 
         uname = request.user
         profile = request.GET.get('profile')
-        viewdetails = user_profile.objects.get(name=uname)
+        viewdetails = user_profile.objects.get(firstname=uname)
         context = {'details': viewdetails}
         if str(profile) == "profile":
             context['dask'] = 1
@@ -90,9 +95,10 @@ def view_profile(request):
 
     else:
         uname = request.user
-        viewdetails = user_profile.objects.get(name=uname)
+        viewdetails = user_profile.objects.get(firstname=uname)
         return render(request, 'force/test.html', {'details': viewdetails})
 
+'''
 def view_appointment(request):
     if request.method == "GET":
         uname = request.user
@@ -107,7 +113,7 @@ def view_appointment(request):
         viewappointment = user_profile.objects.get(name=uname)
         return render(request, 'force/test.html', {'details': viewappointment})
 
-'''
+
 def userprofile(request):
     profile_details = user_profile.objects.get(name='sivakrishna
     ')

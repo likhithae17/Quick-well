@@ -40,7 +40,7 @@
 <body>
 <div>
     <center> <img src="{{ details.photo.url }}" style='height:150px;width:150px;border-radius:50px;' /><br>
-        {{ details.name }}
+        {{ details.firstname }}
     </center>
     {{ form }}
     <form action="{% url 'force.logout' %}" method="post">
@@ -63,7 +63,12 @@
             <table>
                 <tr>
                     <td>
-                        Name:  {{ details.name }}
+                        Name:  {{ details.firstname }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Name:  {{ details.lastname }}
                     </td>
                 </tr>
                 <tr>

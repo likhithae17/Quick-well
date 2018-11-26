@@ -5,7 +5,7 @@ from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field
 from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
 
 from django.forms import ModelForm, DateInput, TimeInput, TextInput, EmailInput, forms
-from docapp.models import labAppointment
+from home.models import labAppointment
 
 class labAppointmentForm(ModelForm):
     class Meta:
