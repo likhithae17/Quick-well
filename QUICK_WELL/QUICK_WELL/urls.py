@@ -33,6 +33,7 @@ urlpatterns = [
     #path('credits/', include('credits.urls')),
     path('lab/', include('labtest.urls')),
     path('video_conference/',include('video_conference.urls')),
+    path('funding/',include('funding.urls')),
 ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
