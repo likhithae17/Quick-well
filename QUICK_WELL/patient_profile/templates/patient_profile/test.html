@@ -40,11 +40,9 @@
 <body>
 <div>
     <center> <img src="{{ details.photo.url }}" style='height:150px;width:150px;border-radius:50px;' /><br>
-<<<<<<< HEAD:QUICK_WELL/patient_profile/templates/patient_profile/test.html
         {{ details.username }}
-=======
         {{ details.firstname }}
->>>>>>> 27d7db1f9ebdd4d77c6e887cc3d573f9f51f549e:QUICK_WELL/force/templates/force/test.html
+
     </center>
     {{ form }}
     <form action="{% url 'patient_profile.logout' %}" method="post">
@@ -67,22 +65,11 @@
             <table>
                 <tr>
                     <td>
-<<<<<<< HEAD:QUICK_WELL/patient_profile/templates/patient_profile/test.html
                         Username:  {{ details.username }}
-=======
-                        Name:  {{ details.firstname }}
->>>>>>> 27d7db1f9ebdd4d77c6e887cc3d573f9f51f549e:QUICK_WELL/force/templates/force/test.html
+
                     </td>
                 </tr>
-                <tr>
-                    <td>
-<<<<<<< HEAD:QUICK_WELL/patient_profile/templates/patient_profile/test.html
-                        Name:  {{ details.name }}
-=======
-                        Name:  {{ details.lastname }}
->>>>>>> 27d7db1f9ebdd4d77c6e887cc3d573f9f51f549e:QUICK_WELL/force/templates/force/test.html
-                    </td>
-                </tr>
+
                 <tr>
                     <td>
                         Age:  {{ details.age }}
@@ -133,22 +120,8 @@
         {% endif %}
     </div>
 
-    {% if dask2 %}
-        <table>
-            <tr>
-                <td>
-                    Doctor: {{ details.doctor }}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Specialisations: {{ details.specialisations }}
-                </td>
-            </tr>
-        </table>
-        we r in appointment page.
-    {% endif %}
 </div>
+
 </body>
 <footer class="container-fluid">
     <p>Footer Text</p>

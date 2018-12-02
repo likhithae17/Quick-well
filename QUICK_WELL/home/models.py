@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.urls import reverse
 
 
@@ -83,8 +84,8 @@ class insurance(models.Model):
 """
 
 class user_profile(models.Model):
-    firstname = models.CharField(max_length=150)
-    lastname = models.CharField(max_length=150)
+    username = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
+    name = models.CharField(max_length=150)
     age = models.IntegerField(null=True)
     dob = models.DateField(null=True)
     email = models.CharField(max_length=150)

@@ -2,6 +2,7 @@ from django.urls import re_path, include, path
 from . import views
 
 
+
 urlpatterns = [
 
     path('index/', views.index, name='index'),

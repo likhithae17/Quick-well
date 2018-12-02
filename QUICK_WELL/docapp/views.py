@@ -11,7 +11,7 @@ from django.core.mail import EmailMessage
 from .forms import AppointmentForm
 from django.template.loader import render_to_string
 
-<<<<<<< HEAD
+
 
 #from googleapiclient import discovery
 #from oauth2client import tools
@@ -21,8 +21,6 @@ from django.template.loader import render_to_string
 
 
 #from django.db.models import Q
-=======
->>>>>>> 27d7db1f9ebdd4d77c6e887cc3d573f9f51f549e
 
 def index(request):
     doc = Doctor.objects.all()

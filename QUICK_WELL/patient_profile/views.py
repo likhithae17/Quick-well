@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import user_profile, user_appointment
+from home.models import user_profile
 #from ..docapp.models import Appointment
 from . import forms
 from django.http import HttpResponse, HttpResponseRedirect
@@ -8,7 +8,7 @@ from .forms import Signup_form
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login, logout as out
-from django.contrib.auth import update_session_auth_hash
+#from django.contrib.auth import update_session_auth_hash
 import random
 
 def signup_view(request):
@@ -76,6 +76,7 @@ def create(request):
         form = forms.profile()
     return render(request, 'patient_profile/profile.html', {'form': form})
 
+'''
 def change_password(request):
     if request.method == "POST":
         form = PasswordChangeForm(data=request.POST, user=request.user)
@@ -89,7 +90,7 @@ def change_password(request):
     else:
         form = PasswordChangeForm(user=request.user)
         args = {'form': form}
-        return render(request, 'patient_profile/change_password.html', args)
+        return render(request, 'patient_profile/change_password.html', args)'''
 
 
 
