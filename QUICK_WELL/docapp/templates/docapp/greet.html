@@ -15,6 +15,14 @@
                 <p>Time : {{ time }}</p>
                 <p>Date : {{ date }}</p>
             </div>
+
+            <form action="{% url 'delete' appid %}" method="post">
+                <button type="submit" class="btn btn-primary">Cancel Appointment</button>
+            </form>
+
+            {% if msg %}
+                <h3>msg</h3>
+            {% endif %}
         </center>
     </div>
 

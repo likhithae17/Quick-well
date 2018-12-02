@@ -5,7 +5,7 @@ from .forms import *
 from django.core.mail import send_mail,EmailMessage
 from django.contrib.auth import get_user_model, login as auth_login, logout as out
 from django.conf import settings
-from .models import *
+from home.models import Doctor
 from django.contrib.auth import authenticate
 import random
 
@@ -68,7 +68,7 @@ def register(request):
         return render(request, 'accounts/signup4.html', {'user_form': user_form, 'profile_form': profile_form})
 
 def index(request):
-    doc = Profile.objects.all()
+    doc = Doctor.objects.all()
     query = request.GET.get('q')
     return render(request, 'profile/includes/index.html')
 

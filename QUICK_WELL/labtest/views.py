@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404,redirect
-from docapp.models import LabTest,Tests_info,labAppointment
+from home.models import LabTest,Tests_info,labAppointment
 from django.core.mail import EmailMessage
 from .forms import labAppointmentForm
 #from . import ref
