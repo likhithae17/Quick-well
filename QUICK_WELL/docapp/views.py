@@ -4,6 +4,7 @@
 #CLIENT ID -  798679894892-qa3o7qpo5l5g923qd6sdfvku2u0hi7fh.apps.googleusercontent.com
 #CLIENT SECRET - Xedby0HI2bczZrVHt1-Bfs_3
 
+
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse
 from home.models import Doctor, Appointment

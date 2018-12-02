@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'labtest.apps.LabtestConfig',
     'video_conference',
     'med',
+    'funding',
 
 ] + get_machina_apps()
 

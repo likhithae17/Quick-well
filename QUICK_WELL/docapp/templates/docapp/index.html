@@ -50,14 +50,24 @@
                 }, function (results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
 
-                        var latitude = results[0].geometry.location.lat();
-                        var longitude = results[0].geometry.location.lng();
+                        if (querylocation==None){
+                            var myLocation = {
+                                lat: 13.5232,
+                                lng: 79.9982
+                            };
+                            setPos(myLocation);
+                        }
 
-                        var myLocation = {
-                            lat: latitude,
-                            lng: longitude
-                        };
-                        setPos(myLocation);
+                        else{
+                             var latitude = results[0].geometry.location.lat();
+                             var longitude = results[0].geometry.location.lng();
+
+                             var myLocation = {
+                                 lat: latitude,
+                                 lng: longitude
+                             };
+                             setPos(myLocation);
+                        }
                     }
                 });
             }
