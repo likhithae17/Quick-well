@@ -137,3 +137,14 @@ class labAppointment(models.Model):
     time = models.TimeField(blank=True, null=True)
     #appoint_status_id = models.ForeignKey(Appointment_Status, on_delete=models.PROTECT)
 
+
+class fundraiser(models.Model):
+    user_name = models.ForeignKey(user_profile,on_delete=models.PROTECT)
+    category = models.CharField(max_length=50)
+    Title = models.CharField(max_length=60)
+    goal_amount = models.FloatField()
+    beneficiary_name = models.CharField(max_length=50)
+    beneficiary_relation = models.CharField(max_length=25)
+    Fundraiser_story = models.TextField()
+    End_date = models.DateField()
+

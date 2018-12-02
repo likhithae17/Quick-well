@@ -4,7 +4,7 @@
 
     {% load staticfiles %}
 
-    <title>Quickwell Funding</title>
+    <title>{% block title %}Quick Well Funding{% endblock %}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -25,7 +25,6 @@
 
   body {
       font: 400 15px/1.8 Lato, sans-serif;
-
   }
   h3, h4 {
       margin: 10px 0 30px 0;
@@ -36,34 +35,7 @@
   .container {
       padding: 80px 120px;
   }
-  .bg-1 {
-      background: #2d2d30;
-      color: #bdbdbd;
-  }
-  .bg-1 h3 {color: #fff;}
-  .bg-1 p {font-style: italic;}
 
-  .btn {
-      padding: 10px 20px;
-      background-color: #333;
-      color: #f1f1f1;
-      border-radius: 0;
-      transition: .2s;
-  }
-  .btn:hover, .btn:focus {
-      border: 1px solid #333;
-      background-color: #fff;
-      color: #000;
-  }
-  .modal-header, h4, .close {
-      background-color: #333;
-      color: #fff !important;
-      text-align: center;
-      font-size: 30px;
-  }
-  .modal-header, .modal-body {
-      padding: 40px 50px;
-  }
   .nav-tabs li a {
       color: #777;
   }
@@ -89,11 +61,19 @@
       color: #fff !important;
       background-color: #29292c !important;
   }
-  .navbar-default .navbar-toggle {
-      border-color: transparent;
+
+  .open .dropdown-toggle {
+      color: #fff;
+      background-color: #555 !important;
+  }
+  .dropdown-menu li a {
+      color: #000 !important;
+  }
+  .dropdown-menu li a:hover {
+      background-color: red !important;
   }
 
-
+  {% block style %}{% endblock %}
 </style>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -129,6 +109,9 @@
   </div>
 </nav>
 
+
+{% block body %}
+{% endblock %}
 
 </body>
 </html>
