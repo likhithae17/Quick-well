@@ -6,64 +6,43 @@
 
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse
-from home.models import Specialization, Doctor, Office_Docavailability, Office, Appointment,LabTest, Tests_info
-
+from home.models import Doctor, Appointment
 from django.core.mail import EmailMessage
-
 from .forms import AppointmentForm
-#from . import ref
 from django.template.loader import render_to_string
 
-#from googleapiclient import discovery
-#from oauth2client import tools
-#from oauth2client.client import OAuth2WebServerFlow
-#from oauth2client.file import Storage
-#import httplib
-
-
-#from django.db.models import Q
 
 def index(request):
     doc = Doctor.objects.all()
     query = request.GET.get('q')
+    query1 = request.GET.get('q1')
     if query:
         doc = Doctor.objects.filter(firstname__icontains=query)
         if not doc:
             doc = Doctor.objects.filter(lastname__icontains=query)
             if not doc:
-                doc = Doctor.objects.filter(spec__spec_name__icontains=query)
+                doc = Doctor.objects.filter(specialization__icontains=query)
     else:
         doc = Doctor.objects.all()
-    return render(request, 'docapp/index.html', {'doctor': doc})
 
+    return render(request, 'docapp/index.html', {'doctor': doc, 'query': query1})
 
-
-def detail(request,spec_id):
-    spec = get_object_or_404(Specialization,pk=spec_id)
-
-    #query = request.GET.get('q')
-    #if query:
-     #   spec = Specialization.objects.first(title__icontains=query)
-
-    return render(request, 'docapp/index.html', {'specialization':spec})
 
 def maps(request):
     return render(request, 'docapp/maps.html')
 
 
-# def appbooking(request,pk):
-#     doc = get_object_or_404(Doctor, pk=pk)
-#     app = get_object_or_404(Office_Docavailability, pk=pk)
-#     return render(request, 'docapp/booking.html', {'doctor':doc, 'appbook':app})
-
 def profile(request,pk):
     doc = get_object_or_404(Doctor, pk=pk)
     return render(request, 'profile/includes/basic.html', {'doc':doc})
 
+
 def appbooking(request,pk):
     doc = get_object_or_404(Doctor, pk=pk)
-    office = get_object_or_404(Office, pk=pk)
-    app = get_object_or_404(Office_Docavailability, pk=pk)
+    docid = doc.id
+    error_msg=''
+    #office = get_object_or_404(Office, pk=pk)
+    #app = get_object_or_404(Office_Docavailability, pk=pk)
 
     if request.method == 'POST':
         form = AppointmentForm(request.POST)
@@ -73,38 +52,50 @@ def appbooking(request,pk):
             time = form.cleaned_data['time']
             user_name = form.cleaned_data['user_name']
             email_id = form.cleaned_data['email_id']
-            #appoint_no = ref.generate_app_id()
+
+            #bookedslots = Appointment.objects.all()
+            #for slot in  bookedslots:
+            samedoc = Appointment.objects.filter(doctor_id__id__icontains=docid)
+            flag=1
+
+            for slot in samedoc:
+                 if slot.date == date and slot.time == time:
+                     error_msg='Sorry, this slot is not available please select a different slot!'
+                     flag=0
+                     #form = AppointmentForm()
+                     print(date)
+                     break;
 
 
+            if flag==1:
+                temp = Appointment.objects.create(date=date, time=time, user_name=user_name, email_id=email_id,doctor_id=doc)
+                subject = "Appointment booked"
+                to_email = email_id
+                print(to_email)
+                context = {
+                    'name': user_name,
+                    #'Appointment_id':appoint_no,
+                    'time':time,
+                    'date': date,
+                    'doctor':doc,
+                    'appid':temp.id,
+                }
+                message = render_to_string('docapp/emailtext.html', context)
+                msg = EmailMessage(subject, message, to=[to_email])
+                msg.content_subtype = 'html'
 
-            temp = Appointment.objects.create(date=date, time=time, user_name=user_name, email_id=email_id, office_id=office)
+                try:
+                    msg.send()
+                    print('Successful')
+                except:
+                    print('Unsuccessful')
 
-            subject = "Appointment booked"
-            to_email = email_id
-            print(to_email)
-            context = {
-                'name': user_name,
-                #'Appointment_id':appoint_no,
-                'time':time,
-                'date': date,
-                'doctor':doc,
-            }
-            message = render_to_string('docapp/emailtext.html', context)
-            msg = EmailMessage(subject, message, to=[to_email])
-            msg.content_subtype = 'html'
-
-            try:
-                msg.send()
-                print('Successful')
-            except:
-                print('Unsuccessful')
-
-            return render(request, 'docapp/greet.html', context)
+                return render(request, 'docapp/greet.html', context)
 
     else:
         form = AppointmentForm()
 
-    return render(request, 'docapp/booking.html', {'form': form,'doctor':doc, 'appbook':app})
+    return render(request, 'docapp/booking.html', {'form': form,'doctor':doc,'error':error_msg})
 
 
 def confirm(request,pk):
@@ -112,16 +103,17 @@ def confirm(request,pk):
     #slot_selected = slot
     return render(request, 'docapp/confirm.html',{'doctor':doc})
 
+
 def greet(request):
     return render(request, 'docapp/greet.html')
+
+
+def delete(request,appid):
+    appointment = get_object_or_404(Appointment, pk=appid)
+    appointment.delete()
+    msg = 'Your appointment is cancelled'
+    return render(request, 'docapp/greet.html',{'msg':msg})
 """
-
-from django.shortcuts import get_object_or_404
-from django.views import generic
-from .models import Specialization
-from django.views.generic.edit import CreateView, UpdateView,DeleteView
-#from django.db.models import Q
-
 
 class IndexView(generic.ListView):
     template_name = 'docapp/index.html'
@@ -129,6 +121,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         return Specialization.objects.all()
+
 
 class DetailView(generic.DetailView):
     model = Specialization
@@ -139,5 +132,3 @@ class DetailView(generic.DetailView):
         return Specialization.objects.filter(spec_name__icontains='str(self.spec)')
 
 """
-
-

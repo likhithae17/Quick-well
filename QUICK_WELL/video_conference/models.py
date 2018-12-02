@@ -1,10 +1,6 @@
-
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-
-
-
 
 class video_request(models.Model):
     #doctor = models.ForeignKey(User,on_delete=models.CASCADE)

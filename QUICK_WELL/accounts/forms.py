@@ -9,10 +9,10 @@ class Signup_user_form(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email', 'password']
+        fields = ['username', 'email', 'password']
 
 
 class Signup_profile_form(forms.ModelForm):
     class Meta:
         model = Doctor
-        fields = ['experience', 'doc_photo', 'phone_num', 'spec']
+        fields = ['firstname','lastname','experience', 'doc_photo', 'phone_num', 'specialization']

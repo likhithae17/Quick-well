@@ -2,7 +2,6 @@ from django.contrib import admin
 from .models import *
 
 admin.site.register(user_profile)
-admin.site.register(Specialization)
 admin.site.register(Doctor)
 admin.site.register(Qualification)
 admin.site.register(Hospital_Affiliation)

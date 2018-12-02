@@ -2,27 +2,18 @@ from django.db import models
 from django.urls import reverse
 
 
-class Specialization(models.Model):
-
-    spec_name = models.CharField(max_length=150)
-    def __str__(self):
-        return self.spec_name
-
-    #def get_absolute_url(self):
-    #    return reverse('docapp:detail',kwargs={'pk':self.pk})
-
 class Doctor(models.Model):
     firstname = models.CharField(max_length=150)
     lastname = models.CharField(max_length=150)
     experience = models.IntegerField(null=True)
-    doc_photo = models.CharField(max_length=500, null=True,blank=True)
+    doc_photo = models.FileField(null=True)
     email_id = models.CharField(max_length=150,null=True,blank=True)
     phone_num = models.BigIntegerField(null=True,blank=True)
     #previous_hospitals = models.CharField(max_length=300,null=True)
-    spec = models.ForeignKey(Specialization, on_delete=models.PROTECT)
+    specialization = models.CharField(max_length=150)
 
     def __str__(self):
-        return self.firstname+' '+self.lastname+' - '+str(self.spec)
+        return self.firstname+' '+self.lastname+' - '+str(self.specialization)
 
 class Tests_info(models.Model):
     test_name = models.CharField(max_length=150)
@@ -125,7 +116,7 @@ class Appointment_Status(models.Model):
 
 class Appointment(models.Model):
     #client_accountid = models.ForeignKey(User, on_delete=models.PROTECT)
-    office_id = models.ForeignKey(Office, on_delete=models.PROTECT)
+    doctor_id = models.ForeignKey(Doctor, on_delete=models.PROTECT)
     #start_time =  models.DateTimeField()
     #end_time =  models.DateTimeField()
     user_name = models.CharField(max_length=50)
