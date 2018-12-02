@@ -1,0 +1,16 @@
+<html>
+<body>
+<h1>Login</h1>
+<form class="site-form" action="{% url 'patient_profile.login' %}" method="post">
+  {% csrf_token %}
+  <center>
+    {{form}}
+    <!--  {% if request.GET.next %}
+    input type="hidden" name="next" value="{{request.GET.next}}"
+  {% endif %}-->
+    <br><br><br>
+    <input type="submit" value="Login">
+  </center>
+</form>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>USER PROFILE</title>
+</head>
+<body bgcolor="#07F9F1">
+<center>
+ENTER YOUR DETAILS HERE.
+<form action="{% url 'patient_profile.create' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit">
+</form>
+    <form action="{% url 'patient_profile.logout' %}">
+        <input type="submit" value="logout">
+    </form>
+<form method="POST" action="{% url 'patient_profile.details' %}">
+    {% csrf_token %}
+
+    <input type="submit" value="Already Created!">
+</center>
+</body>
+
+</html>

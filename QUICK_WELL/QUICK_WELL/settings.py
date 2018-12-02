@@ -44,8 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'docapp.apps.DocappConfig',
-    'force.apps.ForceConfig',
-    #'force'
+    'patient_profile.apps.ForceConfig',
+    #'patient_profile'
     'accounts',
     #'credits.apps.CreditsConfig',
     'home.apps.HomeConfig',

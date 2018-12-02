@@ -1,4 +1,5 @@
 from django.db import models
+#from django.contrib.auth.users import User
 from django.urls import reverse
 
 
@@ -12,6 +13,7 @@ class Specialization(models.Model):
     #    return reverse('docapp:detail',kwargs={'pk':self.pk})
 
 class Doctor(models.Model):
+    #username=models.ManyToManyField(User)
     firstname = models.CharField(max_length=150)
     lastname = models.CharField(max_length=150)
     experience = models.IntegerField(null=True)

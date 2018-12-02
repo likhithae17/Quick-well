@@ -24,7 +24,7 @@ urlpatterns = [
     path('', include('home.urls')),
     path('admin/', admin.site.urls),
     path('appointment/', include('docapp.urls')),
-    path('force/', include('force.urls')),
+    path('patient_profile/', include('patient_profile.urls')),
     path('', include('accounts.urls')),
     path('chat/', include('chat.urls')),
     path('forum/', include(board.urls)),
