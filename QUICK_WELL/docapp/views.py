@@ -35,7 +35,18 @@ def maps(request):
 
 def profile(request,pk):
     doc = get_object_or_404(Doctor, pk=pk)
-    return render(request, 'profile/includes/basic.html', {'doc':doc})
+    return render(request, 'docprof/includes/basic.html', {'doc':doc})
+
+def index1(request):
+    doc = Doctor.objects.all()
+    query = request.GET.get('q')
+    return render(request, 'docprof/includes/index.html' )
+
+def contact(request):
+    return render(request, 'docprof/includes/basic.html', {'content': ['contact me at', 'sandeshjatla@gmail.com']})
+
+def test(request):
+    return render(request, 'docprof/includes/test.html')
 
 
 def appbooking(request,pk):

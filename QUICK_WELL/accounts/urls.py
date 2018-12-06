@@ -12,9 +12,9 @@ urlpatterns = [
     url(r'^logout/$', auth_views.LogoutView.as_view(template_name=''), name="logout"),
 
     url(r'^signup4/$', views.register, name="signup4"),
-     url(r'^home/', views.index, name='index'),
-    url(r'^contact', views.contact, name='contact'),
-    url(r'^test', views.test, name='test'),
+     url(r'^login/home/', views.index, name='index'),
+    url(r'^login/contact', views.contact, name='contact'),
+    url(r'^login/test', views.test, name='test'),
     url(r'^temp/verify/$', views.mail_conf, name="verify"),
     #    url(r'^advt', views.advt, name='advt'),
 #    url(r'^blog', ListView.as_view(queryset=Post.objects.all().order_by("-date")[:10], template_name="profile/includes/blog.html")),
