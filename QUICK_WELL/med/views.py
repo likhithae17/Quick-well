@@ -1,5 +1,5 @@
 from django.views import generic
-from .models import Medicine, Userlog, PurchaseItem, UserProfile, Order
+from home.models import Medicine, PurchaseItem, UserProfile, Order
 from django.contrib.auth import login, logout
 from django.contrib import messages
 from django.http import HttpResponse
