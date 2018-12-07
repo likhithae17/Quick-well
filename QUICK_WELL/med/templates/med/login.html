@@ -1,9 +1,8 @@
 {% extends 'med/base.html' %}
 
 {% block body %}
-    <div class="container">
-    <br><br><br>
     <br><br>
+    <div class="container">
       <h1>Log in</h1>
     <br>
       <form class="site-form" action="{% url 'med:login' %}" method="post">
@@ -15,4 +14,5 @@
           <input type="submit" value="Login">
       </form>
     </div>
+    <br><br><br><br><br><br><br>
 {% endblock %}

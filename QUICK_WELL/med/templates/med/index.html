@@ -23,12 +23,22 @@
 {#            <div id="band" class="container text-left">#}
 {#                UFLSF;ISBF;O;OSIF#}
 {#            </div>#}
-            <p style="font-size: 20px; color:#1D466A; letter-spacing: 0px"><em>When you purchase medicines on QuickWell, you can be assured that you will get the medicines you order. Quickwell has the widest range of medicines online, sourced from our trusted network of pharmacies and medical stores. So, when you buy medicines online on Quickwell, our trained pharmacists, partner pharmacies and medical stores, ensure that your medicines are delivered to you on time, anywhere in India.</em></p>
+            <p style="font-size: 18px; color:#1D466A; letter-spacing: 0px"><em>When you purchase medicines on QuickWell, you can be assured that you will get the medicines you order. Quickwell has the widest range of medicines online, sourced from our trusted network of pharmacies and medical stores. So, when you buy medicines online on Quickwell, our trained pharmacists, partner pharmacies and medical stores, ensure that your medicines are delivered to you on time, anywhere in India.</em></p>
+{#        <img src="https://www.practostatic.com/web-assets/home/assets/images/order.c84fc07b0be8a7e8d4db432eb4e606a2.svg" style="opacity: 0.9" align="right" height="300px"; width="300px;">#}
+            <br>
+            <p style="color:#1D466A; font-size: 25px"><i style="color: #2aabd2" class="fa fa-check"></i>&nbsp; &nbsp; Guaranteed availability</p>
+            <p style="color:#1D466A; font-size: 25px"><i style="color: #2aabd2" class="fa fa-check"></i>&nbsp; &nbsp; Over 130+ genuine medicines</p>
+            <p style="color:#1D466A;font-size: 25px"><i style="color: #2aabd2" class="fa fa-check"></i> &nbsp;&nbsp; Leading Healthcare Providers</p>
+        <p style="color:#1D466A; font-size: 25px"><i style="color: #2aabd2" class="fa fa-check"></i>&nbsp; &nbsp; Quick home delivery</p>
+{#        <div style="text-align: center ;padding-top: 20px"><h3 style="margin: 10px 0 30px 0; padding-top: 15px;#}
+{#      letter-spacing: 2px;#}
+{#    font-size: 40px;"><span style="color: #1D466A; font-size: 45px; font-weight: bold; ">Begin Shopping</span></h3>#}
+{#        </div>#}
         </div>
-        <div class="container" style="background-color: white">
+        <div class="container" style="background-color: white; padding-top: 0px">
         {% for medicine in all_medicines %}
-                <div class="col-sm-4 col-xs-12 " style="padding:30px">
-                  <div class="panel panel-default text-center" style=" padding-left:3px; padding-right:3px">
+                <div class="col-sm-4 col-xs-12 " style="padding:30px;">
+                  <div class="panel panel-default text-center" style=" padding-left:3px; padding-right:3px; ">
 {#                    <div class="panel-heading">#}
 {#                      <h2>{{ medicine.name }}</h2>#}
 {#                    </div>#}
@@ -37,7 +47,7 @@
                     <h2 style="letter-spacing: 0; font-size: 25px ; color: #060E2F; padding-bottom: 0px">{{ medicine.name }}</h2>
                     <br>
                     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#{{ medicine.id }}no" style="background-color: #c4e3f3;"><span style="color: #23527c">View Details</span> </button>
-                     <div id="{{ medicine.id }}no" class="collapse">
+                     <div id="{{ medicine.id }}no" class="collapse" >
                         <ul>
                             <li type="disc"><h5 style="font-weight: bold">Pharmacy - {{ medicine.pharmacy }}</h5></li>
                             <li type="disc"><h5 style="font-weight: bold">Price - {{ medicine.price }}</h5></li>
