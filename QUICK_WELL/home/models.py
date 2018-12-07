@@ -72,19 +72,12 @@ class Office(models.Model):
 class Office_Docavailability(models.Model):
     office_id = models.ForeignKey(Office, on_delete=models.PROTECT)
     time_slot_per_patient = models.FloatField(null=True, blank=True)
-
-
     day = models.CharField(max_length=20)
     reason_unavailability = models.CharField(max_length=500,null=True,blank=True)
 
     def __str__(self):
         return str(self.office_id)
 
-"""
-class insurance(models.Model):
-    insurance_name = models.CharField(max_length=100)
-    office_id = models.ForeignKey(doctor, on_delete=models.PROTECT)
-"""
 
 class user_profile(models.Model):
     firstname = models.CharField(max_length=150)
