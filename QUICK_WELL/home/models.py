@@ -149,7 +149,7 @@ class Medicine(models.Model):
     name = models.CharField(max_length=100)
     pharmacy = models.CharField(max_length=100)
     about = models.CharField(max_length=1000, default='0000000')
-    description = models.CharField(max_length=1000)
+    description = models.ImageField(blank=True)
     mfg_date = models.DateField(null=True)
     exp_date = models.DateField(null=True)
     pres_req = models.CharField(max_length=100)
