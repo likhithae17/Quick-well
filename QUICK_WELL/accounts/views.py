@@ -3,10 +3,16 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.http import HttpResponse
 from .forms import *
 from django.core.mail import send_mail,EmailMessage
-from django.contrib.auth import get_user_model, login as auth_login, logout as out
+from django.contrib.auth import get_user_model, login as auth_login, logout as out, update_session_auth_hash
 from django.conf import settings
 from home.models import Doctor
 from django.contrib.auth import authenticate
+from accounts.tokens import account_activation_token
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_text
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
+
 import random
 
 def home(request):
@@ -55,7 +61,20 @@ def register(request):
             ProfileForm.save()
            # Mail(request, UserForm.email)
             otp = random.randint(100000, 999999)
-            send_mail("hello doctor", "Thanks for registering " + str(otp) + " is your verification otp","quickwelldoctor@gmail.com", [UserForm.email])
+            current_site = get_current_site(request)
+            mail_subject = 'Verify your email.'
+            message = render_to_string('accounts/account_activation.html', {
+                'user': ProfileForm.user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(ProfileForm.user.pk)).decode(),
+                'token': account_activation_token.make_token(ProfileForm.user),
+            })
+            to_email = UserForm.email
+            email = EmailMessage(
+                mail_subject, message, to=[to_email]
+            )
+            email.send()
+           # send_mail("hello doctor", "Thanks for registering " + str(otp) + " is your verification otp","quickwelldoctor@gmail.com", [UserForm.email])
             registered = True
         else:
             return HttpResponse("Invalid details!")
@@ -63,9 +82,10 @@ def register(request):
         user_form = Signup_user_form()
         profile_form = Signup_profile_form()
     if registered:
-        request.session['username'] = user_form.cleaned_data.get('username')
-        return render(request, 'accounts/mailconformation.html', {'otp': otp})
+        # request.session['username'] = user_form.cleaned_data.get('username')
+        # return render(request, 'accounts/mailconformation.html', {'otp': otp})
     # return HttpResponse("Successfully created your account")
+        return HttpResponse("successflly created")
     else:
         return render(request, 'accounts/signup4.html', {'user_form': user_form, 'profile_form': profile_form})
 
@@ -97,5 +117,79 @@ def mail_conf(request):
     else:
         return HttpResponse('404 error')
 
+def doctor_update(request):
+    if request.method == 'POST':
+        doc_form = Doctor_Update_Form(request.POST, instance=request.user.doctor or None)
+        if doc_form.is_valid():
+            doc_form.save()
+            return HttpResponse("done")
+    else:
+        doc_form = Doctor_Update_Form(instance=request.user)
+    return render(request, 'accounts/profile.html', {'doc_form':doc_form})
 
-# def advt
+def doc_acc_activation(request):
+    return render(request, 'accounts/acc_activate.html')
+
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+     #   login(request, user)
+        # return redirect('home')
+        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+    else:
+        return HttpResponse('Activation link is invalid!')
+
+def change_password(request):
+    if request.method== 'POST':
+        change_form = passwordchange(data=request.POST, user=request.user)
+        if change_form.is_valid():
+            change_form.save()
+            update_session_auth_hash(request,change_form.user)
+            return HttpResponse('Done')
+    else:
+        change_form=passwordchange(user=request.user)
+    return render(request, 'accounts/changepassword.html', {'change_form':change_form})
+
+# def forgotemail(request):
+#     if request.method == 'POST':
+#         email=request.POST.get('email')
+#         resetotp=send(email)
+#         try:
+#             username=User.objects.get(email=email).username
+#         except:
+#             messages.error(request,'no user exists with this email')
+#             return render(request,'Result_Analysis/forget_email.html')
+#
+#         try:
+#             user=otp_verify.objects.get(name=username)
+#             user.otp=resetotp
+#             user.save()
+#         except:
+#             user_otp=otp_verify.objects.create(name=username,otp=resetotp)
+#             user_otp.save()
+#         return render(request,'Result_Analysis/forget_otp.html',{'email':email})
+#     else:
+#         return render(request,'Result_Analysis/forget_email.html')
+
+# def reset_password(request):
+#     if request.method == 'POST':
+#         email=request.POST.get('email')
+#         username=User.objects.get(email=email).username
+#         user=User.objects.get(username=username)
+#         pass1=request.POST['resetpass1']
+#         pass2=request.POST['resetpass2']
+#         if pass1!=pass2:
+#             return HttpResponse("wrong Details!")
+#           #  messages.error(request,'passwords didnot match')
+#          #   return render(request,'Result_Analysis/forget_password.html',{'email':email})
+#         user.set_password(pass1)
+#         user.save()
+#         return HttpResponse('password reset successfully')
+#     else:
+#         return render(request,'accounts/forgot_password.html')
