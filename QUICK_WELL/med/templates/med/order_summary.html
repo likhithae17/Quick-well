@@ -2,15 +2,13 @@
 
 {% block body %}
 <div class="container">
-<br><br><br>
-    <br><br>
-    <h3>User name : {{ order.user.first_name }}</h3>
-    <h3>Your orders are:</h3>
+    <h2>User name : {{ order.user.first_name }}</h2>
+    <h2>Your orders are:</h2>
     <br><br>
 <section>
    <div class="row" style="padding-left: 50px;padding-right: 50px">
     <table class="table table-hover table-bordered text-center" >
-      <tr class="text-center">
+      <tr class="text-center" style="background-color: #B3CDE5;">
         <th class="text-center">no.</th>
         <th class="text-center">Medicine</th>
         <th class="text-center">Price</th>
@@ -25,6 +23,7 @@
             <span class="pull-right">
               <a href="{% url 'med:delete_item' item.id %}" data-balloon="remove this item from cart" class="text-danger" >
                 <i class="fa fa-trash-o"></i>
+
               </a>
             </span>
           </td>
@@ -50,13 +49,13 @@
       </tr>
     <tr>
         <td colspan=1 >
-          <a href="{% url 'med:index' %}" class="btn btn-warning pull-left">
+          <a href="{% url 'med:index' %}" class="btn btn-warning pull-left btn-success active">
             {% if order %}Continue Shopping{% else %}Add Items to Cart {% endif %}
           </a>
         </td>
         <td colspan=4>
           {% if order.get_cart_items %}
-            <a href="{% url 'med:finalPrice' order.id %}" class="pull-right btn btn-primary">Proceed To Checkout</a>
+            <a href="{% url 'med:finalPrice' order.id %}" class="pull-right btn btn-primary btn-success active">Proceed To Checkout</a>
           {% endif %}
         </td>
       </tr>
