@@ -1,17 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Quickwell{% endblock %}</title>
-    {% load staticfiles %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Satisfy">
-    <link rel="stylesheet" type="text/css" href="{% static 'chat/style.css' %}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+{% extends 'chat/base.html' %}
+{% block title %}Details form{% endblock %}
+
+
+
+
+{% block body %}
 
 <style>
 input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=email], select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -36,57 +42,29 @@ input[type=submit]:hover {
     background-color: #45a049;
 }
 
-div {
+#form {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
 }
 </style>
 
-</head>
-<body>
+<br><br><br><br>
+<center><h3>Fill the following details to chat with our doctor</h3></center>
 
-<nav class="navbar">
-    <div class="container-fluid">
-
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="http://127.0.0.1:8000">Quickwell</a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="topNavBar">
-             <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                    <a href="#">
-                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Logout
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-    </div>
-</nav>
-
-
-<h3>Fill the following details to chat with our doctor</h3>
-
-<div>
+<div id="form">
   <form action="{% url 'chat:consult' %}" method="POST">
     {%   csrf_token %}
 
     <label for="patientname">Patient Name</label>
-    <input type="text" id="patientname" name="patientname" placeholder="patient name..">
-    <label for="email">Email</label>
-    <input type="text" id="email" name="email" placeholder="Enter your email id">
+    <input type="text" id="patientname" name="patientname" placeholder="patient name.." required>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email id" required>
     <label for="symptoms">Tell us your symptoms</label>
-    <input type="text" id="symptoms" name="symptoms" placeholder="Please enter symptoms">
+    <input type="text" id="symptoms" name="symptoms" placeholder="Please enter symptoms" required>
 
     <label for="Department">Select department corresponding to your problem</label>
-    <select id="Department" name="Department">
+    <select id="Department" name="Department" required>
       <option value="ENT">ENT</option>
       <option value="Dental">Dental</option>
       <option value="cardiology">cardiology</option>
@@ -99,6 +77,6 @@ div {
   </form>
 </div>
 
-</body>
-</html>
+{% endblock %}
+
 
