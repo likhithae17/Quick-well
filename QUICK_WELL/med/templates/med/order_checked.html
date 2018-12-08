@@ -2,7 +2,7 @@
 
 {% block body %}
 <div class="container">
-<br><br>
+<br>
     <p style="color:#1D466A; font-size: 25px">User name : {{ request.user }}</p>
     <p style="color:#1D466A; font-size: 25px; font-weight: bold; letter-spacing: 1px">You Bought:</p>
     <br><br>
@@ -24,8 +24,12 @@
 
         <tr>
 {#        <td>{{ forloop.counter }}</td>#}
-            <td>{{ itemno.ref_code }}
+           {% if forloop.counter == 1 %}
+        <td rowspan="{{ itemno.get_no_of_purchase }}" style="padding-top:{{ itemno.get_no_of_purchase }}9px; " class="text-center" >
+              {{ item.ref_code }}
             </td>
+
+        {% endif %}
           <td>{{ itemno.date_ordered }}</td>
 
           <td>
@@ -36,9 +40,9 @@
         <td>{{ item.quantity }}</td>
         <td>{{ item.medicine.pres_req }}</td>
         {% if forloop.counter == 1 %}
-        <td rowspan="{{ itemno.get_no_of_purchase }}" style="padding-top: 10px">
+        <td rowspan="{{ itemno.get_no_of_purchase }}" style="padding-top: {{ itemno.get_no_of_purchase }}9px">
               <a href="{% url 'med:delete_order' itemno.id %}" data-balloon="remove this order from cart" class="text-danger" >
-                Delete This Order
+                Cancel This Order
               </a>
             </td>
 
@@ -57,7 +61,7 @@
           </a>
         </td>
         <td colspan=6 style="font-size: 20px">
-            <strong>Thanks for purchasing!</strong>
+            <strong>{% if order %}Thanks for purchasing!{% else %}You haven't ordered anything yet {% endif %}</strong>
         </td>
       </tr>
     </table>
