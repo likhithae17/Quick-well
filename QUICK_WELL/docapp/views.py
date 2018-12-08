@@ -13,6 +13,16 @@ from .forms import AppointmentForm
 from django.template.loader import render_to_string
 
 
+
+#from googleapiclient import discovery
+#from oauth2client import tools
+#from oauth2client.client import OAuth2WebServerFlow
+#from oauth2client.file import Storage
+#import httplib
+
+
+#from django.db.models import Q
+
 def index(request):
     doc = Doctor.objects.all()
     query = request.GET.get('q')
@@ -37,13 +47,16 @@ def profile(request,pk):
     doc = get_object_or_404(Doctor, pk=pk)
     return render(request, 'docprof/includes/basic.html', {'doc':doc})
 
+
 def index1(request):
     doc = Doctor.objects.all()
     query = request.GET.get('q')
     return render(request, 'docprof/includes/index.html' )
 
+
 def contact(request):
     return render(request, 'docprof/includes/basic.html', {'content': ['contact me at', 'sandeshjatla@gmail.com']})
+
 
 def test(request):
     return render(request, 'docprof/includes/test.html')

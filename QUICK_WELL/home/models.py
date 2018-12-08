@@ -1,6 +1,5 @@
 from django.db import models
 from django.urls import reverse
-from django.contrib.auth.models import User
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
@@ -16,7 +15,7 @@ class Doctor(models.Model):
    # email_id = models.CharField(max_length=150,null=True,blank=True)
     phone_num = models.BigIntegerField(null=True,blank=True)
     #previous_hospitals = models.CharField(max_length=300,null=True)
-    specialization = models.CharField(max_length=150)
+    specialization = models.CharField(max_length=150,null=True)
 
     def __str__(self):
         return self.firstname+' '+self.lastname+' - '+str(self.specialization)
@@ -56,6 +55,7 @@ class Hospital_Affiliation(models.Model):
     def __str__(self):
         return self.hosp_name
 
+
 class Office(models.Model):
     doc_id = models.ForeignKey(Doctor, on_delete=models.PROTECT,null=True,blank = True)
     hosp_affiliation_id = models.ForeignKey(Hospital_Affiliation, on_delete=models.PROTECT,null=True,blank=True)
@@ -82,8 +82,8 @@ class Office_Docavailability(models.Model):
 
 
 class user_profile(models.Model):
-    firstname = models.CharField(max_length=150)
-    lastname = models.CharField(max_length=150)
+    username = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
+    name = models.CharField(max_length=150)
     age = models.IntegerField(null=True)
     dob = models.DateField(null=True)
     email = models.CharField(max_length=150)
@@ -96,6 +96,9 @@ class user_profile(models.Model):
     zipcode = models.BigIntegerField()
     photo = models.ImageField(upload_to='media', blank=True)
 
+class user_reports(models.Model):
+    username = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
+    file = models.FileField(upload_to='media', blank=True)
 
 class User_Review(models.Model):
     client_accountid = models.ForeignKey(user_profile, on_delete=models.PROTECT)
@@ -115,7 +118,7 @@ class Appointment_Status(models.Model):
 
 class Appointment(models.Model):
     #client_accountid = models.ForeignKey(User, on_delete=models.PROTECT)
-    doctor_id = models.ForeignKey(Doctor, on_delete=models.PROTECT)
+    doctor_id = models.ForeignKey(Doctor, on_delete=models.PROTECT, null=True)
     #start_time =  models.DateTimeField()
     #end_time =  models.DateTimeField()
     user_name = models.CharField(max_length=50)
@@ -124,7 +127,6 @@ class Appointment(models.Model):
     date = models.DateField(blank=True, null=True)
     time = models.TimeField(blank=True, null=True)
     #appoint_status_id = models.ForeignKey(Appointment_Status, on_delete=models.PROTECT)
-
 
 
 class labAppointment(models.Model):
@@ -138,7 +140,7 @@ class labAppointment(models.Model):
 
 
 class fundraiser(models.Model):
-    user_name = models.ForeignKey(user_profile,on_delete=models.PROTECT)
+    user_name = models.ForeignKey(user_profile,on_delete=models.PROTECT,null=True)
     category = models.CharField(max_length=50)
     Title = models.CharField(max_length=60)
     goal_amount = models.FloatField()
@@ -168,8 +170,6 @@ class PurchaseItem(models.Model):
     is_ordered = models.BooleanField(default=False)
     date_added = models.DateTimeField(null=True)
     date_ordered = models.DateTimeField(null=True)
-
-
 
 
 class UserProfile(models.Model):
