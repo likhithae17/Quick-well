@@ -7,7 +7,7 @@ from django.db.models.signals import post_save
 
 
 class Doctor(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     firstname = models.CharField(max_length=150)
     lastname = models.CharField(max_length=150)
     experience = models.IntegerField(null=True)
@@ -15,7 +15,7 @@ class Doctor(models.Model):
    # email_id = models.CharField(max_length=150,null=True,blank=True)
     phone_num = models.BigIntegerField(null=True,blank=True)
     #previous_hospitals = models.CharField(max_length=300,null=True)
-    specialization = models.CharField(max_length=150)
+    specialization = models.CharField(max_length=150,null=True)
 
     def __str__(self):
         return self.firstname+' '+self.lastname+' - '+str(self.specialization)
@@ -118,7 +118,7 @@ class Appointment_Status(models.Model):
 
 class Appointment(models.Model):
     #client_accountid = models.ForeignKey(User, on_delete=models.PROTECT)
-    doctor_id = models.ForeignKey(Doctor, on_delete=models.PROTECT)
+    doctor_id = models.ForeignKey(Doctor, on_delete=models.PROTECT, null=True)
     #start_time =  models.DateTimeField()
     #end_time =  models.DateTimeField()
     user_name = models.CharField(max_length=50)
@@ -140,7 +140,7 @@ class labAppointment(models.Model):
 
 
 class fundraiser(models.Model):
-    user_name = models.ForeignKey(user_profile,on_delete=models.PROTECT)
+    user_name = models.ForeignKey(user_profile,on_delete=models.PROTECT,null=True)
     category = models.CharField(max_length=50)
     Title = models.CharField(max_length=60)
     goal_amount = models.FloatField()
