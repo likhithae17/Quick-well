@@ -1,7 +1,51 @@
 {% extends 'funding/base.html' %}
+{% load define_action %}
+{% load crispy_forms_tags %}
 
 {% block title %}Funding{% endblock %}
-
+{% block style %}
+    #id_Fundraiser_story{
+    width: 100%;
+    height: 200px;
+    }
+    #id_goal_amount{
+    width: 300px;
+    }
+    #id_beneficiary_name{
+    width: 300px;
+    }
+    #id_beneficiary_relation{
+    width: 300px;
+    }
+    #id_category{
+    }
+    #id_Title{
+    width: 100%;
+    }
+{% endblock %}
 {% block body %}
+
+    <div class="container" style="width:100%">
+
+    {% if form.errors %}
+        <p style="color:red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    {% if error %}
+        <h4 style="color:red;">
+            {{ error }}
+        </h4>
+    {% endif %}
+
+    <form action="{% url 'startproject' %}" method="post">
+
+        {% csrf_token %}
+        {{ form|crispy }}
+
+        <br><br><button type="submit" class="btn btn-primary">Create Fundraiser</button>
+    </form>
+    </div>
 
 {% endblock %}
