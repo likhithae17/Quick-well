@@ -20,7 +20,7 @@
         </h4>
     {% endif %}
 
-    <form action="{% url 'appbooking' pk=doctor.id %}" method="post">
+    <form action="{% url 'docapp:appbooking' pk=doctor.id %}" method="post">
 
         {% csrf_token %}
         {{ form|crispy }}

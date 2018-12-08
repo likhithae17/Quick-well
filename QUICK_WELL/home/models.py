@@ -54,6 +54,7 @@ class Hospital_Affiliation(models.Model):
     def __str__(self):
         return self.hosp_name
 
+
 class Office(models.Model):
     doc_id = models.ForeignKey(Doctor, on_delete=models.PROTECT,null=True,blank = True)
     hosp_affiliation_id = models.ForeignKey(Hospital_Affiliation, on_delete=models.PROTECT,null=True,blank=True)
@@ -124,7 +125,6 @@ class Appointment(models.Model):
     #appoint_status_id = models.ForeignKey(Appointment_Status, on_delete=models.PROTECT)
 
 
-
 class labAppointment(models.Model):
     test_id = models.ForeignKey(Tests_info, on_delete=models.PROTECT)
     user_name = models.CharField(max_length=50)
@@ -166,8 +166,6 @@ class PurchaseItem(models.Model):
     is_ordered = models.BooleanField(default=False)
     date_added = models.DateTimeField(null=True)
     date_ordered = models.DateTimeField(null=True)
-
-
 
 
 class UserProfile(models.Model):
