@@ -177,9 +177,9 @@ class UserProfile(models.Model):
     medicine = models.ManyToManyField(Medicine, blank=True)
     first_name = models.CharField(max_length=100, default='0000000')
     last_name = models.CharField(max_length=100, default='0000000')
-    bio = models.CharField(max_length=255, blank=True)
+    email = models.CharField(max_length=100, default='0000000')
+    address = models.CharField(max_length=1000, blank=True)
     city = models.CharField(max_length=200, blank=False, default='')
-    interests = models.CharField(max_length=255, blank=True)
 
 
 def create_profile(sender, **kwargs):
@@ -196,13 +196,24 @@ class Order(models.Model):
     items = models.ManyToManyField(PurchaseItem)
     is_ordered = models.BooleanField(default=False)
     date_ordered = models.DateTimeField(null=True)
+    billing_add = models.CharField(max_length=1000, blank=True)
+    email = models.CharField(max_length=100, default='0000000')
 
     def get_cart_items(self):
         return self.items.all()
+
+    def get_no_of_purchase(self):
+        sum1 = 0;
+        for item in self.items.all():
+            sum1 = sum1+1;
+        return sum1;
 
     def get_cart_total(self):
         sum = 0 ;
         for item in self.items.all():
             sum = sum + ((item.medicine.price)*(item.quantity))
         return sum
+
+
+
 
