@@ -18,16 +18,3 @@ class upload(forms.ModelForm):
     class Meta:
         model = user_reports
         fields = ('username', 'file')
-
-# class writereview(forms.ModelForm):
-#     content = forms.CharField(label = "",widget = forms.Textarea(attrs={'class':'form-control','placeholder':'Write about product','rows':'4','cols':'50'}))
-#     rating=forms.IntegerField()
-#     class Meta:
-#         model = item_review
-#         fields = ['content','rating']
-
-# class loginform(forms.Form):
-#     #choices=[('Doctor','doctor'),('Patient','patient')]
-#     #You = forms.ChoiceField(choices=choices)
-#     username = forms.CharField(label="User Name", max_length=150)
-#     password = forms.CharField(label="Password", max_length=150)

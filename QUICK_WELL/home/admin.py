@@ -13,4 +13,8 @@ admin.site.register(Appointment)
 admin.site.register(Appointment_Status)
 admin.site.register(LabTest)
 admin.site.register(Tests_info)
+admin.site.register(Medicine)
+admin.site.register(PurchaseItem)
+admin.site.register(UserProfile)
+admin.site.register(Order)
 # Register your models here.

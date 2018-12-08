@@ -1,21 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.contrib.auth.models import User
+from django.conf import settings
+from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from django.db.models.signals import post_save
 
-# class item_review(models.Model):
-#     product = models.ForeignKey(Food_items, default=None, on_delete=models.CASCADE)
-#     latest_pub_date=models.DateTimeField(default=datetime.now)
-#     customer = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
-#     content = models.TextField(max_length=1000)
-#     rating =  models.IntegerField(null=True)
-#     date = models.DateTimeField(auto_now_add=True, null=True)
 
 class Doctor(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     firstname = models.CharField(max_length=150)
     lastname = models.CharField(max_length=150)
     experience = models.IntegerField(null=True)
     doc_photo = models.FileField(null=True)
-    email_id = models.CharField(max_length=150,null=True,blank=True)
+   # email_id = models.CharField(max_length=150,null=True,blank=True)
     phone_num = models.BigIntegerField(null=True,blank=True)
     #previous_hospitals = models.CharField(max_length=300,null=True)
     specialization = models.CharField(max_length=150)
@@ -76,19 +75,12 @@ class Office(models.Model):
 class Office_Docavailability(models.Model):
     office_id = models.ForeignKey(Office, on_delete=models.PROTECT)
     time_slot_per_patient = models.FloatField(null=True, blank=True)
-
-
     day = models.CharField(max_length=20)
     reason_unavailability = models.CharField(max_length=500,null=True,blank=True)
 
     def __str__(self):
         return str(self.office_id)
 
-"""
-class insurance(models.Model):
-    insurance_name = models.CharField(max_length=100)
-    office_id = models.ForeignKey(doctor, on_delete=models.PROTECT)
-"""
 
 class user_profile(models.Model):
     username = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
@@ -147,4 +139,74 @@ class labAppointment(models.Model):
     date = models.DateField(blank=True, null=True)
     time = models.TimeField(blank=True, null=True)
     #appoint_status_id = models.ForeignKey(Appointment_Status, on_delete=models.PROTECT)
+
+
+class fundraiser(models.Model):
+    user_name = models.ForeignKey(user_profile,on_delete=models.PROTECT)
+    category = models.CharField(max_length=50)
+    Title = models.CharField(max_length=60)
+    goal_amount = models.FloatField()
+    beneficiary_name = models.CharField(max_length=50)
+    beneficiary_relation = models.CharField(max_length=25)
+    Fundraiser_story = models.TextField()
+    End_date = models.DateField()
+
+class Medicine(models.Model):
+    name = models.CharField(max_length=100)
+    pharmacy = models.CharField(max_length=100)
+    about = models.CharField(max_length=1000, default='0000000')
+    description = models.ImageField(blank=True)
+    mfg_date = models.DateField(null=True)
+    exp_date = models.DateField(null=True)
+    pres_req = models.CharField(max_length=100)
+    price = models.FloatField()
+
+    def __str__(self):
+        return self.name + ' - ' + self.pharmacy
+
+
+class PurchaseItem(models.Model):
+    ref_code = models.CharField(max_length=15, default='0000000')
+    medicine = models.ForeignKey(Medicine, on_delete=models.SET_NULL, null=True, unique=None)
+    quantity = models.IntegerField(null=True)
+    is_ordered = models.BooleanField(default=False)
+    date_added = models.DateTimeField(null=True)
+    date_ordered = models.DateTimeField(null=True)
+
+
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    medicine = models.ManyToManyField(Medicine, blank=True)
+    first_name = models.CharField(max_length=100, default='0000000')
+    last_name = models.CharField(max_length=100, default='0000000')
+    bio = models.CharField(max_length=255, blank=True)
+    city = models.CharField(max_length=200, blank=False, default='')
+    interests = models.CharField(max_length=255, blank=True)
+
+
+def create_profile(sender, **kwargs):
+    if kwargs['created']:
+        user_profile = UserProfile.objects.create(user=kwargs['instance'])
+
+
+post_save.connect(create_profile, sender=User)
+
+
+class Order(models.Model):
+    ref_code = models.CharField(max_length=15)
+    user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True)
+    items = models.ManyToManyField(PurchaseItem)
+    is_ordered = models.BooleanField(default=False)
+    date_ordered = models.DateTimeField(null=True)
+
+    def get_cart_items(self):
+        return self.items.all()
+
+    def get_cart_total(self):
+        sum = 0 ;
+        for item in self.items.all():
+            sum = sum + ((item.medicine.price)*(item.quantity))
+        return sum
 

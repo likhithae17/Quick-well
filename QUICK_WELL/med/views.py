@@ -1,5 +1,5 @@
 from django.views import generic
-from .models import Medicine, Userlog, PurchaseItem, UserProfile, Order
+from home.models import Medicine, PurchaseItem, UserProfile, Order
 from django.contrib.auth import login, logout
 from django.contrib import messages
 from django.http import HttpResponse
@@ -24,14 +24,6 @@ def generate_order_id():
 
 
 
-def get_user_checked_order(request):
-    # get order for the correct user
-    user_profile = get_object_or_404(UserProfile, user=request.user)
-    order = Order.objects.filter(user=user_profile, is_ordered=True)
-    if order.exists():
-        # get the only order in the list of filtered orders
-        return order[0]
-    return 0
 
 def get_user_pending_order(request):
     # get order for the correct user
@@ -125,6 +117,10 @@ def delete_from_cart(request, item_id):
 
 def checkout(request, order_id):
     order_purchased = Order.objects.filter(pk=order_id)
+    order_purchased.date_ordered = datetime.datetime.now()
+    # order_items = order_to_purchase.items.all()
+    order_purchased.update(is_ordered=True)
+    order_purchased.update(date_ordered=datetime.datetime.now())
     context = {
         'order': order_purchased[0],
     }
@@ -134,10 +130,7 @@ def checkout(request, order_id):
 def finalPrice(request, order_id):
     order_to_purchase = Order.objects.filter(pk=order_id)
     # order_to_purchase.is_ordered = True
-    # order_to_purchase.date_ordered = datetime.datetime.now()
-    # order_to_purchase.save()
-    # order_items = order_to_purchase.items.all()
-    order_to_purchase.update(is_ordered=True)
+
     context = {
         'order': order_to_purchase[0],
     }
@@ -151,15 +144,36 @@ def order_details(request, **kwargs):
         'order': existing_order
     }
     return render(request, 'med/order_summary.html', context)
+#
+#
+#
+# def get_user_checked_order(request):
+#     # get order for the correct user
+#     user_profile = get_object_or_404(UserProfile, user=request.user)
+#     order = Order.objects.filter(user=user_profile, is_ordered=True)
+#     if order.exists():
+#         # get the only order in the list of filtered orders
+#         return order[0]
+#     return 0
+
+#
+# @login_required(login_url='/med/login')
+# def checked(request, **kwargs):
+#     checked_order = get_user_checked_order(request)
+#     context = {
+#         'order': checked_order
+#     }
+#     return render(request, 'med/order_checked.html', context)
+
 
 @login_required(login_url='/med/login')
 def checked(request, **kwargs):
-    checked_order = get_user_checked_order(request)
+    user_profile = get_object_or_404(UserProfile, user=request.user)
+    order = Order.objects.filter(user=user_profile, is_ordered=True)
     context = {
-        'order': checked_order
+        'order': order
     }
     return render(request, 'med/order_checked.html', context)
-
 
 
 

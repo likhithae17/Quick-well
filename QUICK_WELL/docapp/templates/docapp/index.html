@@ -50,24 +50,26 @@
                 }, function (results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
 
-                        if (querylocation==None){
+                        var latitude = results[0].geometry.location.lat();
+                        var longitude = results[0].geometry.location.lng();
+
+                        var myLocation = {
+                            lat: latitude,
+                            lng: longitude
+                        };
+
+                        /*
+                        if (querylocation==None || querylocation==''){
+                            window.alert(querylocation)
                             var myLocation = {
                                 lat: 13.5232,
                                 lng: 79.9982
                             };
-                            setPos(myLocation);
                         }
+                        */
 
-                        else{
-                             var latitude = results[0].geometry.location.lat();
-                             var longitude = results[0].geometry.location.lng();
+                        setPos(myLocation);
 
-                             var myLocation = {
-                                 lat: latitude,
-                                 lng: longitude
-                             };
-                             setPos(myLocation);
-                        }
                     }
                 });
             }
@@ -143,23 +145,7 @@
     right:0;"> ></div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBDDHXhrCzm5a2cemyN2QtIb8B11hvHQE&signed_in=true&libraries=places&callback=initMap" async defer></script>
 
-<!--
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <form class="navbar-form navbar-left" action="{#{% url 'index' %}#}" method="get">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search" name="q" id="q">
-                    <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </nav>
 
--->
     {% for doc in doctor %}
     <br><br>
     <div class="row" style="margin: auto" >

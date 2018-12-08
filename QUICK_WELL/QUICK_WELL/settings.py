@@ -57,7 +57,7 @@ INSTALLED_APPS = [
     'haystack',
     'widget_tweaks',
     'ads',
-    'sekizai',
+    #'sekizai',
     'crispy_forms',
     'labtest.apps.LabtestConfig',
     'video_conference',
@@ -90,6 +90,7 @@ MIDDLEWARE = [
     'machina.apps.forum_permission.middleware.ForumPermissionMiddleware',
 ]
 
+ASGI_APPLICATION = 'QUICK_WELL.routing.application'
 ROOT_URLCONF = 'QUICK_WELL.urls'
 
 TEMPLATES = [
@@ -105,7 +106,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'machina.core.context_processors.metadata',
-                'sekizai.context_processors.sekizai',
+                #'sekizai.context_processors.sekizai',
             ],
         },
     },
@@ -172,8 +173,6 @@ LOGOUT_REDIRECT_URL = 'home:home'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-ASGI_APPLICATION = 'QUICK_WELL.routing.application'
-ASGI_APPLICATION = 'quickwell.routing.application'
 
 CHANNEL_LAYERS = {
     'default': {
@@ -206,47 +205,10 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 
-ADS_GOOGLE_ADSENSE_CLIENT = 'ca-pub-DEFAULT'  # OPTIONAL - DEFAULT TO None
-
-ADS_ZONES = {
-    'header': {
-        'name': ('Header'),
-        'ad_size': {
-            'xs': '720x150',
-            'sm': '800x90',
-            'md': '800x90',
-            'lg': '800x90'
-        },
-        'google_adsense_slot': 'DEFAULT',  # OPTIONAL - DEFAULT TO None
-        'google_adsense_format': 'auto',  # OPTIONAL - DEFAULT TO None
-    },
-    'content': {
-        'name': ('Content'),
-        'ad_size': {
-            'xs': '720x150',
-            'sm': '800x90',
-            'md': '800x90',
-            'lg': '800x90'
-        },
-        'google_adsense_slot': 'DEFAULT',  # OPTIONAL - DEFAULT TO None
-        'google_adsense_format': 'auto',  # OPTIONAL - DEFAULT TO None
-    },
-    'sidebar': {
-        'name': ('Sidebar'),
-        'ad_size': {
-            'xs': '720x150',
-            'sm': '800x90',
-            'md': '800x90',
-            'lg': '800x90'
-        },
-        'google_adsense_slot': 'DEFAULT',  # OPTIONAL - DEFAULT TO None
-        'google_adsense_format': 'auto',  # OPTIONAL - DEFAULT TO None
-    },
-}
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
