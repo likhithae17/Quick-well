@@ -1,4 +1,4 @@
-{% extends 'docapp/base.html' %}
+{% extends 'labtest/base.html' %}
 
 {% block title %}Doctor Details{% endblock %}
 
@@ -6,20 +6,39 @@
 
     <div class="container">
         <br>
-        <center>
-            <div class="well"><h3> Thank you {{ name }} for booking appointment.</h3><br></div>
-            <div style="font-size: 25px">
-                <b><p>Appointment Details:</p></b>
+            <div style=""><h3> Thank you {{ name }} for booking appointment.</h3><br></div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div style="font-size: 25px">
+                        <b><p>Appointment Details:</p></b>
+                    </div>
+                    <br>
+                    <div style="font-size: 18px">
+                        <p>Name : {{ name }} </p>
+                        <p>Test : {{ test.test_name }}</p>
+                        <p>Date : {{ date }}</p>
+                        <p>Time : {{ time }} </p>
+                        <p>cost : {{ test.cost }}</p>
+                    </div>
+                    <br>
+                    <form action="{% url 'labtest:delete' appid %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Cancel Appointment</button>
+                    </form>
+                </div>
+
+                <br>
+                <div class="col-sm-4">
+                    <div class="panel panel-default text-center" style="float: right">
+                        <div class="panel-heading">Address</div>
+                        <div class="panel-body">asdfghjkl,mnbvcxsdfghjkmnbv</div>
+                    </div>
+                </div>
             </div>
-            <div style="font-size: 18px">
-                <p>Name : {{ name }} </p>
-                <p>Test : {{ test.test_name }}</p>
-                <p>Lab : {{ lab.lab_name }} </p>
-                <p>Date : {{ date }}</p>
-                <p>Time : {{ time }} </p>
-                <p>cost : {{ test.cost }}</p>
-                <p>Preparations : {{ test.preparation }}</p>
-            </div>
-        </center>
-    </div>
+
+            <br>
+        <h3><b>Instructions</b></h3>
+        <div style="font-size:18px">{{ test.preparation }}</div>
+    </iv>
 {% endblock %}

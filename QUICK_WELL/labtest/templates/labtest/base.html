@@ -21,10 +21,12 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
-
+    <style>
+    {% block style %}{% endblock %}
+    </style>
 </head>
 
-<body>
+<body style="background-color: rgba(192,192,192,0.3)">
 
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -40,7 +42,7 @@
             </div>
 
 
-            <form class="navbar-form navbar-left" action="{% url 'docapp:index' %}" method="get">
+            <form class="navbar-form navbar-left" action="{% url 'labtest:index' %}" method="get">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search" name="q" id="q" size="15px">
                     <div class="input-group-btn">

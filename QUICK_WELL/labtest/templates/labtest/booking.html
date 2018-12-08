@@ -1,18 +1,26 @@
-{% extends 'docapp/base.html' %}
+{% extends 'labtest/base.html' %}
 
 {% load crispy_forms_tags %}
 
 {% block title %}Appointment{% endblock %}
 
 {% block body %}
+
     <div class="container">
         <h4>Test : {{ test.test_name }}</h4>
         <h4>Select a time slot to book appointment</h4><br>
 
-        <form action="{% url 'labbook' pk=test.id %}" method="post">
+        {% if error %}
+        <h4 style="color:red;">
+            {{ error }}
+        </h4>
+        {% endif %}
+
+        <form action="{% url 'labtest:labbook' pk=test.id %}" method="post">
             {% csrf_token %}
             {{ form|crispy }}
             <br><br><button type="submit" class="btn btn-primary">Confirm Appointment</button>
         </form>
     </div>
+
 {% endblock %}

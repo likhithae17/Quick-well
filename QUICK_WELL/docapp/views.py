@@ -138,22 +138,3 @@ def delete(request,appid):
     appointment.delete()
     msg = 'Your appointment is cancelled'
     return render(request, 'docapp/greet.html',{'msg':msg})
-"""
-
-class IndexView(generic.ListView):
-    template_name = 'docapp/index.html'
-    #context_object_name = 'all_specialization'
-
-    def get_queryset(self):
-        return Specialization.objects.all()
-
-
-class DetailView(generic.DetailView):
-    model = Specialization
-    template_name = 'docapp/index.html'
-    
-    def get_queryset(self):
-        self.spec = get_object_or_404(Specialization, pk=self.kwargs['pk'])
-        return Specialization.objects.filter(spec_name__icontains='str(self.spec)')
-
-"""
