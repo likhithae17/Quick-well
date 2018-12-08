@@ -23,6 +23,8 @@ def login(request):
         if form.is_valid():
             user = form.get_user()
             auth_login(request, user)
+            temp = 1
+            return render(request, 'profile/includes/index.html', {'user': user,'temp': temp})
         else:
             return HttpResponse("invalid details!")
     else:
@@ -70,13 +72,16 @@ def register(request):
 def index(request):
     doc = Doctor.objects.all()
     query = request.GET.get('q')
-    return render(request, 'profile/includes/index.html')
+    temp = 1
+    return render(request, 'profile/includes/index.html', {'temp': temp})
 
 def contact(request):
-    return render(request, 'profile/includes/basic.html', {'content': ['contact me at', 'sandeshjatla@gmail.com']})
+    temp = 1
+    return render(request, 'profile/includes/basic.html', {'content': ['contact me at', 'sandeshjatla@gmail.com'], 'temp': temp})
 
 def test(request):
-    return render(request, 'profile/includes/test.html')
+    temp = 1
+    return render(request, 'profile/includes/test.html', {'temp': temp})
 
 def mail_conf(request):
     if request.method=='POST':

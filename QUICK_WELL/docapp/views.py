@@ -4,6 +4,7 @@
 #CLIENT ID -  798679894892-qa3o7qpo5l5g923qd6sdfvku2u0hi7fh.apps.googleusercontent.com
 #CLIENT SECRET - Xedby0HI2bczZrVHt1-Bfs_3
 
+
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse
 from home.models import Doctor, Appointment
@@ -44,7 +45,18 @@ def maps(request):
 
 def profile(request,pk):
     doc = get_object_or_404(Doctor, pk=pk)
-    return render(request, 'profile/includes/basic.html', {'doc':doc})
+    return render(request, 'docprof/includes/basic.html', {'doc':doc})
+
+def index1(request):
+    doc = Doctor.objects.all()
+    query = request.GET.get('q')
+    return render(request, 'docprof/includes/index.html' )
+
+def contact(request):
+    return render(request, 'docprof/includes/basic.html', {'content': ['contact me at', 'sandeshjatla@gmail.com']})
+
+def test(request):
+    return render(request, 'docprof/includes/test.html')
 
 
 def appbooking(request,pk):
