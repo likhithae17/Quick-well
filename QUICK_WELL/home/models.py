@@ -1,7 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.urls import reverse
-from django.contrib.auth.models import User
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
@@ -9,7 +7,7 @@ from django.db.models.signals import post_save
 
 
 class Doctor(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     firstname = models.CharField(max_length=150)
     lastname = models.CharField(max_length=150)
     experience = models.IntegerField(null=True)
@@ -17,7 +15,7 @@ class Doctor(models.Model):
    # email_id = models.CharField(max_length=150,null=True,blank=True)
     phone_num = models.BigIntegerField(null=True,blank=True)
     #previous_hospitals = models.CharField(max_length=300,null=True)
-    specialization = models.CharField(max_length=150)
+    specialization = models.CharField(max_length=150,null=True)
 
     def __str__(self):
         return self.firstname+' '+self.lastname+' - '+str(self.specialization)
@@ -56,6 +54,7 @@ class Hospital_Affiliation(models.Model):
 
     def __str__(self):
         return self.hosp_name
+
 
 class Office(models.Model):
     doc_id = models.ForeignKey(Doctor, on_delete=models.PROTECT,null=True,blank = True)
@@ -119,7 +118,7 @@ class Appointment_Status(models.Model):
 
 class Appointment(models.Model):
     #client_accountid = models.ForeignKey(User, on_delete=models.PROTECT)
-    doctor_id = models.ForeignKey(Doctor, on_delete=models.PROTECT)
+    doctor_id = models.ForeignKey(Doctor, on_delete=models.PROTECT, null=True)
     #start_time =  models.DateTimeField()
     #end_time =  models.DateTimeField()
     user_name = models.CharField(max_length=50)
@@ -128,7 +127,6 @@ class Appointment(models.Model):
     date = models.DateField(blank=True, null=True)
     time = models.TimeField(blank=True, null=True)
     #appoint_status_id = models.ForeignKey(Appointment_Status, on_delete=models.PROTECT)
-
 
 
 class labAppointment(models.Model):
@@ -142,7 +140,7 @@ class labAppointment(models.Model):
 
 
 class fundraiser(models.Model):
-    user_name = models.ForeignKey(user_profile,on_delete=models.PROTECT)
+    user_name = models.ForeignKey(user_profile,on_delete=models.PROTECT,null=True)
     category = models.CharField(max_length=50)
     Title = models.CharField(max_length=60)
     goal_amount = models.FloatField()
@@ -174,16 +172,14 @@ class PurchaseItem(models.Model):
     date_ordered = models.DateTimeField(null=True)
 
 
-
-
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     medicine = models.ManyToManyField(Medicine, blank=True)
     first_name = models.CharField(max_length=100, default='0000000')
     last_name = models.CharField(max_length=100, default='0000000')
-    bio = models.CharField(max_length=255, blank=True)
+    email = models.CharField(max_length=100, default='0000000')
+    address = models.CharField(max_length=1000, blank=True)
     city = models.CharField(max_length=200, blank=False, default='')
-    interests = models.CharField(max_length=255, blank=True)
 
 
 def create_profile(sender, **kwargs):
@@ -200,13 +196,24 @@ class Order(models.Model):
     items = models.ManyToManyField(PurchaseItem)
     is_ordered = models.BooleanField(default=False)
     date_ordered = models.DateTimeField(null=True)
+    billing_add = models.CharField(max_length=1000, blank=True)
+    email = models.CharField(max_length=100, default='0000000')
 
     def get_cart_items(self):
         return self.items.all()
+
+    def get_no_of_purchase(self):
+        sum1 = 0;
+        for item in self.items.all():
+            sum1 = sum1+1;
+        return sum1;
 
     def get_cart_total(self):
         sum = 0 ;
         for item in self.items.all():
             sum = sum + ((item.medicine.price)*(item.quantity))
         return sum
+
+
+
 

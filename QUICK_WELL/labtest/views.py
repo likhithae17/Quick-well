@@ -12,6 +12,7 @@ def index(request):
     #lab = LabTest.objects.all()
     test = Tests_info.objects.all()
     query = request.GET.get('q')
+    query1 = request.GET.get('q1')
     if query:
         test = Tests_info.objects.filter(test_name__icontains=query)
         if not test:
@@ -19,7 +20,7 @@ def index(request):
     else:
         test = Tests_info.objects.all()
 
-    return render(request, 'labtest/index.html', {'test':test})
+    return render(request, 'labtest/index.html', {'test':test, 'query': query1})
 
 
 def detail(request,pk):
@@ -41,32 +42,50 @@ def labbook(request,pk):
             email_id = form.cleaned_data['email_id']
             #appoint_no = ref.generate_app_id()
 
-            temp = labAppointment.objects.create(date=date, time=time, user_name=user_name, email_id=email_id, test_id=test)
+            sametest = labAppointment.objects.filter(test_id__id__icontains=test)
+            flag = 1
 
-            subject = "Appointment booked"
-            to_email = email_id
-            print(to_email)
-            context = {
-                'name': user_name,
-                #'Appointment_id':appoint_no,
-                'time':time,
-                'date': date,
-                'test':test,
-            }
-            message = render_to_string('labtest/emailtxt.html', context)
-            msg = EmailMessage(subject, message, to=[to_email])
-            msg.content_subtype = 'html'
+            for slot in sametest:
+                 if slot.date == date and slot.time == time:
+                     error_msg='Sorry, this slot is not available please select a different slot!'
+                     flag=0
+                     #form = AppointmentForm()
+                     print(date)
+                     break;
 
-            try:
-                msg.send()
-                print('Successful')
-            except:
-                print('Unsuccessful')
+            if flag==1:
+                temp = labAppointment.objects.create(date=date, time=time, user_name=user_name, email_id=email_id, test_id=test)
 
-            return render(request, 'labtest/greet.html', context)
+                subject = "Appointment booked"
+                to_email = email_id
+                print(to_email)
+                context = {
+                    'name': user_name,
+                    'time':time,
+                    'date': date,
+                    'test':test,
+                    'appid': temp.id,
+                }
+                message = render_to_string('labtest/emailtxt.html', context)
+                msg = EmailMessage(subject, message, to=[to_email])
+                msg.content_subtype = 'html'
+
+                try:
+                    msg.send()
+                    print('Successful')
+                except:
+                    print('Unsuccessful')
+
+                return render(request, 'labtest/greet.html', context)
 
     else:
         form = labAppointmentForm()
 
     return render(request, 'labtest/booking.html', {'form': form,'test':test,})
 
+
+def delete(request,appid):
+    appointment = get_object_or_404(labAppointment, pk=appid)
+    appointment.delete()
+    msg = 'Your appointment is cancelled'
+    return render(request, 'docapp/greet.html',{'msg':msg})

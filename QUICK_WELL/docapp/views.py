@@ -47,13 +47,16 @@ def profile(request,pk):
     doc = get_object_or_404(Doctor, pk=pk)
     return render(request, 'docprof/includes/basic.html', {'doc':doc})
 
+
 def index1(request):
     doc = Doctor.objects.all()
     query = request.GET.get('q')
     return render(request, 'docprof/includes/index.html' )
 
+
 def contact(request):
     return render(request, 'docprof/includes/basic.html', {'content': ['contact me at', 'sandeshjatla@gmail.com']})
+
 
 def test(request):
     return render(request, 'docprof/includes/test.html')
@@ -135,22 +138,3 @@ def delete(request,appid):
     appointment.delete()
     msg = 'Your appointment is cancelled'
     return render(request, 'docapp/greet.html',{'msg':msg})
-"""
-
-class IndexView(generic.ListView):
-    template_name = 'docapp/index.html'
-    #context_object_name = 'all_specialization'
-
-    def get_queryset(self):
-        return Specialization.objects.all()
-
-
-class DetailView(generic.DetailView):
-    model = Specialization
-    template_name = 'docapp/index.html'
-    
-    def get_queryset(self):
-        self.spec = get_object_or_404(Specialization, pk=self.kwargs['pk'])
-        return Specialization.objects.filter(spec_name__icontains='str(self.spec)')
-
-"""

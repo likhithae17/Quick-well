@@ -4,30 +4,45 @@
 <div class="container">
 <br><br>
     <p style="color:#1D466A; font-size: 25px">User name : {{ request.user }}</p>
-    <p style="color:#1D466A; font-size: 25px; font-weight: bold">Your Brought:</p>
+    <p style="color:#1D466A; font-size: 25px; font-weight: bold; letter-spacing: 1px">You Bought:</p>
     <br><br>
 <section>
    <div class="row" style="padding-left: 50px;padding-right: 50px">
-    <table class="table table-hover table-bordered text-center" >
-      <tr class="text-center">
+    <table class="table table-hover table-bordered text-center">
+      <tr class="text-center" style="background-color: #DEECF8;">
+          <th class="text-center">Reference Code</th>
         <th class="text-center">Date ordered</th>
         <th class="text-center">Medicine</th>
         <th class="text-center">Price</th>
           <th class="text-center">Quantity</th>
           <th class="text-center">Prescription Required</th>
+          <th class="text-center">Remove Order</th>
          </tr>
 {#      {% for item in order.get_cart_items %}#}
         {% for itemno in order %}
             {% for item in itemno.get_cart_items %}
 
         <tr>
+{#        <td>{{ forloop.counter }}</td>#}
+            <td>{{ itemno.ref_code }}
+            </td>
           <td>{{ itemno.date_ordered }}</td>
+
           <td>
             {{ item.medicine.name }}
+
           </td>
           <td>{{ item.medicine.price }}</td>
         <td>{{ item.quantity }}</td>
         <td>{{ item.medicine.pres_req }}</td>
+        {% if forloop.counter == 1 %}
+        <td rowspan="{{ itemno.get_no_of_purchase }}" style="padding-top: 10px">
+              <a href="{% url 'med:delete_order' itemno.id %}" data-balloon="remove this order from cart" class="text-danger" >
+                Delete This Order
+              </a>
+            </td>
+
+        {% endif %}
         </tr>
         {% empty %}
 
@@ -41,8 +56,8 @@
 
           </a>
         </td>
-        <td colspan=4>
-            Thanks for purchasing
+        <td colspan=6 style="font-size: 20px">
+            <strong>Thanks for purchasing!</strong>
         </td>
       </tr>
     </table>
@@ -50,4 +65,5 @@
  </section>
 </div>
     <br>
+
 {% endblock %}

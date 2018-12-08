@@ -107,6 +107,12 @@ def delete_from_cart(request, item_id):
         item_to_delete[0].delete()
     return redirect(reverse('med:order_summary'))
 
+def delete_order(request, order_id):
+    order_to_delete = Order.objects.filter(pk=order_id)
+    if order_to_delete.exists():
+        order_to_delete[0].delete()
+    return redirect(reverse('med:checked'))
+
 #@login_required()
 #def CartView(request, **kwargs):
  #   user_profile = get_object_or_404(UserProfile, user=request.user)
@@ -118,9 +124,15 @@ def delete_from_cart(request, item_id):
 def checkout(request, order_id):
     order_purchased = Order.objects.filter(pk=order_id)
     order_purchased.date_ordered = datetime.datetime.now()
+    address = request.GET.get('address')
+    email = request.GET.get('email')
+    order_purchased.update(email=email)
+    order_purchased.update(billing_add=address)
     # order_items = order_to_purchase.items.all()
     order_purchased.update(is_ordered=True)
     order_purchased.update(date_ordered=datetime.datetime.now())
+
+
     context = {
         'order': order_purchased[0],
     }
@@ -153,9 +165,9 @@ def order_details(request, **kwargs):
 #     order = Order.objects.filter(user=user_profile, is_ordered=True)
 #     if order.exists():
 #         # get the only order in the list of filtered orders
-#         return order[0]
+#         return order
 #     return 0
-
+#
 #
 # @login_required(login_url='/med/login')
 # def checked(request, **kwargs):
