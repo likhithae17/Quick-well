@@ -2,25 +2,26 @@
 
 {% block body %}
 <div class="container">
-<br><br><br>
-    <br><br>
-<h4> ALL FUNCTIONALITIES NOT IMPLEMENTED ...PAGE UNDER CONSTRUCTION</h4>
-    <h3>User name : {{ order.user.first_name }}</h3>
+<br><br>
+    <h3>User name : {{ request.user }}</h3>
     <h3>Your Brought:</h3>
     <br><br>
 <section>
    <div class="row" style="padding-left: 50px;padding-right: 50px">
     <table class="table table-hover table-bordered text-center" >
       <tr class="text-center">
-        <th class="text-center">no.</th>
+        <th class="text-center">Date ordered</th>
         <th class="text-center">Medicine</th>
         <th class="text-center">Price</th>
           <th class="text-center">Quantity</th>
           <th class="text-center">Prescription Required</th>
          </tr>
-      {% for item in order.get_cart_items %}
+{#      {% for item in order.get_cart_items %}#}
+        {% for itemno in order %}
+            {% for item in itemno.get_cart_items %}
+
         <tr>
-          <td>{{ forloop.counter }}</td>
+          <td>{{ itemno.date_ordered }}</td>
           <td>
             {{ item.medicine.name }}
           </td>
@@ -31,10 +32,11 @@
         {% empty %}
 
       {% endfor %}
+    {% endfor %}
 
     <tr>
         <td colspan=1 >
-          <a href="{% url 'med:index' %}" class="btn btn-warning pull-left">
+          <a href="{% url 'med:index' %}" class="btn btn-warning pull-left btn-success active">
             Wanna Shop some more?
 
           </a>
@@ -47,4 +49,5 @@
    </div>
  </section>
 </div>
+    <br>
 {% endblock %}
