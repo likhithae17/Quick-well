@@ -4,12 +4,12 @@
 {% block body %}
 <div class="container" style="padding-top: 15px; padding-bottom: 15px">
 <br><br><br>
-    <br>
 
 <div class="row">
 
         <div class="col-md-12 order-md-1">
-          <h3 class="mb-3">{{ order.user.first_name }}...Enter Billing Details</h3>
+         <p style="color:#1D466A; font-size: 25px">{{ order.user.first_name }}</p>
+            <p style="color:#1D466A; font-size: 35px; font-weight: bold; text-align: center; letter-spacing: 2px">Enter your Billing Details</p>
         <br>
 {#            {% for item in order.get_cart_items %}#}
 {##}
@@ -42,7 +42,7 @@
                          {% for item in order.get_cart_items %}
 
                             {% if item.medicine.pres_req == "yes" %}
-                                <h4><strong>Note:  Prescription is required for {{ item.medicine.name }}</strong></h4>
+                                <p style="color:#1D466A; font-size: 25px; font-weight: bold">Note:  Prescription is required for {{ item.medicine.name }}</p>
                                  <input type="file" name="pic" accept="image/*" required>
                             {% endif %}
 
@@ -92,9 +92,9 @@
                         </div>
                       </div>
                       </div>
-
-                    <h4 class="mb-3">Payment</h4>
-
+                        <br>
+                     <p style="color:#1D466A; font-size: 35px; font-weight: bold; text-align: center; letter-spacing: 2px">Payment</p>
+                                <br>
                     <div class="d-block my-3">
                       <div class="custom-control custom-radio">
                         <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
@@ -148,5 +148,7 @@
         </div>
 </div>
 </div>
+    <br>
+    <br>
 
 {% endblock %}
