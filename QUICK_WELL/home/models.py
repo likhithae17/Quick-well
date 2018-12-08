@@ -7,11 +7,12 @@ from django.db.models.signals import post_save
 
 
 class Doctor(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     firstname = models.CharField(max_length=150)
     lastname = models.CharField(max_length=150)
     experience = models.IntegerField(null=True)
     doc_photo = models.FileField(null=True)
-    email_id = models.CharField(max_length=150,null=True,blank=True)
+   # email_id = models.CharField(max_length=150,null=True,blank=True)
     phone_num = models.BigIntegerField(null=True,blank=True)
     #previous_hospitals = models.CharField(max_length=300,null=True)
     specialization = models.CharField(max_length=150)
@@ -81,8 +82,8 @@ class Office_Docavailability(models.Model):
 
 
 class user_profile(models.Model):
-    firstname = models.CharField(max_length=150)
-    lastname = models.CharField(max_length=150)
+    username = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
+    name = models.CharField(max_length=150)
     age = models.IntegerField(null=True)
     dob = models.DateField(null=True)
     email = models.CharField(max_length=150)
@@ -95,6 +96,9 @@ class user_profile(models.Model):
     zipcode = models.BigIntegerField()
     photo = models.ImageField(upload_to='media', blank=True)
 
+class user_reports(models.Model):
+    username = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
+    file = models.FileField(upload_to='media', blank=True)
 
 class User_Review(models.Model):
     client_accountid = models.ForeignKey(user_profile, on_delete=models.PROTECT)

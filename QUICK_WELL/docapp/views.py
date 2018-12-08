@@ -13,6 +13,16 @@ from .forms import AppointmentForm
 from django.template.loader import render_to_string
 
 
+
+#from googleapiclient import discovery
+#from oauth2client import tools
+#from oauth2client.client import OAuth2WebServerFlow
+#from oauth2client.file import Storage
+#import httplib
+
+
+#from django.db.models import Q
+
 def index(request):
     doc = Doctor.objects.all()
     query = request.GET.get('q')

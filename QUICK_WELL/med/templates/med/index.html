@@ -62,6 +62,26 @@
 {#    </a>#}
 {#</div>#}
 
+
+        <div style="background-color: white;" class="container"><h3 style="margin: 10px 0 30px 0; padding-top: 15px;
+      letter-spacing: 2px;
+      font-size: 40px;"><span style="color: #1D466A; font-size: 45px; font-weight: bold">Get every medicine on time</span></h3>
+{#            <div id="band" class="container text-left">#}
+{#                UFLSF;ISBF;O;OSIF#}
+{#            </div>#}
+            <p style="font-size: 18px; color:#1D466A; letter-spacing: 0px"><em>When you purchase medicines on QuickWell, you can be assured that you will get the medicines you order. Quickwell has the widest range of medicines online, sourced from our trusted network of pharmacies and medical stores. So, when you buy medicines online on Quickwell, our trained pharmacists, partner pharmacies and medical stores, ensure that your medicines are delivered to you on time, anywhere in India.</em></p>
+{#        <img src="https://www.practostatic.com/web-assets/home/assets/images/order.c84fc07b0be8a7e8d4db432eb4e606a2.svg" style="opacity: 0.9" align="right" height="300px"; width="300px;">#}
+            <br>
+            <p style="color:#1D466A; font-size: 25px"><i style="color: #2aabd2" class="fa fa-check"></i>&nbsp; &nbsp; Guaranteed availability</p>
+            <p style="color:#1D466A; font-size: 25px"><i style="color: #2aabd2" class="fa fa-check"></i>&nbsp; &nbsp; Over 130+ genuine medicines</p>
+            <p style="color:#1D466A;font-size: 25px"><i style="color: #2aabd2" class="fa fa-check"></i> &nbsp;&nbsp; Leading Healthcare Providers</p>
+        <p style="color:#1D466A; font-size: 25px"><i style="color: #2aabd2" class="fa fa-check"></i>&nbsp; &nbsp; Quick home delivery</p>
+{#        <div style="text-align: center ;padding-top: 20px"><h3 style="margin: 10px 0 30px 0; padding-top: 15px;#}
+{#      letter-spacing: 2px;#}
+{#    font-size: 40px;"><span style="color: #1D466A; font-size: 45px; font-weight: bold; ">Begin Shopping</span></h3>#}
+{#        </div>#}
+        </div>
+        <div class="container" style="background-color: white; padding-top: 0px">
         {% for medicine in all_medicines %}
                 <div class="col-sm-3 col-xs-10" style="padding: 30px">
                   <div class="panel panel-default text-center" >
@@ -81,11 +101,13 @@
                             {% endif %}
                             <li type="disc"><h5 style="font-weight: bold"><a href="{{ medicine.about }}" target="_blank">Click here to read about {{ medicine.name }}</a></h5></li>
                         </ul>
+                        <ul>
+                          </div>
+                        </ul>
                     </div>
-                    <div class="panel-footer">
-
-                            <form action="{% url 'med:add_to_cart' medicine.id %}">
-                            <input type="number" name ="quantity" value="" required placeholder="Enter Quantity" min="0">
+                    <div class="panel-footer" style="background-color: white">
+                            <form action="{% url 'med:add_to_cart' medicine.id %}" style="padding-top: 10px">
+                            <input type="number" name ="quantity" value="" required placeholder="Quantity" min="0" style="width: 100px; text-align: center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <!--<span class="glyphicon glyphicon-shopping-cart">--><button type="submit" >Add to Cart</button><!-- </span>-->
                             </form>
 
@@ -93,8 +115,7 @@
                   </div>
                 </div>
         {% endfor %}
-
-    </div>
+        </div>
 
 {% endblock %}
 

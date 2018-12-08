@@ -3,6 +3,7 @@ from . import views
 
 app_name = 'docapp'
 
+
 urlpatterns = [
 
     path('index/', views.index, name='index'),

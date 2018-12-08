@@ -443,7 +443,7 @@ if (typeof jQuery === 'undefined') {
     var slidEvent = $.Event('slid.bs.carousel', { relatedTarget: relatedTarget, direction: direction }) // yes, "slid"
     if ($.support.transition && this.$element.hasClass('slide')) {
       $next.addClass(type)
-      $next[0].offsetWidth // force reflow
+      $next[0].offsetWidth // patient_profile reflow
       $active.addClass(direction)
       $next.addClass(direction)
       $active
@@ -1003,7 +1003,7 @@ if (typeof jQuery === 'undefined') {
       that.adjustDialog()
 
       if (transition) {
-        that.$element[0].offsetWidth // force reflow
+        that.$element[0].offsetWidth // patient_profile reflow
       }
 
       that.$element.addClass('in')
@@ -1120,7 +1120,7 @@ if (typeof jQuery === 'undefined') {
           : this.hide()
       }, this))
 
-      if (doAnimate) this.$backdrop[0].offsetWidth // force reflow
+      if (doAnimate) this.$backdrop[0].offsetWidth // patient_profile reflow
 
       this.$backdrop.addClass('in')
 

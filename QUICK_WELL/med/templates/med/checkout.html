@@ -9,7 +9,7 @@
         {% for item in order.get_cart_items %}
 
              <h2>{{ item.medicine.name }} (Quantity : {{ item.quantity }})</h2>
-            <img src="{{ item.medicine.description }}" width="250px" height="250px">
+            <img src="{{ item.medicine.description.url }}" width="250px" height="250px">
     {%  endfor %}
 
 <h2>total price you paid : {{ order.get_cart_total }}</h2>
