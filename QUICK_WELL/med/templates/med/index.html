@@ -72,6 +72,8 @@
                     </div>
                   </div>
                 </div>
+            {% empty %}
+           <p style="color:#1D466A; font-size: 35px; font-weight: bold; text-align: center; letter-spacing: 2px">Nothing found with name "{{ request.GET.q }}"</p>
         {% endfor %}
         </div>
     </div>
