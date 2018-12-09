@@ -1,7 +1,5 @@
 import datetime
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field
-from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
 from django.forms import ModelForm, DateInput, Select, TextInput, NumberInput, forms
 from home.models import fundraiser
 
@@ -26,6 +24,9 @@ class fundraiserForm(ModelForm):
             'Fundraiser_story': TextInput(attrs={'type': 'text'}),
             'End_date': DateInput(attrs={'type': 'date'}),
         }
+
+        helper = FormHelper()
+        helper.form_method = 'POST'
 
     def clean_date(self):
         date = self.cleaned_data['End_date']
