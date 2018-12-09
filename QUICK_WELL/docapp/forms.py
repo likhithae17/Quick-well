@@ -1,7 +1,7 @@
 import datetime
+
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field
-from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
+from crispy_forms.layout import Submit
 from django.forms import ModelForm, DateInput, TimeInput, TextInput, EmailInput, forms
 from home.models import Appointment
 
@@ -17,7 +17,12 @@ class AppointmentForm(ModelForm):
             'email_id': EmailInput(attrs={'type':'email'}),
         }
 
-    def clean_date(self):
+        helper = FormHelper()
+        helper.form_method = 'POST'
+        #helper.add_input(Submit('Confirm Appointment', 'Confirm Apointment', css_class='btn-primary'))
+
+
+def clean_date(self):
         date = self.cleaned_data['date']
         if date < datetime.date.today():
             raise forms.ValidationError("Sorry, Invalid Date!")
