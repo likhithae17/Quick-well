@@ -86,12 +86,28 @@
       color: #555;
   }
   .btn {
-      padding: 10px 20px;
-      background-color: #333;
-      color: #f1f1f1;
-      border-radius: 0;
+      {#padding: 10px 20px;#}
+      {#background-color: #333;#}
+      {#color: #f1f1f1;#}
+      {#border-radius: 0;#}
       transition: .2s;
   }
+  {#.btn1 {#}
+  {#    padding: 10px 20px;#}
+  {#    background-color: white;#}
+  {#    color: #f1f1f1;#}
+  {#    border-radius: 0;#}
+  {#    transition: .2s;#}
+  {#    text-align: center;#}
+  {#}#}
+
+  .btn1:hover, .btn1:focus {
+      border: none;
+      background-color: white;
+      color: #000;
+  }
+
+
   .btn:hover, .btn:focus {
       border: 1px solid #333;
       background-color: #fff;
@@ -113,7 +129,8 @@
   .navbar {
       font-family: Montserrat, sans-serif;
       margin-bottom: 0;
-      background-color: #2b669a;
+     background: -webkit-linear-gradient(to right, #3573A9, #00002C);
+      background: linear-gradient(to right, #3573A9, #00002C);
       border: 0;
       font-size: 15px !important;
       {#letter-spacing: 1px;#}
@@ -145,17 +162,12 @@
       background-color: red !important;
   }
   footer {
-      background-color: #2b669a;
+      background: -webkit-linear-gradient(to right, #31BDE6, #00003E);
+      background: linear-gradient(to right, #31BDE6, #00003E);
       color: #f5f5f5;
       padding: 32px;
   }
-  footer a {
-      color: #f5f5f5;
-  }
-  footer a:hover {
-      color: #777;
-      text-decoration: none;
-  }
+
   .form-control {
       border-radius: 0;
   }
@@ -163,83 +175,40 @@
       resize: none;
   }
 
+.overlay {
+  position: absolute;
+  bottom:0px;
+  left: 30px;
+  right: 70px;
+   top:30px;
+  background-color: #0A2D4B;
+  overflow: hidden;
+  width: 249px;
+  height:0;
+  transition: 1s ease ;
+text-align: center;
+}
+.conti:hover .overlay {
+  bottom: 0;
+  height: 284px;
+  opacity: 0.8;
+}
+
+.texting{
+    white-space: nowrap;
+  color: white;
+  font-size: 18px;
+    font-weight: bold;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
 
 </style>
 
-{#    <nav class="navbar navbar-default navbar-fixed-top">#}
-{#    <div class="container-fluid">#}
-{##}
-{#        <!-- Header -->#}
-{#        <div class="navbar-header">#}
-{#            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">#}
-{#                <span class="icon-bar"></span>#}
-{#                <span class="icon-bar"></span>#}
-{#                <span class="icon-bar"></span>#}
-{#            </button>#}
-{#            <a class="navbar-brand" href="{% url 'home:home' %}">QuickWell</a>#}
-{#        </div>#}
-
-        <!--Items-->
-{#        <div class="collapse navbar-collapse" id="topNavBar">#}
-{##}
-{#            <ul class="nav navbar-nav">#}
-{#                <li class="active">#}
-{#                    <a href="{% url 'med:index' %}">#}
-{#                        <span class="fa fa-medkit" aria-hidden="true"></span>&nbsp#}
-{#                        All Products#}
-{#                    </a>#}
-{#                </li>#}
-{#                <li class="">#}
-{#                    <a href="{% url 'med:checked' %}">#}
-{#                        <span class="fa fa-ambulance" aria-hidden="true"></span>&nbsp#}
-{#                        Your Orders#}
-{#                    </a>#}
-{#                </li>#}
-{#            </ul>#}
-{##}
-{##}
-{#            <form class="navbar-form  navbar-left" role="search" method="get" action="/med/">#}
-{#                <div class="input-group">#}
-{#                    <input type="text" class="form-control" name="q" value="" placeholder="Search medicines">#}
-{#                    <div class="input-group-btn">#}
-{#                      <button class="btn btn-default" type="submit">#}
-{#                        <i class="glyphicon glyphicon-search"></i>#}
-{#                      </button>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </form>#}
-{##}
-{#            <ul class="nav navbar-nav navbar-right">#}
-{##}
-{#                <li class="">#}
-{#                    <a href="{% url 'med:order_summary' %}">#}
-{#                        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>&nbsp#}
-{#                        View Your Cart#}
-{#                    </a>#}
-{#                </li>#}
-{##}
-{#                <li class="">#}
-{#                    <a href="{% url 'med:logout' %}">#}
-{#                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp#}
-{#                        LogOut#}
-{#                    </a>#}
-{#                </li>#}
-{##}
-{#                <li class="dropdown">#}
-{#          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Visit Other Pages#}
-{#          <span class="caret"></span></a>#}
-{#          <ul class="dropdown-menu">#}
-{#            <li><a href="http://127.0.0.1:8000/appointment/">Book an appointment</a></li>#}
-{#            <li><a href="{% url 'chat:index' %}">Chat with a doctor</a></li>#}
-{#            <li><a href="#">Video Call</a></li>#}
-{#          </ul>#}
-{#        </li>#}
-{#            </ul>#}
-{##}
-{#        </div>#}
-{##}
-{#    </div>#}
-{#</nav>#}
       <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">

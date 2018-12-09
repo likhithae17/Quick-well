@@ -28,7 +28,10 @@ def login(request):
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
-            auth_login(request, user)
+            if user.is_active:
+                auth_login(request, user)
+            else:
+                return HttpResponse("activate your account")
             temp = 1
             return render(request, 'profile/includes/index.html', {'user': user,'temp': temp})
         else:

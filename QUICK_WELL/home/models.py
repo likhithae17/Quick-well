@@ -4,6 +4,8 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django.db.models.signals import post_save
+import datetime
+from datetime import date
 
 
 class Doctor(models.Model):
@@ -213,6 +215,11 @@ class Order(models.Model):
         for item in self.items.all():
             sum = sum + ((item.medicine.price)*(item.quantity))
         return sum
+
+    def get_estimated_date(self):
+        date1 = self.date_ordered;
+        date1 = date1 + datetime.timedelta(days=3);
+        return date1
 
 
 
