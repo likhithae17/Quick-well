@@ -60,14 +60,14 @@
                                 </div>
                             </div>
                     </div>
-                    <h2 style="letter-spacing: 0; font-size: 25px ; color: #060E2F; padding-bottom: 0px">{{ medicine.name }}</h2>
+                    <h2 style="letter-spacing: 0; font-size: 25px ; color: #060E2F; padding-bottom: 0px" id="med_name">{{ medicine.name }}</h2>
                     <p><span style="letter-spacing: 0; font-size: 20px ; color: #060E2F; padding-bottom: 0px">Price  -  Rs {{ medicine.price }}</span> </p>
 
                     </div>
                     <div class="panel-footer" style="background-color: white">
                             <form action="{% url 'med:add_to_cart' medicine.id %}" style="padding-top: 10px">
                             <input type="number" name ="quantity" value="" required placeholder="Quantity" min="0" style="width: 100px; text-align: center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <!--<span class="glyphicon glyphicon-shopping-cart">--><button type="submit" >Add to Cart</button><!-- </span>-->
+                            <!--<span class="glyphicon glyphicon-shopping-cart">--><button type="submit" onclick="myFunction()" >Add to Cart</button><!-- </span>-->
                             </form>
 
                     </div>
@@ -78,7 +78,11 @@
         {% endfor %}
         </div>
     </div>
-
+<script>
+{#function myFunction() {#}
+{#    alert("Item added to cart!");#}
+{#}#}
+</script>
 {% endblock %}
 
 
