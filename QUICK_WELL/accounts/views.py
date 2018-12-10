@@ -99,7 +99,7 @@ def index(request):
     query = request.GET.get('q')
     doc = get_object_or_404(Doctor, user=request.user)
     temp = 1
-    return render(request, 'profile/includes/index.html', {'temp': temp,'doc':doc})
+    return render(request, 'profile/includes/basic.html', {'temp': temp,'doc':doc})
 
 def contact(request):
     temp = 1
