@@ -133,8 +133,9 @@ def greet(request):
     return render(request, 'docapp/greet.html')
 
 
-def delete(request,appid):
-    appointment = get_object_or_404(Appointment, pk=appid)
+def delete(request,pk):
+    appointment = get_object_or_404(Appointment, pk=pk)
     appointment.delete()
     msg = 'Your appointment is cancelled'
-    return render(request, 'docapp/greet.html',{'msg':msg})
+    #return render(request, 'docapp/greet.html',{'msg':msg})
+    return HttpResponse('<h2>Appointment cancelled</h2>')
