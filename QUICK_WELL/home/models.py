@@ -6,6 +6,8 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django.db.models.signals import post_save
+import datetime
+from datetime import date
 
 
 class Doctor(models.Model):
@@ -18,6 +20,9 @@ class Doctor(models.Model):
     phone_num = models.BigIntegerField(null=True,blank=True)
     #previous_hospitals = models.CharField(max_length=300,null=True)
     specialization = models.CharField(max_length=150)
+    fee = models.IntegerField(null=True,blank=True)
+    hospital = models.CharField(null=True,blank=True,max_length=50)
+    address = models.CharField(null=True,blank=True,max_length=50)
 
     def __str__(self):
         return self.firstname+' '+self.lastname+' - '+str(self.specialization)
@@ -37,49 +42,49 @@ class LabTest(models.Model):
     tests_available = models.ManyToManyField(Tests_info)
 
 
-class Qualification(models.Model):
-    doc_name = models.ManyToManyField(Doctor)
-    qual_name = models.CharField(max_length=500)
-    institute_name = models.CharField(max_length=500,null=True)
-    procurement_year = models.DateField()
-
-
-class Hospital_Affiliation(models.Model):
-    doc_name = models.ManyToManyField(Doctor,default='')
-    hosp_name = models.CharField(max_length=200)
-    hosp_photo = models.CharField(max_length=500, null=True,blank=True)
-    city = models.CharField(max_length=100,blank=True)
-    country = models.CharField(max_length=100,blank=True)
-    address = models.CharField(max_length=300,blank=True)
-    start_date = models.DateField(blank=True)
-    end_date = models.DateField(null=True,blank=True)
-
-    def __str__(self):
-        return self.hosp_name
-
-class Office(models.Model):
-    doc_id = models.ForeignKey(Doctor, on_delete=models.PROTECT,null=True,blank = True)
-    hosp_affiliation_id = models.ForeignKey(Hospital_Affiliation, on_delete=models.PROTECT,null=True,blank=True)
-    first_fee = models.FloatField(null=False)
-    followup_fee = models.FloatField(null=False)
-    street_address = models.CharField(max_length=500,blank=True)
-    city = models.CharField(max_length=100,blank=True)
-    state = models.CharField(max_length=100,blank=True)
-    country = models.CharField(max_length=100,blank=True)
-    zip = models.BigIntegerField(blank=True)
-
-    def __str__(self):
-        return str(self.doc_id)
-
-
-class Office_Docavailability(models.Model):
-    office_id = models.ForeignKey(Office, on_delete=models.PROTECT)
-    time_slot_per_patient = models.FloatField(null=True, blank=True)
-    day = models.CharField(max_length=20)
-    reason_unavailability = models.CharField(max_length=500,null=True,blank=True)
-
-    def __str__(self):
-        return str(self.office_id)
+# class Qualification(models.Model):
+#     doc_name = models.ManyToManyField(Doctor)
+#     qual_name = models.CharField(max_length=500)
+#     institute_name = models.CharField(max_length=500,null=True)
+#     procurement_year = models.DateField()
+#
+#
+# class Hospital_Affiliation(models.Model):
+#     doc_name = models.ManyToManyField(Doctor,default='')
+#     hosp_name = models.CharField(max_length=200)
+#     hosp_photo = models.CharField(max_length=500, null=True,blank=True)
+#     city = models.CharField(max_length=100,blank=True)
+#     country = models.CharField(max_length=100,blank=True)
+#     address = models.CharField(max_length=300,blank=True)
+#     start_date = models.DateField(blank=True)
+#     end_date = models.DateField(null=True,blank=True)
+#
+#     def __str__(self):
+#         return self.hosp_name
+#
+# class Office(models.Model):
+#     doc_id = models.ForeignKey(Doctor, on_delete=models.PROTECT,null=True,blank = True)
+#     hosp_affiliation_id = models.ForeignKey(Hospital_Affiliation, on_delete=models.PROTECT,null=True,blank=True)
+#     first_fee = models.FloatField(null=False)
+#     followup_fee = models.FloatField(null=False)
+#     street_address = models.CharField(max_length=500,blank=True)
+#     city = models.CharField(max_length=100,blank=True)
+#     state = models.CharField(max_length=100,blank=True)
+#     country = models.CharField(max_length=100,blank=True)
+#     zip = models.BigIntegerField(blank=True)
+#
+#     def __str__(self):
+#         return str(self.doc_id)
+#
+#
+# class Office_Docavailability(models.Model):
+#     office_id = models.ForeignKey(Office, on_delete=models.PROTECT)
+#     time_slot_per_patient = models.FloatField(null=True, blank=True)
+#     day = models.CharField(max_length=20)
+#     reason_unavailability = models.CharField(max_length=500,null=True,blank=True)
+#
+#     def __str__(self):
+#         return str(self.office_id)
 
 
 class user_profile(models.Model):
@@ -211,3 +216,15 @@ class Order(models.Model):
             sum = sum + ((item.medicine.price)*(item.quantity))
         return sum
 
+class otp_verify(models.Model):
+    name=models.CharField(max_length=50)
+    otp=models.IntegerField(default=0)
+
+    def get_estimated_date(self):
+        date1 = self.date_ordered;
+        date1 = date1 + datetime.timedelta(days=3);
+        return date1
+
+
+    def __str__(self):
+        return '{}'.format(self.name)

@@ -12,7 +12,7 @@ def index(request):
 
 @login_required(login_url='/login/')
 def startproject(request):
-    #user = get_object_or_404(user_profile, id=int(request.user))
+    user = get_object_or_404(user_profile, username=request.user)
 
     if request.method == 'POST':
         form = fundraiserForm(request.POST)
@@ -27,7 +27,7 @@ def startproject(request):
             Fundraiser_story = form.cleaned_data['Fundraiser_story']
             End_date = form.cleaned_data['End_date']
 
-            #temp = fundraiser.objects.create(user_name=user, category=category, Title=Title, goal_amount=goal_amount, beneficiary_name=beneficiary_name, beneficiary_relation=beneficary_relation, Fundraiser_story=Fundraiser_story, End_date=End_date  )
+            temp = fundraiser.objects.create(user_name=user, category=category, Title=Title, goal_amount=goal_amount, beneficiary_name=beneficiary_name, beneficiary_relation=beneficary_relation, Fundraiser_story=Fundraiser_story, End_date=End_date  )
 
             return HttpResponse('<h2>Thank you for creating a fundraiser</h2>')
 

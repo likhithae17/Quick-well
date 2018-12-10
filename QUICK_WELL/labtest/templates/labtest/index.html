@@ -33,11 +33,51 @@
               }
             }
 
+<<<<<<< HEAD
             function setPos(myLocation) {
               map = new google.maps.Map(document.getElementById('map'), {
                 center: myLocation,
                 zoom: 10
               });
+=======
+            var querylocation = "{{ query }}" ;
+            var geocoder = new google.maps.Geocoder();
+
+            if (geocoder && querylocation) {
+                geocoder.geocode({
+                    'address': querylocation
+                }, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        var latitude = results[0].geometry.location.lat();
+                        var longitude = results[0].geometry.location.lng();
+                        var myLocation = {
+                            lat: latitude,
+                            lng: longitude
+                        };
+
+                         if (querylocation==''|| querylocation=='None'){
+                            var myLocation = {
+                                lat: 13.5232,
+                                lng: 79.9982
+                            };
+                        }
+
+                        setPos(myLocation);
+
+                    }
+                });
+            }
+
+        }
+
+
+        function setPos(myLocation)
+        {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: myLocation,
+                zoom: 10,
+            });
+>>>>>>> 0add335f766046b8ba806ca948940aeca8f67f7e
 
               var service = new google.maps.places.PlacesService(map);
               service.nearbySearch({
@@ -85,11 +125,18 @@
             }
     </script>
 
+<<<<<<< HEAD
     <div id="map" style="height: 500px;
     margin: 10px auto;
     width: 700px;
+=======
+
+    <div id="map" style="height: 400px;
+    margin: 30px auto;
+    width: 600px;
+>>>>>>> 0add335f766046b8ba806ca948940aeca8f67f7e
     position:absolute;
-    right:0;"> ></div>
+    right:50px;"></div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBDDHXhrCzm5a2cemyN2QtIb8B11hvHQE&signed_in=true&libraries=places&callback=initMap" async defer></script>
 
 

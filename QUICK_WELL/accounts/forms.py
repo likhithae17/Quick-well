@@ -15,13 +15,13 @@ class Signup_user_form(forms.ModelForm):
 class Signup_profile_form(forms.ModelForm):
     class Meta:
         model = Doctor
-        fields = ['firstname','lastname','experience', 'doc_photo', 'phone_num', 'specialization']
+        fields = ['firstname','lastname','experience', 'doc_photo', 'phone_num', 'specialization', 'fee', 'hospital', 'address']
 
 class Doctor_Update_Form(UserChangeForm):
     doc_photo = forms.FileField()
     class Meta:
         model = Doctor
-        fields = ['firstname','lastname','experience', 'doc_photo', 'phone_num', 'specialization']
+        fields = ['firstname','lastname','experience', 'doc_photo', 'phone_num', 'specialization', 'fee', 'hospital', 'address']
 
 class passwordchange(PasswordChangeForm):
     class Meta:

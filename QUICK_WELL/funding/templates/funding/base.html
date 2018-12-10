@@ -43,14 +43,15 @@
   .navbar {
       font-family: Montserrat, sans-serif;
       margin-bottom: 0;
-      background-color: #2b669a;
+      background: -webkit-linear-gradient(to right, #3573A9, #00002C);
+      background: linear-gradient(to right, #3573A9, #00002C);
       border: 0;
       font-size: 15px !important;
-      {#letter-spacing: 1px;#}
       opacity: 0.8;
       padding-top: 10px;
       padding-bottom: 10px;
   }
+
   .navbar li a, .navbar .navbar-brand {
       color: #d5d5d5 !important;
   }
@@ -73,6 +74,12 @@
       background-color: red !important;
   }
 
+  footer {
+      background: -webkit-linear-gradient(to right, #31BDE6, #00003E);
+      background: linear-gradient(to right, #31BDE6, #00003E);
+      color: #f5f5f5;
+      padding: 32px;
+  }
   {% block style %}{% endblock %}
 </style>
 </head>
@@ -112,6 +119,12 @@
 
 {% block body %}
 {% endblock %}
+
+<footer class="text-center">
+    <div class="center copyright">Copyright © 2018, Practo. All rights reserved.</div>
+    <div class="center copyright">Call: +91 9513733001 | Email: support@practo.com</div>
+    <div class="center copyright">Practo Technologies Pvt. Ltd., RPS Green, 165/5, Krishna Raju Layout, JP Nagar 4th Phase, Bengaluru, Karnataka - 560076</div>
+</footer>
 
 </body>
 </html>
