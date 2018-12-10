@@ -158,6 +158,23 @@
             <div class="panel panel-default">
 
                 <div class="panel-body">
+<<<<<<< HEAD
+
+                    {% if doc.doc_photo %}
+                            <img src='media/images.jpg'/>
+                    {% else %}
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvbZce8PCEuRg737ca11EXEzzAn0Qmj2HSYg8hfp0-1k13Enc1sg" height="150" width="150"/>
+                    {% endif %}
+
+                    <p><br></p>
+                    <p>{{ doc.specialization }}</p>
+                    <p>{{ doc.firstname }}  {{ doc.lastname }}</p>
+                    <p>{{ doc.experience }}  years experience</p>
+                    <p><a href="{% url 'profile' pk=doc.id %}">View Profile</a></p>
+                </div>
+                <div class="panel-footer">
+                    <button onclick="window.location='{% url 'appbooking' pk=doc.id %}'" class="btn btn-primary active" >Book Appointment</button>
+=======
                     <table class="table no-border">
                         <tr>
                             <td>
@@ -178,6 +195,7 @@
                 </div>
                 <div class="panel-footer" style="text-align:center">
                     <button onclick="window.location='{% url 'docapp:appbooking' pk=doc.id %}'" class="btn btn-primary" >Book Appointment</button>
+>>>>>>> 0add335f766046b8ba806ca948940aeca8f67f7e
                 </div>
             </div>
         </div>
