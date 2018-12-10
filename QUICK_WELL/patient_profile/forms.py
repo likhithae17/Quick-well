@@ -12,9 +12,14 @@ class Signup_form(UserCreationForm):
 class profile(forms.ModelForm):
     class Meta:
         model = user_profile
-        fields = ( 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country', 'zipcode', 'photo',)
+        fields = ( 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country', 'zipcode', 'photo')
 
 class upload(forms.ModelForm):
     class Meta:
         model = user_reports
         fields = ('username', 'file')
+
+class profile_update(forms.ModelForm):
+    class Meta:
+        model = user_profile
+        fields = ( 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country', 'zipcode', 'photo')

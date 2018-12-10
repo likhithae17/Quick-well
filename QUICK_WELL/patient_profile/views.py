@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from home.models import user_profile
 from home.models import user_reports
 #from ..docapp.models import Appointment
 from . import forms
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
-from .forms import Signup_form
+from .forms import Signup_form, profile_update
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login, logout as out
@@ -137,6 +137,17 @@ def upload(request):
         return render(request, 'patient_profile/upl_lab.html', {'form1': form})
     return HttpResponse("you have no privilage")
 
+def patient_update(request):
+    temp = 1
+    pat = get_object_or_404(user_profile, user=request.user)
+    if request.method == 'POST':
+        prof_form = profile_update(request.POST, instance=request.user.username or None)
+        if prof_form.is_valid():
+            prof_form.save()
+            return HttpResponse("done")
+    else:
+        prof_form = profile_update(instance=request.user)
+    return render(request, 'patient_profile/profile_update.html', {'prof_form':prof_form, 'temp':temp, 'pat':pat})
 
 '''
 def change_password(request):
