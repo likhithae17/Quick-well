@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from django.shortcuts import render, redirect, get_object_or_404
 from home.models import user_profile
 from home.models import user_reports
@@ -7,7 +6,6 @@ from . import forms
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from .forms import Signup_form, profile_update
-=======
 from django.shortcuts import render, redirect
 from home.models import *
 from django.db.models import Avg, IntegerField
@@ -15,7 +13,6 @@ from . import forms
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import Signup_form, Patient_Update_Form, passwordchange, ReviewForm
->>>>>>> 3c7fb08664ee49ae263b250542b5d5e7d117dd36
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login, logout as out
