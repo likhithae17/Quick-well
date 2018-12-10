@@ -1,6 +1,5 @@
-<!Doctype HTML>
-<html>
-<body>
+{% extends 'profile/header.html' %}
+{% block content %}
     <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <span style="color: #f4c613">FirstName  :</span>
@@ -13,6 +12,12 @@
             {{doc_form.doc_photo}}<br><br>
             <span style="color: #f4c613">Specialization:</span>
             {{doc_form.specialization}}<br><br>
+            <span style="color: #f4c613">Fee:</span>
+            {{doc_form.fee}}<br><br>
+            <span style="color: #f4c613">Hospital Tied up with:</span>
+            {{doc_form.hospital}}<br><br>
+            <span style="color: #f4c613">Specializatiaddress:</span>
+            {{doc_form.address}}<br><br>
             <button class='btn-general btn-profile' class="reg" type="submit">Update</button><br><br>
     </form>
 
@@ -20,5 +25,4 @@
 				<!--{% if request.user.student %}-->
 				<!--<button class='btn-general btn-profile'><a style="text-decoration: none;" href="{% url 'result:changepassword'%}">CHANGE PASSWORD</a></button>-->
 				<!--{% endif %}-->
-</body>
-</html>
+{% endblock %}

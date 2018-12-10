@@ -47,16 +47,13 @@ def profile(request,pk):
     doc = get_object_or_404(Doctor, pk=pk)
     return render(request, 'docprof/includes/basic.html', {'doc':doc})
 
-
 def index1(request):
     doc = Doctor.objects.all()
     query = request.GET.get('q')
     return render(request, 'docprof/includes/index.html' )
 
-
 def contact(request):
     return render(request, 'docprof/includes/basic.html', {'content': ['contact me at', 'sandeshjatla@gmail.com']})
-
 
 def test(request):
     return render(request, 'docprof/includes/test.html')
@@ -139,3 +136,4 @@ def delete(request,pk):
     msg = 'Your appointment is cancelled'
     #return render(request, 'docapp/greet.html',{'msg':msg})
     return HttpResponse('<h2>Appointment cancelled</h2>')
+
