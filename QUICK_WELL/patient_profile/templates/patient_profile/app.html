@@ -261,9 +261,8 @@
 <div>
     <center> <img src="{{ details.photo.url }}" style='height:150px;width:150px;border-radius:50px;' /><br>
         {{ details.username }}
-        <input class="Edit" type="button" value="Edit profile">
-    </center>
 
+    </center>
 
 </div>
 <body class="container-fluid">
@@ -272,94 +271,35 @@
         <ul class="nav nav-pills nav-stacked">
             <li><a href="/patient_profile/details/?profile=profile">PROFILE</a></li>
             <li><a href="/patient_profile/appointment/">APPOINTMENTS</a></li>
-            <li><a href="#">LAB TESTS</a></li>
+            <li><a href="patient_profile/lab_test/">LAB TESTS</a></li>
             <li><a href="/patient_profile/details/?reports=reports">LAB REPORTS</a></li>
 
         </ul><br>
+
     </div>
-    <div>
-        {% if dask %}
-            <table>
-                <tr>
-                    <td>
-                       &nbsp Username:  {{ details.username }}
-
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                       &nbsp Age&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:  {{ details.age }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                       &nbsp Date of Birth:  {{ details.dob }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                       &nbsp Contact number: {{ details.contact_number }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                      &nbsp  Address:  {{ details.street_address }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                       &nbsp City:  {{ details.city }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                       &nbsp District: {{ details.district }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                       &nbsp State: {{ details.state }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                       &nbsp Country:  {{ details.country }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                      &nbsp  Zipcode: {{ details.zipcode }}
-                    </td>
-                </tr>
-            </table>
-
-        {% endif %}
-
-
-        {% if dask1 %}
-
-        {% for rep in reports %}
+        <div>
            <table>
-               <tr>
-                   <td>
-                      &nbsp Report: <embed src="{{rep.file.url}}" width="200px" height="200px"/>
-                   </td>
+              <tr>
+                 <td>
+                    {% for app in appointment %}
+                     Doctor: {{ app.doctor_id }}
+                     <br>
+                     Email: {{ app.email_id }}
+                     <br>
+                     Date:  {{ app.date }}
+                     <br>
+                     Time: {{ app.time }}
+                     <br><br><br>
+                    {% endfor %}
+                  </td>
                </tr>
-           </table>
-        {% endfor %}
+            </table>
+        </div>
 
-        {% endif %}
-
-
-
-    </div>
 </div>
+</body>
+<footer class="text-center">
+</footer>
 
 </body>
-
-</body>
-    <footer class="text-center">
-    </footer>
-
 </html>

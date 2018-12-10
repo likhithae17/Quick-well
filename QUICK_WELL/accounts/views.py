@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.http import HttpResponse
 from .forms import *
-from django.core.mail import send_mail,EmailMessage
+from django.core.mail import send_mail, EmailMessage
 from django.contrib.auth import get_user_model, login as auth_login, logout as out, update_session_auth_hash
 from django.conf import settings
 from home.models import Doctor
