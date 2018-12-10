@@ -21,6 +21,7 @@ from django.contrib.auth import update_session_auth_hash
 import random
 
 def signup_view(request):
+    registered = False
     if request.method == 'POST':
         form = Signup_form(request.POST)
         if form.is_valid():
@@ -28,14 +29,38 @@ def signup_view(request):
             otp = random.randint(100000, 999999)
             # Mail(request, form.email)
             send_mail("hello patient", str(otp), "quickwelldoctor@gmail.com", [form1.email])
-            return redirect("home:home")
+            otpc = otp + 2
+            registered = True
+            # return redirect("home:home")
             #return HttpResponse("registered")
         else:
             print(form.errors)
             return HttpResponse(form.errors)
     else:
         form = Signup_form()
-    return render(request, 'patient_profile/signup.html', {'form': form})
+
+    if registered:
+        request.session['username'] = form.cleaned_data.get('username')
+        return render(request, 'patient_profile/registration/mailconformation.html', {'otpc': otpc})
+    else:
+        return render(request, 'patient_profile/signup.html', {'form': form})
+
+    # return render(request, 'patient_profile/signup.html', {'form': form})
+def mail_conf(request):
+    if request.method=='POST':
+        otpc = int(request.POST['otpc'])
+        otp1 = str(request.POST['otp1'])
+        otpc = otpc - 2
+        otpc = str(otpc)
+        if otpc == otp1:
+            return HttpResponse("mail verified")
+        else:
+            username = request.session['username']
+            dele = username.objects.get(username=username)
+            dele.delete()
+            return HttpResponse("mail unverified")
+    else:
+        return HttpResponse('404 error')
 
 
 def login(request):
