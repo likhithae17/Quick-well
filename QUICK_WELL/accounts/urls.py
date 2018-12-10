@@ -9,7 +9,11 @@ app_name = 'accounts'
 
 urlpatterns = [
     url(r'^login/$', views.login, name="login"),
+<<<<<<< HEAD
+    url(r'changepassword', views.change_password, name='changepassword'),
+=======
     url(r'login/changepassword',views.change_password, name='changepassword'),
+>>>>>>> d9ad8aca2b7d87884acb9d848412511729b45108
     url(r'^logout/$', auth_views.LogoutView.as_view(template_name=''), name="logout"),
     url(r'^signup4/$', views.register, name="signup4"),
     url(r'^login/home/', views.index, name='index'),

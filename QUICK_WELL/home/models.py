@@ -116,18 +116,19 @@ class User_Review(models.Model):
     review = models.CharField(max_length=500,null=True)
     is_doc_recommended = models.BooleanField(default=True)
     review_date = models.DateField()
-
+    comment = models.CharField(max_length=500,null=True)
 
 class Appointment_Status(models.Model):
     status = models.CharField(max_length=20)
 
 
 class Appointment(models.Model):
+    user_name = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
     #client_accountid = models.ForeignKey(User, on_delete=models.PROTECT)
     doctor_id = models.ForeignKey(Doctor, on_delete=models.PROTECT)
     #start_time =  models.DateTimeField()
     #end_time =  models.DateTimeField()
-    user_name = models.CharField(max_length=50)
+    #user_name = models.CharField(max_length=50)
     email_id = models.EmailField()
     #appointment_id = models.CharField(blank=False, null=False, max_length=200)
     date = models.DateField(blank=True, null=True)
@@ -215,17 +216,15 @@ class Order(models.Model):
             sum = sum + ((item.medicine.price)*(item.quantity))
         return sum
 
-<<<<<<< HEAD
 class otp_verify(models.Model):
     name=models.CharField(max_length=50)
     otp=models.IntegerField(default=0)
-=======
+
     def get_estimated_date(self):
         date1 = self.date_ordered;
         date1 = date1 + datetime.timedelta(days=3);
         return date1
 
->>>>>>> 0add335f766046b8ba806ca948940aeca8f67f7e
 
     def __str__(self):
         return '{}'.format(self.name)
