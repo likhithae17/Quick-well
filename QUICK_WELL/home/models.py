@@ -1,5 +1,7 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.urls import reverse
+from django.contrib.auth.models import User
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
@@ -7,7 +9,7 @@ from django.db.models.signals import post_save
 
 
 class Doctor(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     firstname = models.CharField(max_length=150)
     lastname = models.CharField(max_length=150)
     experience = models.IntegerField(null=True)
@@ -15,7 +17,10 @@ class Doctor(models.Model):
    # email_id = models.CharField(max_length=150,null=True,blank=True)
     phone_num = models.BigIntegerField(null=True,blank=True)
     #previous_hospitals = models.CharField(max_length=300,null=True)
-    specialization = models.CharField(max_length=150,null=True)
+    specialization = models.CharField(max_length=150)
+    fee = models.IntegerField(null=True,blank=True)
+    hospital = models.CharField(null=True,blank=True,max_length=50)
+    address = models.CharField(null=True,blank=True,max_length=50)
 
     def __str__(self):
         return self.firstname+' '+self.lastname+' - '+str(self.specialization)
@@ -35,50 +40,49 @@ class LabTest(models.Model):
     tests_available = models.ManyToManyField(Tests_info)
 
 
-class Qualification(models.Model):
-    doc_name = models.ManyToManyField(Doctor)
-    qual_name = models.CharField(max_length=500)
-    institute_name = models.CharField(max_length=500,null=True)
-    procurement_year = models.DateField()
-
-
-class Hospital_Affiliation(models.Model):
-    doc_name = models.ManyToManyField(Doctor,default='')
-    hosp_name = models.CharField(max_length=200)
-    hosp_photo = models.CharField(max_length=500, null=True,blank=True)
-    city = models.CharField(max_length=100,blank=True)
-    country = models.CharField(max_length=100,blank=True)
-    address = models.CharField(max_length=300,blank=True)
-    start_date = models.DateField(blank=True)
-    end_date = models.DateField(null=True,blank=True)
-
-    def __str__(self):
-        return self.hosp_name
-
-
-class Office(models.Model):
-    doc_id = models.ForeignKey(Doctor, on_delete=models.PROTECT,null=True,blank = True)
-    hosp_affiliation_id = models.ForeignKey(Hospital_Affiliation, on_delete=models.PROTECT,null=True,blank=True)
-    first_fee = models.FloatField(null=False)
-    followup_fee = models.FloatField(null=False)
-    street_address = models.CharField(max_length=500,blank=True)
-    city = models.CharField(max_length=100,blank=True)
-    state = models.CharField(max_length=100,blank=True)
-    country = models.CharField(max_length=100,blank=True)
-    zip = models.BigIntegerField(blank=True)
-
-    def __str__(self):
-        return str(self.doc_id)
-
-
-class Office_Docavailability(models.Model):
-    office_id = models.ForeignKey(Office, on_delete=models.PROTECT)
-    time_slot_per_patient = models.FloatField(null=True, blank=True)
-    day = models.CharField(max_length=20)
-    reason_unavailability = models.CharField(max_length=500,null=True,blank=True)
-
-    def __str__(self):
-        return str(self.office_id)
+# class Qualification(models.Model):
+#     doc_name = models.ManyToManyField(Doctor)
+#     qual_name = models.CharField(max_length=500)
+#     institute_name = models.CharField(max_length=500,null=True)
+#     procurement_year = models.DateField()
+#
+#
+# class Hospital_Affiliation(models.Model):
+#     doc_name = models.ManyToManyField(Doctor,default='')
+#     hosp_name = models.CharField(max_length=200)
+#     hosp_photo = models.CharField(max_length=500, null=True,blank=True)
+#     city = models.CharField(max_length=100,blank=True)
+#     country = models.CharField(max_length=100,blank=True)
+#     address = models.CharField(max_length=300,blank=True)
+#     start_date = models.DateField(blank=True)
+#     end_date = models.DateField(null=True,blank=True)
+#
+#     def __str__(self):
+#         return self.hosp_name
+#
+# class Office(models.Model):
+#     doc_id = models.ForeignKey(Doctor, on_delete=models.PROTECT,null=True,blank = True)
+#     hosp_affiliation_id = models.ForeignKey(Hospital_Affiliation, on_delete=models.PROTECT,null=True,blank=True)
+#     first_fee = models.FloatField(null=False)
+#     followup_fee = models.FloatField(null=False)
+#     street_address = models.CharField(max_length=500,blank=True)
+#     city = models.CharField(max_length=100,blank=True)
+#     state = models.CharField(max_length=100,blank=True)
+#     country = models.CharField(max_length=100,blank=True)
+#     zip = models.BigIntegerField(blank=True)
+#
+#     def __str__(self):
+#         return str(self.doc_id)
+#
+#
+# class Office_Docavailability(models.Model):
+#     office_id = models.ForeignKey(Office, on_delete=models.PROTECT)
+#     time_slot_per_patient = models.FloatField(null=True, blank=True)
+#     day = models.CharField(max_length=20)
+#     reason_unavailability = models.CharField(max_length=500,null=True,blank=True)
+#
+#     def __str__(self):
+#         return str(self.office_id)
 
 
 class user_profile(models.Model):
@@ -118,7 +122,7 @@ class Appointment_Status(models.Model):
 
 class Appointment(models.Model):
     #client_accountid = models.ForeignKey(User, on_delete=models.PROTECT)
-    doctor_id = models.ForeignKey(Doctor, on_delete=models.PROTECT, null=True)
+    doctor_id = models.ForeignKey(Doctor, on_delete=models.PROTECT)
     #start_time =  models.DateTimeField()
     #end_time =  models.DateTimeField()
     user_name = models.CharField(max_length=50)
@@ -127,6 +131,7 @@ class Appointment(models.Model):
     date = models.DateField(blank=True, null=True)
     time = models.TimeField(blank=True, null=True)
     #appoint_status_id = models.ForeignKey(Appointment_Status, on_delete=models.PROTECT)
+
 
 
 class labAppointment(models.Model):
@@ -140,7 +145,7 @@ class labAppointment(models.Model):
 
 
 class fundraiser(models.Model):
-    user_name = models.ForeignKey(user_profile,on_delete=models.PROTECT,null=True)
+    user_name = models.ForeignKey(user_profile,on_delete=models.PROTECT)
     category = models.CharField(max_length=50)
     Title = models.CharField(max_length=60)
     goal_amount = models.FloatField()
@@ -172,14 +177,16 @@ class PurchaseItem(models.Model):
     date_ordered = models.DateTimeField(null=True)
 
 
+
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     medicine = models.ManyToManyField(Medicine, blank=True)
     first_name = models.CharField(max_length=100, default='0000000')
     last_name = models.CharField(max_length=100, default='0000000')
-    email = models.CharField(max_length=100, default='0000000')
-    address = models.CharField(max_length=1000, blank=True)
+    bio = models.CharField(max_length=255, blank=True)
     city = models.CharField(max_length=200, blank=False, default='')
+    interests = models.CharField(max_length=255, blank=True)
 
 
 def create_profile(sender, **kwargs):
@@ -196,17 +203,9 @@ class Order(models.Model):
     items = models.ManyToManyField(PurchaseItem)
     is_ordered = models.BooleanField(default=False)
     date_ordered = models.DateTimeField(null=True)
-    billing_add = models.CharField(max_length=1000, blank=True)
-    email = models.CharField(max_length=100, default='0000000')
 
     def get_cart_items(self):
         return self.items.all()
-
-    def get_no_of_purchase(self):
-        sum1 = 0;
-        for item in self.items.all():
-            sum1 = sum1+1;
-        return sum1;
 
     def get_cart_total(self):
         sum = 0 ;
@@ -214,6 +213,9 @@ class Order(models.Model):
             sum = sum + ((item.medicine.price)*(item.quantity))
         return sum
 
+class otp_verify(models.Model):
+    name=models.CharField(max_length=50)
+    otp=models.IntegerField(default=0)
 
-
-
+    def __str__(self):
+        return '{}'.format(self.name)
