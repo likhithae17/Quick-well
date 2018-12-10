@@ -10,16 +10,20 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href='https://fonts.googleapis.com/css?family=Satisfy' rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <style>
 
   body {
       font: 400 15px/1.8 Lato, sans-serif;
-
+    background-color: #F3F3F7;
   }
   h3, h4 {
       margin: 10px 0 30px 0;
@@ -29,6 +33,16 @@
   }
   .container {
       padding: 80px 120px;
+  }
+
+  .container1 {
+      padding: 100px 80px;
+
+  }
+
+  .container3 {
+      padding: 20px 80px;
+
   }
   .person {
       border: 10px solid transparent;
@@ -112,7 +126,9 @@
   .navbar {
       font-family: Montserrat, sans-serif;
       margin-bottom: 0;
-      background-color: #2b669a;
+      {#background-color: #2b669a;#}
+      background: -webkit-linear-gradient(to right, #3573A9, #00002C);
+      background: linear-gradient(to right, #3573A9, #00002C);
       border: 0;
       font-size: 15px !important;
       {#letter-spacing: 1px;#}
@@ -147,20 +163,28 @@
       background-color: #2b669a;
       color: #f5f5f5;
       padding: 32px;
+      background: -webkit-linear-gradient(to right, #31BDE6, #00003E);
+      background: linear-gradient(to right, #31BDE6, #00003E);
+      position: absolute;
+      width: 100%;
   }
-  footer a {
-      color: #f5f5f5;
-  }
-  footer a:hover {
-      color: #777;
-      text-decoration: none;
-  }
+
   .form-control {
       border-radius: 0;
   }
   textarea {
       resize: none;
   }
+
+      .span4 img {
+    margin-right: 10px;
+}
+.span4 .img-left {
+    float: left;
+}
+.span4 .img-right {
+    float: right;
+}
 
 
 </style>
@@ -219,15 +243,16 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="http://okadmission.com/front_assets/uploads/listingImg/1531499307y.jpg" alt="New York" >
+        <img src="http://okadmission.com/front_assets/uploads/listingImg/1531499307y.jpg" alt="Chicago" style="height: 610px" >
+{#          <img src="https://www.crowditz.com/wp-content/uploads/2017/12/iStock-695349930.jpg" alt="New York" style="height: 590px">#}
         <div class="carousel-caption" >
-          <h3>QuickWell</h3>
+          <h3 style="font-weight: bold; font-size: 60px;" >QuickWell</h3>
           <p>Take the world's best quality treatment</p>
         </div>
       </div>
 
       <div class="item">
-        <img src="http://dprs.fospe.in/website_theme/img/palystore_banner.jpg" alt="Chicago" >
+        <img src="http://dprs.fospe.in/website_theme/img/palystore_banner.jpg" alt="New York" style="height: 610px">
         <div class="carousel-caption">
           <h3>We always put  our patients first</h3>
           <p>Your health is our priority</p>
@@ -235,7 +260,7 @@
       </div>
 
       <div class="item">
-        <img src="http://media.myelomacentral.com/wp-content/uploads/understanding-lab-results.jpg" alt="Los Angeles" >
+        <img src="http://media.myelomacentral.com/wp-content/uploads/understanding-lab-results.jpg" alt="Los Angeles" style="height: 610px">
         <div class="carousel-caption">
           <h3>Medical Services that you can trust 100% </h3>
           <p>Developing innovative new therapies</p>
@@ -259,19 +284,19 @@
 <div id="band" class="container text-center">
   <h3>QUICKWELL - QUALITY CARE</h3>
   <p><em>Welcome to the medical services you can trust.</em></p>
-  <p> </p>
+
   <br>
 
 </div>
 
 
 
-        <div class="container">
+        <div class="container3">
             <div class="row">
                 <!-- Single Cool Fact-->
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-cool-fact-area text-center mb-100">
-                        <i class='fas fa-vial' style='font-size:100px;color: #2aabd2'></i>
+                    <div class="single-cool-fact-area text-center mb-100" data-aos="flip-right" data-aos-duration="600">
+                        <i class='fas fa-vial' style='font-size:120px;color: #2aabd2'></i>
                         <h2><span class="counter">5632</span></h2>
                         <h6>Lab Tests</h6>
                         <p></p>
@@ -279,8 +304,8 @@
                 </div>
                 <!-- Single Cool Fact-->
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-cool-fact-area text-center mb-100">
-                        <i class='fas fa-heartbeat' style='font-size:100px;color:#2aabd2'></i>
+                    <div class="single-cool-fact-area text-center mb-100" data-aos="flip-right" data-aos-duration="600">
+                        <i class='fas fa-heartbeat' style='font-size:120px;color:#2aabd2'></i>
                         <h2><span class="counter">23</span>k</h2>
                         <h6>Patients</h6>
                         <p></p>
@@ -288,8 +313,8 @@
                 </div>
                 <!-- Single Cool Fact-->
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-cool-fact-area text-center mb-100">
-                        <i class='fas fa-microscope' style='font-size:100px;color:#2aabd2'></i>
+                    <div class="single-cool-fact-area text-center mb-100" data-aos="flip-left" data-aos-duration="600">
+                        <i class='fas fa-microscope' style='font-size:120px;color:#2aabd2'></i>
                         <h2><span class="counter">25</span></h2>
                         <h6>Specialities</h6>
                         <p></p>
@@ -297,8 +322,8 @@
                 </div>
                 <!-- Single Cool Fact-->
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-cool-fact-area text-center mb-100">
-                        <i class='fas fa-user-md' style='font-size:100px;color: #2aabd2'></i>
+                    <div class="single-cool-fact-area text-center mb-100" data-aos="flip-left" data-aos-duration="600">
+                        <i class='fas fa-user-md' style='font-size:120px;color: #2aabd2'></i>
                         <h2><span class="counter">723</span></h2>
                         <h6>Doctors</h6>
                         <p></p>
@@ -306,8 +331,60 @@
                 </div>
             </div>
         </div>
-
   <!-- Modal -->
+</div>
+
+<div class="container1" >
+	<div class="row">
+
+	</div>
+
+	<div class="block">
+      <div class="row" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" style="padding-bottom: 50px">
+        <div class="span4">
+          <img class="img-left" src="http://www.leehealth.org/images/promo/promo-lpg-800x468.jpg" style="padding-right: 30px" height="320" width="580"/>
+          <div class="content-heading" style=""><a href="appointment/index/"><p style="margin: 10px 0 30px 0;
+      letter-spacing: 2px;
+      font-size: 30px;
+      font-weight: bold;
+      color: #23527c;">INSTANT APPOINTMENT WITH DOCTORS.&nbsp;&nbsp;GUARANTEED.</p></a></div>
+          <p>Affordable full body health checkups at home. </p>
+          <p>Our doctors revolutionizing healthcare delivery by harnessing technology to help millions lead healthier lives.</p>
+          <p> Quickwell offers a fast, easy and friendly way to gain access to general practitioners, dieticians, nutritionists, gynaecologists, psychologist, dermatologist, and more.</p>
+        </div>
+     </div>
+     <br/>
+      <div class="row"  data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine" style="padding-bottom: 50px">
+        <div class="span4">
+          <img class="img-right" src="https://cdn-images-1.medium.com/max/1600/1*VB4cZIptl4kFLMBOnDbLbA.jpeg" height="320" width="580"/>
+          <div class="content-heading"><a href="chat/"><p style="margin: 10px 0 30px 0;
+      letter-spacing: 2px;
+      font-size: 30px;
+      font-weight: bold;
+      color: #23527c;">SKIP THE WAITING ROOM.&nbsp;&nbsp;CONSULT THE DOCTOR ONLINE.</p></a></div>
+          <p>Talk to a doctor from work. Call + Chat privately with a verified doctor, get a response in 5 minutes!</p>
+          <p>Our doctors will give you a qualified opinion on your health issue and help you identify next steps which may include further tests, a prescription or lifestyle tips.</p>
+          <p>Every consultation on Practo is completely private & confidential. We take your privacy very seriously, and ensure your consultations are securely stored.</p>
+        </div>
+     </div>
+        <br>
+        <div class="row" data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" style="padding-bottom: 50px" style="padding-bottom: 50px">
+        <div class="span4">
+          <img class="img-left" src="https://en.hdbuzz.net/system/production/media/picture/614/redesignarticle_codev-2018-05-09-2c28b2d140-shutterstock_544348294.jpg" style="padding-right: 30px" height="320" width="580"/>
+          <div class="content-heading" style=""><a href="med/"><p style="margin: 10px 0 30px 0;
+      letter-spacing: 2px;
+      font-size: 30px;
+      font-weight: bold;
+      color: #23527c;">GET ALL YOUR MEDICINES.&nbsp;&nbsp;ON TIME.&nbsp;EVERYTIME.</p></a></div>
+          <p>When you purchase medicines on QuickWell, you can be assured that you will get the medicines you order.</p>
+          <p>Quickwell has the widest range of medicines online, sourced from our trusted network of pharmacies and medical stores.</p>
+          <p>So, when you buy medicines online on Quickwell, our trained pharmacists, partner pharmacies and medical stores, ensure that your medicines are delivered to you on time, anywhere in India.</p>
+        </div>
+     </div>
+     <br/>
+    </div>
+
+
 
 </div>
 
@@ -316,9 +393,65 @@
 
 <!-- Footer -->
 <footer class="text-center">
+    <div class="footer-left" style="float: left">
+
+        <p style="font-family: Satisfy; font-size: 40px">QuickWell</p>
+
+        <p class="footer-links">
+            <a href="#"><span style="color: white; font-size: 18px"> Home</span></a>
+          ·
+            <a href="#"><span style="color: white;font-size: 18px">Blog</span></a>
+          ·
+            <a href="#"><span style="color: white;font-size: 18px ">Pricing</span></a>
+          ·
+            <a href="#"><span style="color: white; font-size: 18px">About</span></a>
+          ·
+            <a href="#"><span style="color: white; font-size: 18px">Faq</span></a>
+          ·
+            <a href="#"><span style="color: white; font-size: 18px">Contact</span></a>
+        </p>
+
+        <p class="footer-company-name">QuickWell &copy; 2017</p>
+      </div>
+    <div class="footer-right" style="float: right">
+    <div>
+          <i class="fa fa-map-marker"></i>
+              <p><span>IIIT Sri City </span> Chittoor, Andhra Pradesh</p>
+        </div>
+
+        <div>
+          <i class="fa fa-phone"></i>
+          <p>+91 7489623154</p>
+        </div>
+
+        <div>
+          <i class="fa fa-envelope"></i>
+          <p><a href="mailto:support@company.com">quickwell@company.com</a></p>
+        </div>
+    </div>
+
+    <div class="footer-center">
+
+        <p class="footer-company-about">
+          <span>About the company</span>
+          <br> We always put our patients first .
+        </p>
+
+        <div class="footer-icons">
+
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-linkedin"></i></a>
+          <a href="#"><i class="fa fa-github"></i></a>
+
+        </div>
+
+      </div>
 </footer>
 
 <script>
+
+
 $(document).ready(function(){
   // Initialize Tooltip
   $('[data-toggle="tooltip"]').tooltip();
@@ -339,7 +472,7 @@ $(document).ready(function(){
       // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
       $('html, body').animate({
         scrollTop: $(hash).offset().top
-      }, 900, function(){
+      }, 10, function(){
 
         // Add hash (#) to URL when done scrolling (default click behavior)
         window.location.hash = hash;
@@ -347,6 +480,13 @@ $(document).ready(function(){
     } // End if
   });
 })
+
+
+</script>
+
+<script>
+
+   AOS.init();
 </script>
 
 </body>

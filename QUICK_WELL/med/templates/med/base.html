@@ -92,6 +92,22 @@
       {#border-radius: 0;#}
       transition: .2s;
   }
+  {#.btn1 {#}
+  {#    padding: 10px 20px;#}
+  {#    background-color: white;#}
+  {#    color: #f1f1f1;#}
+  {#    border-radius: 0;#}
+  {#    transition: .2s;#}
+  {#    text-align: center;#}
+  {#}#}
+
+  .btn1:hover, .btn1:focus {
+      border: none;
+      background-color: white;
+      color: #000;
+  }
+
+
   .btn:hover, .btn:focus {
       border: 1px solid #333;
       background-color: #fff;
@@ -113,7 +129,8 @@
   .navbar {
       font-family: Montserrat, sans-serif;
       margin-bottom: 0;
-      background-color: #2b669a;
+     background: -webkit-linear-gradient(to right, #3573A9, #00002C);
+      background: linear-gradient(to right, #3573A9, #00002C);
       border: 0;
       font-size: 15px !important;
       {#letter-spacing: 1px;#}
@@ -145,17 +162,12 @@
       background-color: red !important;
   }
   footer {
-      background-color: #2b669a;
+      background: -webkit-linear-gradient(to right, #31BDE6, #00003E);
+      background: linear-gradient(to right, #31BDE6, #00003E);
       color: #f5f5f5;
       padding: 32px;
   }
-  footer a {
-      color: #f5f5f5;
-  }
-  footer a:hover {
-      color: #777;
-      text-decoration: none;
-  }
+
   .form-control {
       border-radius: 0;
   }
@@ -163,8 +175,41 @@
       resize: none;
   }
 
+.overlay {
+  position: absolute;
+  bottom:0px;
+  left: 30px;
+  right: 70px;
+   top:30px;
+  background-color: #0A2D4B;
+  overflow: hidden;
+  width: 249px;
+  height:0;
+  transition: 1s ease ;
+text-align: center;
+}
+.conti:hover .overlay {
+  bottom: 0;
+  height: 284px;
+  opacity: 0.8;
+}
 
 </style>
+.texting{
+    white-space: nowrap;
+  color: white;
+  font-size: 18px;
+    font-weight: bold;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+</style>
+
       <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">

@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0add335f766046b8ba806ca948940aeca8f67f7e
 .navbar{
     position:sticky;
     border-radius: 0;
@@ -17,14 +21,15 @@
 }
 
 .navbar {
-    font-family: Montserrat, sans-serif;
-    margin-bottom: 0;
-    background-color: #2b669a;
-    border: 0;
-    font-size: 15px !important;
-    opacity: 0.8;
-    padding-top: 10px;
-    padding-bottom: 10px;
+      font-family: Montserrat, sans-serif;
+      margin-bottom: 0;
+      background: -webkit-linear-gradient(to right, #3573A9, #00002C);
+      background: linear-gradient(to right, #3573A9, #00002C);
+      border: 0;
+      font-size: 15px !important;
+      opacity: 0.8;
+      padding-top: 10px;
+      padding-bottom: 10px;
 }
 
 .website{
@@ -59,4 +64,11 @@
 
 .dropdown-menu li a:hover {
     background-color: red !important;
+}
+
+footer {
+      background: -webkit-linear-gradient(to right, #31BDE6, #00003E);
+      background: linear-gradient(to right, #31BDE6, #00003E);
+      color: #f5f5f5;
+      padding: 32px;
 }

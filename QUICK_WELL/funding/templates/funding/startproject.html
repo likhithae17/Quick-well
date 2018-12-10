@@ -42,7 +42,7 @@
     <form action="{% url 'startproject' %}" method="post">
 
         {% csrf_token %}
-        {{ form|crispy }}
+        {% crispy form %}
 
         <br><br><button type="submit" class="btn btn-primary">Create Fundraiser</button>
     </form>

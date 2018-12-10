@@ -6,6 +6,8 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django.db.models.signals import post_save
+import datetime
+from datetime import date
 
 
 class Doctor(models.Model):
@@ -213,9 +215,17 @@ class Order(models.Model):
             sum = sum + ((item.medicine.price)*(item.quantity))
         return sum
 
+<<<<<<< HEAD
 class otp_verify(models.Model):
     name=models.CharField(max_length=50)
     otp=models.IntegerField(default=0)
+=======
+    def get_estimated_date(self):
+        date1 = self.date_ordered;
+        date1 = date1 + datetime.timedelta(days=3);
+        return date1
+
+>>>>>>> 0add335f766046b8ba806ca948940aeca8f67f7e
 
     def __str__(self):
         return '{}'.format(self.name)
