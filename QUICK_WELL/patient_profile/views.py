@@ -107,6 +107,7 @@ def labtest(request):
 
 
 
+@login_required(login_url="http://127.0.0.1:8000/patient_profile/login/")
 def create(request):
     if request.method == "POST":
         form = forms.profile(request.POST, request.FILES)
@@ -119,6 +120,7 @@ def create(request):
         form = forms.profile()
     return render(request, 'patient_profile/profile.html', {'form': form})
 
+@login_required(login_url="http://127.0.0.1:8000/patient_profile/login/")
 def upload(request):
     if request.user.username == "lab_admin":
         if request.method == "POST":

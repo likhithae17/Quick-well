@@ -15,7 +15,7 @@ class profile(forms.ModelForm):
     class Meta:
         model = user_profile
         fields = ('username', 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country', 'zipcode',
-                  'photo',)
+                  'photo')
 
 class upload(forms.ModelForm):
     class Meta:
