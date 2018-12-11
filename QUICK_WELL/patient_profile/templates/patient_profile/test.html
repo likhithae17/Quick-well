@@ -159,7 +159,7 @@
             color: #d5d5d5 !important;
         }
         .navbar-nav li a:hover {
-            color: #fff !important;
+            color: #DC143C !important;
         }
         .navbar-nav li.active a {
             color: #fff !important;
@@ -218,10 +218,10 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="appointment/index/"><span class="fa fa-ambulance" aria-hidden="true" ></span>&nbspBook an Appointment</a></li>
-        <li><a href="med/"><span class="fa fa-medkit" aria-hidden="true"></span>&nbspOrder Medicines</a></li>
-        <li onclick="myfunction()"><a href="chat/">Chat with a doctor</a></li>
-        <li><a href="video_conference/">Video Call</a></li>
+        <li><a href="http://127.0.0.1:8000/appointment/index/"><span class="fa fa-ambulance" aria-hidden="true" ></span>&nbspBook an Appointment</a></li>
+        <li><a href="http://127.0.0.1:8000/med/"><span class="fa fa-medkit" aria-hidden="true"></span>&nbspOrder Medicines</a></li>
+        <li onclick="myfunction()"><a href="http://127.0.0.1:8000/chat/">Chat with a doctor</a></li>
+        <li><a href="http://127.0.0.1:8000/video_conference/">Video Call</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
           <span class="caret"></span></a>
@@ -241,25 +241,15 @@
 </nav>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
+
 <br><br><br><br>
-
-
-
-
 
 <body>
 <div>
     <center> <img src="{{ details.photo.url }}" style='height:150px;width:150px;border-radius:50px;' /><br>
-        {{ details.username }}
+        <h4>{{ details.username }}</h4>
 
     </center>
-
 
 </div>
 <body class="container-fluid">
@@ -278,54 +268,56 @@
             <table>
                 <tr>
                     <td>
-                       &nbsp Name:  {{ details.name }}
+                       &nbsp<strong>Name</strong> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        :  <strong>{{ details.name }}</strong>
 
                     </td>
                 </tr>
 
                 <tr>
                     <td>
-                       &nbsp Age&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:  {{ details.age }}
+                       &nbsp <strong>Age</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        : <strong> {{ details.age }}</strong>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                       &nbsp Date of Birth:  {{ details.dob }}
+                       &nbsp <strong>Date of Birth</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:  <strong>{{ details.dob }}</strong>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                       &nbsp Contact number: {{ details.contact_number }}
+                       &nbsp <strong>Contact number</strong>&nbsp&nbsp: <strong>{{ details.contact_number }}</strong>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                      &nbsp  Address:  {{ details.street_address }}
+                       &nbsp<strong> City</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        : <strong> {{ details.city }}</strong>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                       &nbsp City:  {{ details.city }}
+                       &nbsp <strong>District</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        :<strong> {{ details.district }}</strong>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                       &nbsp District: {{ details.district }}
+                       &nbsp <strong>State</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        :<strong> {{ details.state }}</strong>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                       &nbsp State: {{ details.state }}
+                       &nbsp <strong>Country</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        :  <strong>{{ details.country }}</strong>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                       &nbsp Country:  {{ details.country }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                      &nbsp  Zipcode: {{ details.zipcode }}
+                      &nbsp <strong> Zipcode</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        :<strong> {{ details.zipcode }}</strong>
                     </td>
                 </tr>
             </table>
@@ -339,7 +331,8 @@
            <table>
                <tr>
                    <td>
-                      &nbsp Report: <embed src="{{rep.file.url}}" width="200px" height="200px"/>
+                      &nbsp <strong>Report</strong> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                        &nbsp &nbsp &nbsp &nbsp <br><embed src="{{rep.file.url}}" width="500px" height="600px"><br><br>
                    </td>
                </tr>
            </table>
@@ -351,11 +344,11 @@
 
     </div>
 </div>
-
 </body>
 
 </body>
     <footer class="text-center">
     </footer>
-
+</div>
+</body>
 </html>

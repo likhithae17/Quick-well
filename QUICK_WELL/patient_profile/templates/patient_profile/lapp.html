@@ -218,24 +218,18 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="appointment/index/"><span class="fa fa-ambulance" aria-hidden="true" ></span>&nbspBook an Appointment</a></li>
+        <li><a href="http://127.0.0.1:8000/appointment/index/"><span class="fa fa-ambulance" aria-hidden="true" ></span>&nbspBook an Appointment</a></li>
         <li><a href="med/"><span class="fa fa-medkit" aria-hidden="true"></span>&nbspOrder Medicines</a></li>
-        <li onclick="myfunction()"><a href="chat/">Chat with a doctor</a></li>
-        <li><a href="video_conference/">Video Call</a></li>
+        <li onclick="myfunction()"><a href="http://127.0.0.1:8000/chat/">Chat with a doctor</a></li>
+        <li><a href="http://127.0.0.1:8000/video_conference/">Video Call</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
 
-              <li><a href="lab/">Book lab tests</a></li>
-              <li><a href="forum/">Forum</a></li>
-              <li><a href="#">Media</a></li>
-
-            <li><a href="lab/index/">Book lab tests</a></li>
-            <li><a href="forum/">Forum</a></li>
-
-            <li><a href="#">Media</a></li>
-            <li><a href="funding/">Funding</a></li>
+              <li><a href="http://127.0.0.1:8000/lab/">Book lab tests</a></li>
+              <li><a href="http://127.0.0.1:8000/forum/">Forum</a></li>
+            <li><a href="http://127.0.0.1:8000/funding/">Funding</a></li>
 
           </ul>
         </li>
@@ -260,7 +254,7 @@
 <body>
 <div>
     <center> <img src="{{ details.photo.url }}" style='height:150px;width:150px;border-radius:50px;' /><br>
-        {{ details.username }}
+        <h4>{{ details.username }}</h4>
 
     </center>
 

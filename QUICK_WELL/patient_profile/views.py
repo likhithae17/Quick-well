@@ -207,17 +207,6 @@ def patient_update(request):
 
 
 
-# def patient_update(request):
-#     if request.method == 'POST':
-#         patient_form = Patient_Update_Form(request.POST, instance=request.user or None)
-#         if patient_form.is_valid():
-#                   p patient_form.save()
-#             return HttpResponse("done")
-#     else:
-#         patient_form = Patient_Update_Form(instance=request.user)
-#     return render(request, 'patient_profile/edit_profile.html', {'patient_form': patient_form})
-
-
 
 def change_password(request):
     if request.method == 'POST':
@@ -229,79 +218,6 @@ def change_password(request):
     else:
         change_form = passwordchange(user=request.user)
     return render(request, 'accounts/changepassword.html', {'change_form': change_form})
-
-
-@login_required(login_url="http://127.0.0.1:8000/patient_profile/login/")
-
-
-def review(request):
-    rate = Review.objects.all()
-    if request.method == 'POST':
-        f = ReviewForm(request.POST)
-        review_details = Review.objects.order_by('pub_date')
-        if f.is_valid():
-            F=f.save(commit=False)
-            try:
-                obj1 = Review.objects.get(patient_id = F.patient_id, doctor_id = F.doctor_id)
-                obj1.rating = F.rating
-                obj1.pub_date = F.pub_date
-                obj1.user_name = F.user_name
-                obj1.comment = F.comment
-                obj1.save()
-            except:
-                F.save()
-        a = []
-        doctor = Doctor.objects.all()
-        count = Doctor.objects.all().count()
-        for i in range(0,count):
-            b = Review.objects.filter(doctor_id=doctor[i]).aggregate(Avg('rating',output_field=IntegerField()))
-            a.append(b)
-        print(a)
-        context ={
-                'doc':doctor, 'rating':a, 'comment':rate
-        }
-        return render(request,'patient_profile/doctor_rating.html',context)
-    else:
-        f = ReviewForm()
-        return render(request,'patient_profile/review.html',{'form':f})
-
-
-
-# def reviews(request):
-#
-#     if request.method == 'POST':
-#         print('fuck')
-#         f = ReviewForm(request.POST)
-#         review_details = User_Review.objects.order_by('review_date')
-#
-#         if f.is_valid():
-#             F= f.save(commit=False)
-#             try:
-#                 obj1 = User_Review()
-#                 obj1.client_accountid = F.client_accountid;
-#                 obj1.doctorid = F.doc_id
-#                 obj1.rating = F.rating
-#                 obj1.review_date = F.review_date
-#                 obj1.comment = F.comment
-#                 obj1.save()
-#             except:
-#                 F.save()
-#         a = []
-#         doctor = Doctor.objects.all()
-#         count = Doctor.objects.all().count()
-#         for i in range(0, count):
-#             b = User_Review.objects.filter(doc_id=doctor[i]).aggregate(Avg('rating', output_field=IntegerField()))
-#             a.append(b)
-#         print(a)
-#         rate=User_Review.objects.all()
-#
-#         return render(request, 'patient_profile/doctor_rating.html', {'doc_id': doctor, 'rating': a, 'review': rate})
-#     else:
-#         f = ReviewForm()
-#         return render(request, 'patient_profile/review.html', {'form': f})
-#
-
-
 
 
 

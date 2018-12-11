@@ -196,19 +196,6 @@ class fundraiser(models.Model):
     ifsc_code = models.CharField(max_length=10)
 
 
-class Medicine(models.Model):
-    name = models.CharField(max_length=100)
-    pharmacy = models.CharField(max_length=100)
-    about = models.CharField(max_length=1000, default='0000000')
-    description = models.ImageField(blank=True)
-    mfg_date = models.DateField(null=True)
-    exp_date = models.DateField(null=True)
-    pres_req = models.CharField(max_length=100)
-    price = models.FloatField()
-
-    def __str__(self):
-        return self.name + ' - ' + self.pharmacy
-
 class PurchaseItem(models.Model):
     ref_code = models.CharField(max_length=15, default='0000000')
     medicine = models.ForeignKey(Medicine, on_delete=models.SET_NULL, null=True, unique=None)
