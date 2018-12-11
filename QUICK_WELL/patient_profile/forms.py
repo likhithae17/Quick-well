@@ -1,4 +1,4 @@
-from attr.filters import exclude
+# from attr.filters import exclude
 from django import forms
 from django.contrib.auth.forms import User, UserCreationForm, UserChangeForm, PasswordChangeForm
 from home.models import user_profile, user_reports, User_Review
