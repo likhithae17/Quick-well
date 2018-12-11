@@ -66,7 +66,7 @@ def appbooking(request,pk):
     #office = get_object_or_404(Office, pk=pk)
     #app = get_object_or_404(Office_Docavailability, pk=pk)
 
-    if request.method == 'POST':
+    if request.method == 'post':
         form = AppointmentForm(request.POST)
 
         if form.is_valid():

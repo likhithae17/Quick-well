@@ -59,7 +59,7 @@ INSTALLED_APPS = [
     'ads',
     #'sekizai',
     'crispy_forms',
-    'labtest.apps.LabtestConfig',
+    'labtest',
     'video_conference',
     'med',
     'funding',
