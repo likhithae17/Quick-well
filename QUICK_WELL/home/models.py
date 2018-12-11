@@ -115,8 +115,8 @@ class User_Review(models.Model):
     rating = models.FloatField(null=True)
     review = models.CharField(max_length=500,null=True)
     is_doc_recommended = models.BooleanField(default=True)
-    review_date = models.DateField()
-    comment = models.CharField(max_length=500,null=True)
+    review_date = models.DateTimeField(default=datetime.datetime.now())
+    comment = models.CharField(max_length=500, null=True)
 
 class Appointment_Status(models.Model):
     status = models.CharField(max_length=20)
@@ -148,7 +148,7 @@ class labAppointment(models.Model):
 
 
 class fundraiser(models.Model):
-    user_name = models.ForeignKey(user_profile,on_delete=models.PROTECT)
+    user_name = models.ForeignKey(user_profile, on_delete=models.PROTECT)
     category = models.CharField(max_length=50)
     Title = models.CharField(max_length=60)
     goal_amount = models.FloatField()

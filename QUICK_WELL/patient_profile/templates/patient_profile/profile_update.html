@@ -7,6 +7,8 @@
 <body>
     <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
+        <span style="color: #f4c613">User Name  :</span>
+            {{prof_form.username}}<br><br>
             <span style="color: #f4c613">age  :</span>
             {{prof_form.age}}<br><br>
             <span style="color: #f4c613">Date of birth   :</span>

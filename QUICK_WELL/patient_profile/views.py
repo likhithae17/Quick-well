@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from home.models import user_profile
-from home.models import user_reports
+# from home.models import user_profile
+# from home.models import user_reports
 #from ..docapp.models import Appointment
 from . import forms
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from .forms import Signup_form, profile_update
-from django.shortcuts import render, redirect
+# from django.shortcuts import render, redirect
 from home.models import *
 from django.db.models import Avg, IntegerField
 from . import forms
@@ -140,6 +140,7 @@ def labtest(request):
 
 
 
+@login_required(login_url="http://127.0.0.1:8000/patient_profile/login/")
 def create(request):
     if request.method == "POST":
         form = forms.profile(request.POST, request.FILES)
@@ -152,6 +153,7 @@ def create(request):
         form = forms.profile()
     return render(request, 'patient_profile/profile.html', {'form': form})
 
+@login_required(login_url="http://127.0.0.1:8000/patient_profile/login/")
 def upload(request):
     if request.user.username == "lab_admin":
         if request.method == "POST":
@@ -169,13 +171,17 @@ def patient_update(request):
     temp = 1
     pat = get_object_or_404(user_profile, username=request.user)
     if request.method == 'POST':
+# <<<<<<< HEAD
         prof_form = profile_update(request.POST, instance=pat or None)
+# =======
+#         prof_form = profile_update(request.POST, instance=request.user or None)
+# >>>>>>> c169738fc3cee4124662d4dd5ac7626cd7886cfb
         if prof_form.is_valid():
             prof_form.save()
             return HttpResponse("done")
     else:
         prof_form = profile_update(instance=request.user)
-    return render(request, 'patient_profile/profile_update.html', {'prof_form':prof_form, 'temp':temp, 'pat':pat})
+    return render(request, 'patient_profile/profile_update.html', {'prof_form': prof_form, 'temp': temp, 'pat': pat})
 
 
 
