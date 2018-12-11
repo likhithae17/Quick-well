@@ -156,7 +156,7 @@ def doctor_update(request):
         doc_form = Doctor_Update_Form(request.POST, instance=request.user.doctor or None)
         if doc_form.is_valid():
             doc_form.save()
-            return HttpResponse("done")
+            return redirect("http://127.0.0.1:8000/login/home")
     else:
         doc_form = Doctor_Update_Form(instance=request.user)
     return render(request, 'profile/includes/profile.html', {'doc_form':doc_form, 'temp':temp, 'doc':doc})
