@@ -34,6 +34,8 @@ urlpatterns = [
     path('lab/', include('labtest.urls')),
     path('video_conference/',include('video_conference.urls')),
     path('funding/',include('funding.urls')),
+    path('advertisements/', include('advertisements.urls')),
+    path('feedback/', include('feedback.urls')),
 ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
