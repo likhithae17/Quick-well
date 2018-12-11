@@ -1,8 +1,10 @@
 {% extends 'profile/header.html' %}
 {% block content %}
 
-        <p>&nbsp;Doctor Name : {{ doc.firstname}} {{ doc.lastname }}</p>
-        <p>&nbsp;Experience : {{ doc.experience }}</p>
-        <p>&nbsp; Specialization: {{ doc.spec }}</p>
-
+<!--<p>Doctor Name : {{ doc.firstname}} {{ doc.lastname }}</p>-->
+<p>Specialization: {{ doc.specialization }}</p>
+<p>Phone Number: {{ doc.phone_num }}</p>
+<p>Fee: {{doc.fee}}</p>
+<p>Hospital: {{doc.hospital}}</p>
+<p>address: {{ doc.address }}</p>
 {% endblock %}

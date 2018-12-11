@@ -19,3 +19,4 @@ class Patientdetails(models.Model):
     email = models.EmailField()
     symptoms = models.CharField(max_length=250)
     Department = models.CharField(max_length=250)
+

@@ -7,6 +7,7 @@
 <head>
 
     {% load staticfiles %}
+    {% load widget_tweaks %}
 
     <title>Quickwell_User_Profile</title>
     <meta charset="utf-8">
@@ -228,39 +229,127 @@
 
 
     <center>
-        <h3>ENTER YOUR DETAILS HERE.</h3>
-        <br><br>
-        <form action="{% url 'patient_profile.create' %}" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <form action="/patient_profile/create/" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="csrfmiddlewaretoken" value="SxAlh41N6FosoMpc6mrELRV0gU7LwPHkNZK2pLW5NJt9m4KoMiJvuX7l3Vq4SGiP">
-                <tr><th><label for="id_age">Age:</label></th><td><input type="number" name="age" required id="id_age"></td></tr>
-                <tr><th><label for="id_dob">Dob:</label></th><td><input type="text" name="dob" required id="id_dob"></td></tr>
-                <tr><th><label for="id_email">Email:</label></th><td><input type="text" name="email" maxlength="150" required id="id_email"></td></tr>
-                <tr><th><label for="id_contact_number">Contact number:</label></th><td><input type="number" name="contact_number" min="-9223372036854775808" max="9223372036854775807" required id="id_contact_number"></td></tr>
-                <tr><th><label for="id_address">Address:</label></th><td><input type="text" name="address" maxlength="500" required id="id_address"></td></tr>
-                <tr><th><label for="id_city">City:</label></th><td><input type="text" name="city" maxlength="100" required id="id_city"></td></tr>
-                <tr><th><label for="id_district">District:</label></th><td><input type="text" name="district" maxlength="100" required id="id_district"></td></tr>
-                <tr><th><label for="id_state">State:</label></th><td><input type="text" name="state" maxlength="100" required id="id_state"></td></tr>
-                <tr><th><label for="id_country">Country:</label></th><td><input type="text" name="country" maxlength="100" required id="id_country"></td></tr>
-                <tr><th><label for="id_zipcode">Zipcode:</label></th><td><input type="number" name="zipcode" min="-9223372036854775808" max="9223372036854775807" required id="id_zipcode"></td></tr>
-                <tr><th><label for="id_photo">Photo:</label></th><td><input type="file" name="photo" accept="image/*" id="id_photo"></td></tr>
-                <br>
-                <input type="submit">
-            </form>
-            <br>
-            <form action="{% url 'patient_profile.logout' %}">
-                <input type="submit" value="logout">
-            </form>
-            <br>
-
-            <form method="POST" action="{% url 'patient_profile.details' %}">
+        <h3><strong>ENTER YOUR DETAILS HERE.</strong></h3>
+    </center>
+      <form method="POST" action="{% url 'patient_profile.details' %}">
                 {% csrf_token %}
                 <input type="submit" value="Already Created!">
                 <br><br>
             </form>
         </form>
-    </center>
+
+<div class="container">
+        <form action="{% url 'patient_profile.create' %}" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+
+            <div class="form-group">
+                <label for='{{ form.username.id_for_label }}'>User Name</label>
+                {{form.username}}
+                {% for error in form.username.errors %}
+                <span class="help-block">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+          <label for='{{ form.age.id_for_label }}'>Age</label>
+          {{form.age|add_class:'form-control'}}
+          {% for error in form.age.errors %}
+          <span class="help-block">{{ error }}</span>
+          {% endfor %}
+      </div>
+
+        <div class="form-group">
+          <label for='{{ form.dob.id_for_label }}'>Date of Birth</label>
+          {{form.dob|add_class:'form-control'|attr:"id:date, name:date, placeholder=MM/DD/YYY, type:text"}}
+          {% for error in form.dob.errors %}
+          <span class="help-block">{{ error }}</span>
+          {% endfor %}
+        </div>
+
+      <div class="form-group">
+          <label for='{{ form.email.id_for_label }}'>Email</label>
+          {{form.email|add_class:'form-control'}}
+          {% for error in form.email.errors %}
+          <span class="help-block">{{ error }}</span>
+          {% endfor %}
+      </div>
+
+      <div class="form-group">
+          <label for='{{ form.contact_number.id_for_label }}'>contact_number</label>
+          {{form.contact_number|add_class:'form-control'}}
+          {% for error in form.contact_number.errors %}
+          <span class="help-block">{{ error }}</span>
+          {% endfor %}
+      </div>
+
+
+      <div class="form-group">
+          <label for='{{ form.address.id_for_label }}'>Address</label>
+          {{form.address|add_class:'form-control'}}
+          {% for error in form.address.errors %}
+          <span class="help-block">{{ error }}</span>
+          {% endfor %}
+      </div>
+
+
+      <div class="form-group">
+          <label for='{{ form.city.id_for_label }}'>City</label>
+          {{form.city|add_class:'form-control'}}
+          {% for error in form.city.errors %}
+          <span class="help-block">{{ error }}</span>
+          {% endfor %}
+      </div>
+
+
+      <div class="form-group">
+          <label for='{{ form.district.id_for_label }}'>District</label>
+          {{form.district|add_class:'form-control'}}
+          {% for error in form.district.errors %}
+          <span class="help-block">{{ error }}</span>
+          {% endfor %}
+      </div>
+
+
+      <div class="form-group">
+          <label for='{{ form.state.id_for_label }}'>State</label>
+          {{form.state|add_class:'form-control'}}
+          {% for error in form.state.errors %}
+          <span class="help-block">{{ error }}</span>
+          {% endfor %}
+      </div>
+
+         <div class="form-group">
+          <label for='{{ form.country.id_for_label }}'>Country</label>
+          {{form.country|add_class:'form-control'}}
+          {% for error in form.country.errors %}
+          <span class="help-block">{{ error }}</span>
+          {% endfor %}
+      </div>
+
+         <div class="form-group">
+          <label for='{{ form.zipcode.id_for_label }}'>Zipcode</label>
+          {{form.zipcode|add_class:'form-control'}}
+          {% for error in form.zipcode.errors %}
+          <span class="help-block">{{ error }}</span>
+          {% endfor %}
+      </div>
+
+
+        <div class="form-group">
+          <label for='{{ form.photo.id_for_label }}'>Photo</label>
+          {{form.photo}}
+          {% for error in form.photo.errors %}
+          <span class="help-block">{{ error }}</span>
+          {% endfor %}
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+
+<br>
+
+
 
     <div id="band" class="container text-center">
         <h3>QUICKWELL - QUALITY CARE</h3>
@@ -270,6 +359,9 @@
 
     </div>
 </div>
+
 </body>
+<footer class="text-center">
+</footer>
 
 </html>

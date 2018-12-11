@@ -4,7 +4,7 @@
 {% block title %}Appointment{% endblock %}
 
 {% block body %}
-<<<<<<< HEAD
+
     <div class="container">
     <h4>Doctor : {{ doctor.firstname }} {{ doctor.lastname }}</h4>
     <h4>Select a time slot to book appointment</h4><br>
@@ -27,7 +27,7 @@
         {{ form|crispy }}
         <br><br><button type="submit" class="btn btn-primary">Confirm Appointment</button>
     </form>
-=======
+<!--
     <div class="container"style="padding-top: 80px; padding-bottom: 100px; padding-left: 150px; padding-right: 150px; ">
 <br>
 
@@ -52,11 +52,11 @@
 
             <form action="{% url 'docapp:appbooking' pk=doctor.id %}" method="post">
                 {% csrf_token %}
-                {{ form|crispy }}
+                {% crispy form %}
                 <br><br><button type="submit" class="btn btn-primary">Confirm Appointment</button>
             </form>
         </div>
->>>>>>> 0add335f766046b8ba806ca948940aeca8f67f7e
+-->
     </div>
 
 {% endblock %}

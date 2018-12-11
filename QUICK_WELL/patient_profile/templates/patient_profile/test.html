@@ -263,21 +263,18 @@
         {{ details.username }}
         <input class="Edit" type="button" value="Edit profile">
     </center>
-    {{ form }}
-    <form action="{% url 'patient_profile.logout' %}" method="post">
-        {% csrf_token %}
-        <input class="logout" type = "submit" value = "Logout">
-    </form>
+
+
 </div>
 <body class="container-fluid">
 <div class="row content">
     <div class="col-sm-3 sidenav">
         <ul class="nav nav-pills nav-stacked">
             <li><a href="/patient_profile/details/?profile=profile">PROFILE</a></li>
-            <li><a href="#">APPOINTMENTS</a></li>
+            <li><a href="/patient_profile/appointment/">APPOINTMENTS</a></li>
             <li><a href="#">LAB TESTS</a></li>
             <li><a href="/patient_profile/details/?reports=reports">LAB REPORTS</a></li>
-            <li><a href="#">TRANSACTIONS</a></li>
+
         </ul><br>
     </div>
     <div>
@@ -285,58 +282,58 @@
             <table>
                 <tr>
                     <td>
-                        Username:  {{ details.username }}
+                       &nbsp Username:  {{ details.username }}
 
                     </td>
                 </tr>
 
                 <tr>
                     <td>
-                        Age:  {{ details.age }}
+                       &nbsp Age&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:  {{ details.age }}
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Date of Birth:  {{ details.dob }}
+                       &nbsp Date of Birth:  {{ details.dob }}
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Contact number: {{ details.contact_number }}
+                       &nbsp Contact number: {{ details.contact_number }}
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Address:  {{ details.street_address }}
+                      &nbsp  Address:  {{ details.street_address }}
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        City:  {{ details.city }}
+                       &nbsp City:  {{ details.city }}
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        District: {{ details.district }}
+                       &nbsp District: {{ details.district }}
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        State: {{ details.state }}
+                       &nbsp State: {{ details.state }}
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Country:  {{ details.country }}
+                       &nbsp Country:  {{ details.country }}
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Zipcode: {{ details.zipcode }}
+                      &nbsp  Zipcode: {{ details.zipcode }}
                     </td>
                 </tr>
             </table>
-            We are in profile page
+
         {% endif %}
 
 
@@ -346,19 +343,23 @@
            <table>
                <tr>
                    <td>
-                       Report: <embed src="{{rep.file.url}}" width="200px" height="200px"/>
+                      &nbsp Report: <embed src="{{rep.file.url}}" width="200px" height="200px"/>
                    </td>
                </tr>
            </table>
         {% endfor %}
 
         {% endif %}
+
+
+
     </div>
 </div>
 
 </body>
-<footer class="container-fluid">
-    <p>Footer Text</p>
-</footer>
+
 </body>
+    <footer class="text-center">
+    </footer>
+
 </html>

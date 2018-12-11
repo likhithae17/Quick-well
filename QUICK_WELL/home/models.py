@@ -11,7 +11,7 @@ from datetime import date
 
 
 class Doctor(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     firstname = models.CharField(max_length=150)
     lastname = models.CharField(max_length=150)
     experience = models.IntegerField(null=True)
@@ -19,8 +19,8 @@ class Doctor(models.Model):
    # email_id = models.CharField(max_length=150,null=True,blank=True)
     phone_num = models.BigIntegerField(null=True,blank=True)
     #previous_hospitals = models.CharField(max_length=300,null=True)
-    specialization = models.CharField(max_length=150)
-    fee = models.IntegerField(null=True,blank=True)
+    specialization = models.CharField(max_length=150,null=True)
+    fee = models.FloatField(null=True,blank=True)
     hospital = models.CharField(null=True,blank=True,max_length=50)
     address = models.CharField(null=True,blank=True,max_length=50)
 
@@ -88,7 +88,11 @@ class LabTest(models.Model):
 
 
 class user_profile(models.Model):
+
     username = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+
+    username = models.OneToOneField(User, on_delete=models.PROTECT, null=True)
+
     name = models.CharField(max_length=150)
     age = models.IntegerField(null=True)
     dob = models.DateField(null=True)
@@ -115,19 +119,20 @@ class User_Review(models.Model):
     rating = models.FloatField(null=True)
     review = models.CharField(max_length=500,null=True)
     is_doc_recommended = models.BooleanField(default=True)
-    review_date = models.DateField()
-
+    review_date = models.DateTimeField(default=datetime.datetime.now())
+    comment = models.CharField(max_length=500, null=True)
 
 class Appointment_Status(models.Model):
     status = models.CharField(max_length=20)
 
 
 class Appointment(models.Model):
+    user_name = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
     #client_accountid = models.ForeignKey(User, on_delete=models.PROTECT)
     doctor_id = models.ForeignKey(Doctor, on_delete=models.PROTECT, null=True)
     #start_time =  models.DateTimeField()
     #end_time =  models.DateTimeField()
-    user_name = models.CharField(max_length=50)
+    #user_name = models.CharField(max_length=50)
     email_id = models.EmailField()
     #appointment_id = models.CharField(blank=False, null=False, max_length=200)
     date = models.DateField(blank=True, null=True)
@@ -147,7 +152,7 @@ class labAppointment(models.Model):
 
 
 class fundraiser(models.Model):
-    user_name = models.ForeignKey(user_profile,on_delete=models.PROTECT)
+    user_name = models.ForeignKey(user_profile, on_delete=models.PROTECT)
     category = models.CharField(max_length=50)
     Title = models.CharField(max_length=60)
     goal_amount = models.FloatField()

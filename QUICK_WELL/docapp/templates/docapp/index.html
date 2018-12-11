@@ -64,7 +64,7 @@
                         };
 
 
-                        if (querylocation==''|| querylocation=='None'){
+                        if (querylocation == 'query' || querylocation=='None'){
                             var myLocation = {
                                 lat: 13.5232,
                                 lng: 79.9982
@@ -147,34 +147,18 @@
     width: 650px;
     position:absolute;
     right:20px;
-    border: 1px black"></div>
+    border: 1px black">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBDDHXhrCzm5a2cemyN2QtIb8B11hvHQE&signed_in=true&libraries=places&callback=initMap" async defer></script>
+    </div>
+
 
 
     {% for doc in doctor %}
-    <br><br>
     <div class="row" style="margin: auto;padding-left: 50px" >
         <div class="col-sm-4 col-xs-12">
             <div class="panel panel-default">
 
                 <div class="panel-body">
-<<<<<<< HEAD
-
-                    {% if doc.doc_photo %}
-                            <img src='media/images.jpg'/>
-                    {% else %}
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvbZce8PCEuRg737ca11EXEzzAn0Qmj2HSYg8hfp0-1k13Enc1sg" height="150" width="150"/>
-                    {% endif %}
-
-                    <p><br></p>
-                    <p>{{ doc.specialization }}</p>
-                    <p>{{ doc.firstname }}  {{ doc.lastname }}</p>
-                    <p>{{ doc.experience }}  years experience</p>
-                    <p><a href="{% url 'profile' pk=doc.id %}">View Profile</a></p>
-                </div>
-                <div class="panel-footer">
-                    <button onclick="window.location='{% url 'appbooking' pk=doc.id %}'" class="btn btn-primary active" >Book Appointment</button>
-=======
                     <table class="table no-border">
                         <tr>
                             <td>
@@ -195,13 +179,12 @@
                 </div>
                 <div class="panel-footer" style="text-align:center">
                     <button onclick="window.location='{% url 'docapp:appbooking' pk=doc.id %}'" class="btn btn-primary" >Book Appointment</button>
->>>>>>> 0add335f766046b8ba806ca948940aeca8f67f7e
                 </div>
             </div>
         </div>
     </div>
     {% empty %}
-            <h3>Nothing found with name "{{ request.GET.q }}"</h3>
+            <h4>Sorry, Nothing found with name "{{ request.GET.q }}"</h4>
     {% endfor %}
 
 
