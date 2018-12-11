@@ -30,7 +30,7 @@ def signup_view(request):
             otp = random.randint(100000, 999999)
             # Mail(request, form.email)
             send_mail("hello patient", str(otp), "quickwelldoctor@gmail.com", [form1.email])
-            otpc = otp + 2
+            otpc = otp + 632817
             registered = True
             # return redirect("home:home")
             #return HttpResponse("registered")
@@ -51,7 +51,7 @@ def mail_conf(request):
     if request.method=='POST':
         otpc = int(request.POST['otpc'])
         otp1 = str(request.POST['otp1'])
-        otpc = otpc - 2
+        otpc = otpc - 632817
         otpc = str(otpc)
         if otpc == otp1:
             return redirect("http://127.0.0.1:8000/")
