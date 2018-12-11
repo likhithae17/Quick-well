@@ -20,7 +20,7 @@ class Doctor(models.Model):
     phone_num = models.BigIntegerField(null=True,blank=True)
     #previous_hospitals = models.CharField(max_length=300,null=True)
     specialization = models.CharField(max_length=150,null=True)
-    fee = models.IntegerField(null=True,blank=True)
+    fee = models.FloatField(null=True,blank=True)
     hospital = models.CharField(null=True,blank=True,max_length=50)
     address = models.CharField(null=True,blank=True,max_length=50)
 

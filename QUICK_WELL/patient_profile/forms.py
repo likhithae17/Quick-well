@@ -30,7 +30,6 @@ class profile_update(forms.ModelForm):
         fields = ('username', 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country', 'zipcode',
                   'photo')
 
-
 class Patient_Update_Form(UserChangeForm):
     class Meta:
         model = user_profile
