@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html>
-<body>
 
-<h2>video_conference request</h2>
+{% extends 'video_conference/base.html' %}
+{% block title %}Video_conference request{% endblock %}
 
+{% block body %}
 <form method="POST" action="">
   {%csrf_token%}
   Email:<br>
@@ -15,7 +14,4 @@
   <input type="submit" value="Request">
 </form>
 
-
-
-</body>
-</html>
+{% endblock %}
