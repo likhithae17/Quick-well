@@ -251,96 +251,14 @@
   <h3>QUICKWELL - QUALITY CARE</h3>
   <p><em>Welcome to the medical services you can trust.</em></p>
   <p> </p>
-  <br>
+
 
 </div>
 
-
-
-        <div class="container">
-            <div class="row">
-                <!-- Single Cool Fact-->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-cool-fact-area text-center mb-100">
-                        <i class='fas fa-vial' style='font-size:100px;color: #2aabd2'></i>
-                        <h2><span class="counter">5632</span></h2>
-                        <h6>Lab Tests</h6>
-                        <p></p>
-                    </div>
-                </div>
-                <!-- Single Cool Fact-->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-cool-fact-area text-center mb-100">
-                        <i class='fas fa-heartbeat' style='font-size:100px;color:#2aabd2'></i>
-                        <h2><span class="counter">23</span>k</h2>
-                        <h6>Patients</h6>
-                        <p></p>
-                    </div>
-                </div>
-                <!-- Single Cool Fact-->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-cool-fact-area text-center mb-100">
-                        <i class='fas fa-microscope' style='font-size:100px;color:#2aabd2'></i>
-                        <h2><span class="counter">25</span></h2>
-                        <h6>Specialities</h6>
-                        <p></p>
-                    </div>
-                </div>
-                <!-- Single Cool Fact-->
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="single-cool-fact-area text-center mb-100">
-                        <i class='fas fa-user-md' style='font-size:100px;color: #2aabd2'></i>
-                        <h2><span class="counter">723</span></h2>
-                        <h6>Doctors</h6>
-                        <p></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-  <!-- Modal -->
-
-</div>
-
-<!-- Container (Contact Section) -->
-
-
-<!-- Footer -->
+</body>
 <footer class="text-center">
 </footer>
 
-<script>
-$(document).ready(function(){
-  // Initialize Tooltip
-  $('[data-toggle="tooltip"]').tooltip();
-
-  // Add smooth scrolling to all links in navbar + footer link
-  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
-
-    // Make sure this.hash has a value before overriding default behavior
-    if (this.hash !== "") {
-
-      // Prevent default anchor click behavior
-      event.preventDefault();
-
-      // Store hash
-      var hash = this.hash;
-
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 900, function(){
-
-        // Add hash (#) to URL when done scrolling (default click behavior)
-        window.location.hash = hash;
-      });
-    } // End if
-  });
-})
-</script>
-
-</body>
 <body>
 
 {% block content %}

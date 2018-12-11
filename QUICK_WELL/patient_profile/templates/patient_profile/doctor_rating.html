@@ -1,0 +1,45 @@
+{% load static %}
+
+<html lang="en" dir="ltr">
+<head></head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta charset="utf-8">
+
+
+<div>
+    <h2>Doctor name</h2>
+</div>
+{% if doc_id %}
+    {% for k in doc_id %}
+        <div class="jumbotron">
+        Doctor:{{ k.doc_photo }}<br>
+        Name:{{ k.firstname }}{{ k.lastname }}<br>
+        Experience:{{ k.experience }}<br>
+        Specialization:{{ k.specialization }}<br>
+        Hospital:{{ k.hospital }}<br>
+    {% endfor %}
+{% endif %}
+</div>
+
+{% if rating %}
+    {% for k in rating %}
+        <div class="jumbotron">
+        Rating:{{k.rating__avg}}
+    {% endfor %}
+{% endif %}
+</div>
+
+
+
+{% if comment %}
+    {% for k in comment %}
+        <div class="jumbotron">
+       comment: {{ k.comment }}
+    {% endfor %}
+{% endif %}
+</div>
+
+
+</div>
+</body>
+</html>

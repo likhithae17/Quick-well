@@ -5,7 +5,7 @@
     <title>Mail conformation</title>
 </head>
 <body>
-    <form action="http://127.0.0.1:8000/temp/verify/" method="POST">
+    <form action="http://127.0.0.1:8000/patient_profile/verify/" method="POST">
         {% csrf_token %}
         <pre>Enter the otp:<input type="text" value="" name="otp1">
                     <input type="hidden" name="otpc" value="{{ otpc }}">

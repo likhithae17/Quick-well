@@ -1,18 +1,39 @@
-from django.shortcuts import render, redirect
+<<<<<<< HEAD
+
+=======
+>>>>>>> 56a47f6a0f60771243e717bb6e743a8476e72fe4
+from django.shortcuts import render, redirect, get_object_or_404
 from home.models import user_profile
 from home.models import user_reports
 #from ..docapp.models import Appointment
 from . import forms
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
-from .forms import Signup_form
+from .forms import Signup_form, profile_update
+<<<<<<< HEAD
+
+=======
+>>>>>>> 56a47f6a0f60771243e717bb6e743a8476e72fe4
+from django.shortcuts import render, redirect
+from home.models import *
+from django.db.models import Avg, IntegerField
+from . import forms
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.forms import AuthenticationForm
+from .forms import Signup_form, Patient_Update_Form, passwordchange, ReviewForm
+<<<<<<< HEAD
+
+=======
+>>>>>>> 56a47f6a0f60771243e717bb6e743a8476e72fe4
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login, logout as out
-#from django.contrib.auth import update_session_auth_hash
+from django.template.loader import render_to_string
+from django.contrib.auth import update_session_auth_hash
 import random
 
 def signup_view(request):
+    registered = False
     if request.method == 'POST':
         form = Signup_form(request.POST)
         if form.is_valid():
@@ -20,14 +41,38 @@ def signup_view(request):
             otp = random.randint(100000, 999999)
             # Mail(request, form.email)
             send_mail("hello patient", str(otp), "quickwelldoctor@gmail.com", [form1.email])
-            return redirect("home:home")
+            otpc = otp + 2
+            registered = True
+            # return redirect("home:home")
             #return HttpResponse("registered")
         else:
             print(form.errors)
             return HttpResponse(form.errors)
     else:
         form = Signup_form()
-    return render(request, 'patient_profile/signup.html', {'form': form})
+
+    if registered:
+        request.session['username'] = form.cleaned_data.get('username')
+        return render(request, 'patient_profile/registration/mailconformation.html', {'otpc': otpc})
+    else:
+        return render(request, 'patient_profile/signup.html', {'form': form})
+
+    # return render(request, 'patient_profile/signup.html', {'form': form})
+def mail_conf(request):
+    if request.method=='POST':
+        otpc = int(request.POST['otpc'])
+        otp1 = str(request.POST['otp1'])
+        otpc = otpc - 2
+        otpc = str(otpc)
+        if otpc == otp1:
+            return HttpResponse("mail verified")
+        else:
+            username = request.session['username']
+            dele = username.objects.get(username=username)
+            dele.delete()
+            return HttpResponse("mail unverified")
+    else:
+        return HttpResponse('404 error')
 
 
 def login(request):
@@ -66,6 +111,8 @@ def view_profile(request):
             context['dask'] = 1
         elif str(request.GET.get('reports')) == "reports":
             context['dask1'] = 1
+        elif str(request.GET.get('appointment')) == "appointment":
+            context['dask2'] = 1
         return render(request, 'patient_profile/test.html', context)
     else:
         uname = request.user
@@ -77,53 +124,48 @@ def view_profile(request):
 def reports(request):
     if request.method== "GET":
         uname = request.user
-        print("hello",uname)
+        print("hello", uname)
         viewreports = user_reports.objects.filter(username=uname)
         context = {'reports': viewreports}
         context['dask1'] = 1
-        print('hello',context)
+        print('hello', context)
         return render(request, 'patient_profile/test.html', context)
     else:
-        uname = request.user
+        uname = request.user.username
         print('working', uname)
         viewreports = user_reports.objects.get(username=uname)
         return render(request, 'patient_profile/test.html', {'reports': viewreports})
 
-# @login_required(login_url="http://127.0.0.1:8000/patient_profile/login/")
-# def reviewtext(request,pk):
-#     prod = Food_items.objects.get(Food_id=pk)
-#     if request.method == 'POST':
-#         form = writereview(request.POST)
-#         if form.is_valid():
-#                 content = request.POST.get('content')
-#                 rating  = request.POST.get('rating')
-#                 d=item_review.objects.all()
-#                 for i in d:
-#                     if i.customer==request.user and i.product==prod:
-#                         i.rating=rating;i.content=content
-#                         i.save()
-#
-#
-#                 prod.rating = ((prod.rating * prod.No_of_reviews) + int(rating)) / (prod.No_of_reviews + 1);
-#
-#                 prod.No_of_reviews=prod.No_of_reviews+1
-#                 prod.save()
-#                 return redirect('/'+str(pk)+'/')
-#     else:
-#         form = writereview()
-#     return render(request, 'Homepage/writereview.html', {'form': form})
-#
+def appointment1(request):
+    uname = request.user
+    viewappointment = Appointment.objects.filter(user_name=uname)
+    profile = user_profile.objects.get(username=uname)
+    #return HttpResponse("app")
+    return render(request, 'patient_profile/app.html', {'appointment': viewappointment, 'details': profile})
 
+def labtest(request):
+    uname = request.user
+    viewlab_test = LabTest.objects.filter(user_name=uname)
+    profile = user_profile.objects.get(username=uname)
+    # return HttpResponse("app")
+    return render(request, 'patient_profile/lab_test.html', {'lab_test': viewlab_test, 'details': profile})
+
+
+
+@login_required(login_url="http://127.0.0.1:8000/patient_profile/login/")
 def create(request):
     if request.method == "POST":
         form = forms.profile(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect("/patient_profile/details/")
+        else:
+            print(form.errors)
     else:
         form = forms.profile()
     return render(request, 'patient_profile/profile.html', {'form': form})
 
+@login_required(login_url="http://127.0.0.1:8000/patient_profile/login/")
 def upload(request):
     if request.user.username == "lab_admin":
         if request.method == "POST":
@@ -137,6 +179,62 @@ def upload(request):
         return render(request, 'patient_profile/upl_lab.html', {'form1': form})
     return HttpResponse("you have no privilage")
 
+def patient_update(request):
+    temp = 1
+    pat = get_object_or_404(user_profile, username=request.user)
+    if request.method == 'POST':
+        prof_form = profile_update(request.POST, instance=request.user or None)
+        if prof_form.is_valid():
+            prof_form.save()
+            return HttpResponse("done")
+    else:
+        prof_form = profile_update(instance=request.user)
+    return render(request, 'patient_profile/profile_update.html', {'prof_form': prof_form, 'temp': temp, 'pat': pat})
+
+
+
+
+
+def change_password(request):
+    if request.method == 'POST':
+        change_form = passwordchange(data=request.POST, user=request.user)
+        if change_form.is_valid():
+            change_form.save()
+            update_session_auth_hash(request, change_form.user)
+            return HttpResponse('Done')
+    else:
+        change_form = passwordchange(user=request.user)
+    return render(request, 'accounts/changepassword.html', {'change_form': change_form})
+
+
+@login_required(login_url="http://127.0.0.1:8000/patient_profile/login/")
+def reviews(request):
+    rate = User_Review.objects.all()
+    if request.method == 'POST':
+        f = ReviewForm(request.POST)
+        review_details = User_Review.objects.order_by('review_date')
+        if f.is_valid():
+            F= f.save(commit=False)
+            try:
+                obj1 = User_Review.objects.get( client_accountid=F.patient_id,  doctorid=F.doc_id)
+                obj1.rating = F.rating
+                obj1.review_date = F.review_date
+                obj1.comment = F.comment
+                obj1.save()
+            except:
+                F.save()
+        a = []
+        doctor = Doctor.objects.all()
+        count = Doctor.objects.all().count()
+        for i in range(0, count):
+            b = User_Review.objects.filter(doc_id=doctor[i]).aggregate(Avg('rating', output_field=IntegerField()))
+            a.append(b)
+        print(a)
+
+        return render(request, 'patient_profile/doctor_rating.html', {'doc_id': doctor, 'rating': a, 'comment': rate})
+    else:
+        f = ReviewForm()
+        return render(request, 'patient_profile/review.html', {'form': f})
 
 '''
 def change_password(request):
