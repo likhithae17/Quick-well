@@ -1,5 +1,5 @@
 from django.core.mail import send_mail, EmailMessage
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
@@ -8,6 +8,7 @@ import webbrowser
 import os
 from .forms import *
 from .models import *
+from home.models import *
 
 
 def requester(request):
@@ -35,6 +36,32 @@ def Mail(request):
     for i in range(0,len(lis)):
         res = send_mail("Health Tips", "Today's health tip : drink 8 cups of water minimum a day.", "qucikwelldoctor@gmail.com", [lis[i]])
     return HttpResponse('tip sent')
+
+
+def new_request(request):
+    return render(request,'video_conference/newrequest_p.html',{})
+
+
+def search(request):
+    query = request.POST['query123']
+    temp = str(query).upper()
+    k=0
+    for doc in Doctor.objects.all():
+        if doc.firstname.upper() == temp:
+            k = doc.id
+            print()
+            print("media/" + str(doc.doc_photo))
+            print()
+    if(k==0):
+        context = {
+            'found_status' : False,
+        }
+    else:
+        context = {
+            'found_status' : True,
+            'doctor' : get_object_or_404(Doctor,id=k),
+        }
+    return render(request,'video_conference/result.html',context)
 '''
 def email_one(request):
     subject = "I am a text email"
