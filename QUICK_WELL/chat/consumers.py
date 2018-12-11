@@ -22,7 +22,9 @@ class ChatConsumer(WebsocketConsumer):
         author_user = User.objects.filter(username=author)[0]
         message = Message.objects.create(
             author=author_user,
-            content=data['message'])
+            content=data['message'],
+            roomname=data['roomname']
+        )
         content = {
             'command': 'new_message',
             'message': self.message_to_json(message)
@@ -36,12 +38,14 @@ class ChatConsumer(WebsocketConsumer):
         return result
 
     def message_to_json(self, message):
-        return {
-            'id': message.id,
-            'author': message.author.username,
-            'content': message.content,
-            'timestamp': str(message.timestamp)
-        }
+        if(str(message.roomname)==str(self.room_name)):
+            return {
+                'id': message.id,
+                'author': message.author.username,
+                'content': message.content,
+                'timestamp': str(message.timestamp),
+                'roomname':message.roomname,
+            }
 
     commands = {
         'fetch_messages': fetch_messages,

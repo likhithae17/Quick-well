@@ -16,6 +16,7 @@ import random
 import string
 from datetime import date
 import datetime
+from django.core.mail import send_mail
 
 def generate_order_id():
     date_str = date.today().strftime('%Y%m%d')[2:] + str(datetime.datetime.now().second)
@@ -131,7 +132,7 @@ def checkout(request, order_id):
     # order_items = order_to_purchase.items.all()
     order_purchased.update(is_ordered=True)
     order_purchased.update(date_ordered=datetime.datetime.now())
-
+    send_mail("Your quickwell.com order has been confirmed","Thankyou for shopping at Quickwell!!...you will receive your order in 3 days","quickwelldoctor@gmail.com", [order_purchased[0].email])
 
     context = {
         'order': order_purchased[0],
@@ -181,10 +182,12 @@ def order_details(request, **kwargs):
 @login_required(login_url='/med/login')
 def checked(request, **kwargs):
     user_profile1 = get_object_or_404(user_profile, username=request.user)
+
     order = Order.objects.filter(user=user_profile1, is_ordered=True)
     context = {
         'order': order
     }
+
     return render(request, 'med/order_checked.html', context)
 
 
