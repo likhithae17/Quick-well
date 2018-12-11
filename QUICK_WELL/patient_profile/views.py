@@ -167,9 +167,9 @@ def upload(request):
 
 def patient_update(request):
     temp = 1
-    pat = get_object_or_404(user_profile, user=request.user)
+    pat = get_object_or_404(user_profile, username=request.user)
     if request.method == 'POST':
-        prof_form = profile_update(request.POST, instance=request.user.username or None)
+        prof_form = profile_update(request.POST, instance=pat or None)
         if prof_form.is_valid():
             prof_form.save()
             return HttpResponse("done")
@@ -179,15 +179,15 @@ def patient_update(request):
 
 
 
-def patient_update(request):
-    if request.method == 'POST':
-        patient_form = Patient_Update_Form(request.POST, instance=request.user or None)
-        if patient_form.is_valid():
-            patient_form.save()
-            return HttpResponse("done")
-    else:
-        patient_form = Patient_Update_Form(instance=request.user)
-    return render(request, 'patient_profile/edit_profile.html', {'patient_form': patient_form})
+# def patient_update(request):
+#     if request.method == 'POST':
+#         patient_form = Patient_Update_Form(request.POST, instance=request.user or None)
+#         if patient_form.is_valid():
+#                   p patient_form.save()
+#             return HttpResponse("done")
+#     else:
+#         patient_form = Patient_Update_Form(instance=request.user)
+#     return render(request, 'patient_profile/edit_profile.html', {'patient_form': patient_form})
 
 
 

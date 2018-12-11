@@ -14,7 +14,7 @@ class Signup_form(UserCreationForm):
 class profile(forms.ModelForm):
     class Meta:
         model = user_profile
-        fields = ( 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country', 'zipcode', 'photo')
+        fields = ( 'username', 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country', 'zipcode', 'photo')
 # =======
 #         fields = ('username', 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country', 'zipcode',
 #                   'photo',)
@@ -29,6 +29,8 @@ class profile_update(forms.ModelForm):
     class Meta:
         model = user_profile
         fields = ( 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country', 'zipcode', 'photo')
+
+
 class Patient_Update_Form(UserChangeForm):
     class Meta:
         model = user_profile
