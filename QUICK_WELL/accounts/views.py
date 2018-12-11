@@ -15,8 +15,8 @@ from django.contrib.sites.shortcuts import get_current_site
 
 import random
 
-def home(request):
-    return render(request, 'accounts/home.html')
+# def home(request):
+#     return render(request, 'accounts/home.html')
 
 def Mail(request,emailto):
    otp = random.randint(100000, 999999)
@@ -181,6 +181,7 @@ def doctor_update(request):
 
 def change_password(request):
     temp = 1
+    doc = get_object_or_404(Doctor, user=request.user)
     if request.method== 'POST':
         change_form = passwordchange(data=request.POST, user=request.user)
         if change_form.is_valid():
@@ -189,7 +190,7 @@ def change_password(request):
             return redirect('http://127.0.0.1:8000/login/home/')
     else:
         change_form=passwordchange(user=request.user)
-    return render(request, 'profile/includes/changepassword.html', {'change_form':change_form, 'temp':temp})
+    return render(request, 'profile/includes/changepassword.html', {'change_form':change_form, 'temp':temp, 'doc':doc})
 
 # def forgotemail(request):
 #     if request.method == 'POST':

@@ -41,8 +41,7 @@ height: 100%;
     </style>
 
 </head>
-
-<body background="static/call_background.jpg">
+<body background="{%  static 'call_background.jpg' %}">
 
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -83,9 +82,9 @@ height: 100%;
       <form role="form">
         <center>
 
-  <button type="submit"  style="margin:10% "   class="btn btn-danger">New Request</button><br>
+            <button type="submit"  style="margin:10% " class="btn btn-danger"><a href="{% url 'new_request' %}">New Request</a></button><br>
 
-  <button type="submit" class="btn btn-success">Requested Video Conference</button>
+            <button type="submit" class="btn btn-success">Requested Video Conference</button>
   </center>
 </form>
     </div>

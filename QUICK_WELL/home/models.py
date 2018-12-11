@@ -88,9 +88,6 @@ class LabTest(models.Model):
 
 
 class user_profile(models.Model):
-
-    username = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    username = models.OneToOneField(User, on_delete=models.PROTECT, null=True)
     username = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=150)
     age = models.IntegerField(null=True)
@@ -105,21 +102,10 @@ class user_profile(models.Model):
     zipcode = models.BigIntegerField()
     photo = models.ImageField(upload_to='media', blank=True)
 
+
 class user_reports(models.Model):
     username = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
     file = models.FileField(upload_to='media', blank=True)
-
-class User_Review(models.Model):
-    client_accountid = models.ForeignKey(user_profile, on_delete=models.PROTECT)
-    doc_id = models.ForeignKey(Doctor, on_delete=models.PROTECT)
-    is_anonymous = models.BooleanField(default=False)
-    wait_time_rating = models.FloatField(null=True)
-    manner_rating = models.FloatField(null=True)
-    rating = models.FloatField(null=True)
-    review = models.CharField(max_length=500,null=True)
-    is_doc_recommended = models.BooleanField(default=True)
-    review_date = models.DateTimeField(default=datetime.datetime.now())
-    comment = models.CharField(max_length=500, null=True)
 
 class Appointment_Status(models.Model):
     status = models.CharField(max_length=20)
@@ -150,6 +136,7 @@ class labAppointment(models.Model):
     #appoint_status_id = models.ForeignKey(Appointment_Status, on_delete=models.PROTECT)
 
 
+
 class fundraiser(models.Model):
     user_name = models.ForeignKey(user_profile, on_delete=models.PROTECT)
     category = models.CharField(max_length=50)
@@ -159,6 +146,11 @@ class fundraiser(models.Model):
     beneficiary_relation = models.CharField(max_length=25)
     Fundraiser_story = models.TextField()
     End_date = models.DateField()
+    photo = models.FileField(null=True)
+    account_number = models.BigIntegerField()
+    accountholder_name = models.CharField(max_length=50)
+    ifsc_code = models.CharField(max_length=10)
+
 
 class Medicine(models.Model):
     name = models.CharField(max_length=100)
@@ -183,30 +175,25 @@ class PurchaseItem(models.Model):
     date_ordered = models.DateTimeField(null=True)
 
 
-
-
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     medicine = models.ManyToManyField(Medicine, blank=True)
-    first_name = models.CharField(max_length=100, default='0000000')
-    last_name = models.CharField(max_length=100, default='0000000')
-    email = models.CharField(max_length=100, default='0000000', null=True)
-    address = models.CharField(max_length=1000, blank=True)
-    city = models.CharField(max_length=200, blank=False, default='')
-
-
-
-def create_profile(sender, **kwargs):
-    if kwargs['created']:
-        user_profile = UserProfile.objects.create(user=kwargs['instance'])
-
-
-post_save.connect(create_profile, sender=User)
-
+    name = models.CharField(max_length=150)
+    age = models.IntegerField(null=True)
+    dob = models.DateField(null=True)
+    email = models.CharField(max_length=150)
+    contact_number = models.BigIntegerField(null=False)
+    address = models.CharField(max_length=500)
+    city = models.CharField(max_length=100)
+    district = models.CharField(max_length=100, null=True)
+    state = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
+    zipcode = models.BigIntegerField()
+    photo = models.ImageField(upload_to='media', blank=True)
 
 class Order(models.Model):
     ref_code = models.CharField(max_length=15)
-    user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(user_profile, on_delete=models.SET_NULL, null=True)
     items = models.ManyToManyField(PurchaseItem)
     is_ordered = models.BooleanField(default=False)
     date_ordered = models.DateTimeField(null=True)
@@ -228,15 +215,28 @@ class Order(models.Model):
             sum = sum + ((item.medicine.price)*(item.quantity))
         return sum
 
-    def get_estimated_date(self):
-        date1 = self.date_ordered;
-        date1 = date1 + datetime.timedelta(days=3);
-        return date1
 
 class otp_verify(models.Model):
     name=models.CharField(max_length=50)
     otp=models.IntegerField(default=0)
 
+    def get_estimated_date(self):
+        date1 = self.date_ordered;
+        date1 = date1 + datetime.timedelta(days=3);
+        return date1
 
-    def __str__(self):
-        return '{}'.format(self.name)
+
+
+class User_Review(models.Model):
+    client_accountid = models.ForeignKey(user_profile, on_delete=models.PROTECT)
+    doc_id = models.ForeignKey(Doctor, on_delete=models.PROTECT)
+    is_anonymous = models.BooleanField(default=False)
+    wait_time_rating = models.FloatField(null=True)
+    manner_rating = models.FloatField(null=True)
+    rating = models.FloatField(null=True)
+    review = models.CharField(max_length=500,null=True)
+    is_doc_recommended = models.BooleanField(default=True)
+    review_date = models.DateTimeField(default=datetime.datetime.now())
+    comment = models.CharField(max_length=500, null=True)
+
+
