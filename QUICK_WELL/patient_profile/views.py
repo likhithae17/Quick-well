@@ -8,12 +8,12 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from .forms import Signup_form, profile_update
 from django.shortcuts import render, redirect
 from home.models import *
-from home.models import user_profile, LabTest, Appointment, User_Review, Doctor, user_reports, labAppointment, Medicine
+from home.models import user_profile, LabTest, Appointment, Doctor, user_reports, labAppointment, Medicine
 from django.db.models import Avg, IntegerField
 from . import forms
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import Signup_form,  passwordchange, ReviewForm
+from .forms import Signup_form,  passwordchange
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login, logout as out
@@ -54,7 +54,7 @@ def mail_conf(request):
         otpc = otpc - 2
         otpc = str(otpc)
         if otpc == otp1:
-            return HttpResponse("mail verified")
+            return redirect("http://127.0.0.1:8000/")
         else:
             username = request.session['username']
             dele = username.objects.get(username=username)

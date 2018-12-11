@@ -55,7 +55,7 @@
       border-color: #f1f1f1;
   }
   .carousel-inner img {
-      {#-webkit-filter: grayscale(90%);#}
+      /*{#-webkit-filter: grayscale(90%);#}*/
       width: 100%; /* Set width to 100% */
       margin: auto;
       height: 700px;
@@ -127,12 +127,12 @@
   .navbar {
       font-family: Montserrat, sans-serif;
       margin-bottom: 0;
-      {#background-color: #2b669a;#}
+      /*background-color: #2b669a;*/
       background: -webkit-linear-gradient(to right, #3573A9, #00002C);
       background: linear-gradient(to right, #3573A9, #00002C);
       border: 0;
       font-size: 15px !important;
-      {#letter-spacing: 1px;#}
+      /*letter-spacing: 1px;*/
       opacity: 0.8;
       padding-top: 10px;
       padding-bottom: 10px;
@@ -232,9 +232,9 @@ text-align: center;
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="appointment/index/"><span class="fa fa-ambulance" aria-hidden="true" ></span>&nbspBook an Appointment</a></li>
-        <li><a href="med/"><span class="fa fa-medkit" aria-hidden="true"></span>&nbspOrder Medicines</a></li>
-        <li onclick="myfunction()"><a href="chat/">Chat with a doctor</a></li>
+        <li><a href="{% url 'docapp:index' %}"><span class="fa fa-ambulance" aria-hidden="true" ></span>&nbspBook an Appointment</a></li>
+        <li><a href="{% url 'med:index' %}"><span class="fa fa-medkit" aria-hidden="true"></span>&nbspOrder Medicines</a></li>
+        <li><a href="{% url 'chat:index' %}">Chat with a doctor</a></li>
         <li><a href="video_conference/">Video Call</a></li>
           <li><a href="patient_profile/login/">Signin/Signup</a></li>
         <li class="dropdown">
@@ -244,15 +244,12 @@ text-align: center;
 
 
               <li><a href="patient_profile/create/">Create/View Profile</a></li>
-
               <li><a href="patient_profile/upload/">Upload</a></li>
-              <li><a href="forum/">Forum</a></li>
-              <li><a href="#">Media</a></li>
               <li><a href="funding/">Funding</a></li>
+
               <li><a href="lab/index/">Book lab tests</a></li>
             <li><a href="http://127.0.0.1:8000/forum/">Forum</a></li>
               <li><a href="patient_profile/logout/">Logout</a></li>
-
           </ul>
         </li>
       </ul>
@@ -438,7 +435,7 @@ text-align: center;
         <div class="carousel-caption" style="padding-bottom: 120px">
             <p style=" font-size: 30px; color: white; letter-spacing: 0px;  font-weight: lighter; line-height: 40px;" ><strong>"&nbsp;&nbsp;</strong><em>Very easy to book and maintain history. Hassle free from older versions of booking appointment via telephone. User Interface is amazing. Thanks QuickWell for making it simple</em><strong>&nbsp;&nbsp;"</strong></p>
 
-          <p style="color: #49C7EC;font-size: 40px; padding-top: 20px"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Vasundhara Singh</p>
+          <p style="color: #49C7EC;font-size: 40px; padding-top: 20px"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Nick bateman</p>
         </div>
       </div>
 
@@ -447,7 +444,7 @@ text-align: center;
         <div class="carousel-caption" style="padding-bottom: 150px">
           <p style=" font-size: 30px; color: white; letter-spacing: 0px;  font-weight: lighter; line-height: 40px;" ><strong>"&nbsp;&nbsp;</strong><em>Boon for patients. Well thought about features of booking as well as cancelling an appintment. Ordering medicines has also been made simpler and faster.</em><strong>&nbsp;&nbsp;"</strong></p>
 
-          <p style="color: #49C7EC;font-size: 40px; padding-top: 20px"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Chethna Mendon</p>
+          <p style="color: #49C7EC;font-size: 40px; padding-top: 20px"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Likhita Emaddi</p>
         </div>
       </div>
 
@@ -456,7 +453,7 @@ text-align: center;
         <div class="carousel-caption" style="padding-bottom: 150px">
           <p style=" font-size: 30px; color: white; letter-spacing: 0px;  font-weight: lighter; line-height: 40px;" ><strong>"&nbsp;&nbsp;</strong><em>Good Initiative, very user-friendly. We can ask a doctor anytime about any health-related queries. One of my best online consultation experiences so far!</em><strong>&nbsp;&nbsp;"</strong></p>
 
-          <p style="color: #49C7EC;font-size: 40px; padding-top: 20px"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Riya Jain</p>
+          <p style="color: #49C7EC;font-size: 40px; padding-top: 20px"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Srishti Ranjan</p>
         </div>
     </div>
    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">

@@ -47,13 +47,3 @@ class DoctorForm(ModelForm):
         model = Doctor
         fields = ['pub_date','doctor_name']
 
-
-class ReviewForm(ModelForm):
-    class Meta:
-        model = Review
-        exclude = ('pub_date','likes')
-        widgets = {
-            'comment': Textarea(attrs={'class':'comment'}),
-        }
-
-

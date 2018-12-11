@@ -18,6 +18,7 @@ urlpatterns = [
 #    url(r'changepassword', views.change_password, name='changepassword'),
     # url(r'login/changepassword',views.change_password, name='changepassword'),
 
+
     url(r'login/changepassword',views.change_password, name='changepassword'),
     url(r'^logout/$', auth_views.LogoutView.as_view(template_name=''), name="logout"),
     url(r'^signup4/$', views.register, name="signup4"),
