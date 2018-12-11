@@ -154,7 +154,7 @@
 
     <br><br>
     {% for doc in doctor %}
-    <div class="row" style="margin: auto;padding-left: 50px" >
+    <div class="row" style="margin: auto;padding-left: 50px;padding-bottom: 30px" >
         <div class="col-sm-4 col-xs-12">
             <div class="panel panel-default">
 
@@ -162,11 +162,7 @@
                     <table class="table no-border">
                         <tr>
                             <td>
-                                {% if doc.doc_photo %}
-                                    <img  src="{{ doc.doc_photo.url }}" height="100" width="100"/>
-                                {% else %}
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvbZce8PCEuRg737ca11EXEzzAn0Qmj2HSYg8hfp0-1k13Enc1sg" height="100" width="100"/>
-                                {% endif %}
+                                <img  src="{{ doc.doc_photo.url }}" height="100" width="100"/>
                             </td>
                             <td>
                                 <p>{{ doc.specialization }}</p>
@@ -185,6 +181,8 @@
     </div>
     {% empty %}
             <h4>Sorry, Nothing found with name "{{ request.GET.q }}"</h4>
+
+
     {% endfor %}
 
 

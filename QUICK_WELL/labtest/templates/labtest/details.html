@@ -6,18 +6,20 @@
 
     <div class="container">
         <br><br>
-        {% if lab.lab_photo %}
-            <img src={{ lab.lab_photo }}/>
-        {% else %}
-            <img src="https://foodsafetynewsfullservice.marlersites.com/files/2016/04/laboratorytesting-406.jpg" height="200" width="200"/>
-        {% endif %}
-
+        {% for lab in lab %}
+            <img src="{{ lab.lab_photo.url }}" height="150" width="150"/>&nbsp;&nbsp;
+        {% endfor %}
+        <br>
         <div style="font-size: 20px">
+            <br>
             <p><b>Test Name :</b> {{ test.test_name }}</p>
-            <p><b>Lab name : </b>{{ lab.lab_name }}</p>
-            <p><b>Procedure :</b> {{ test.procedure }}</p>
-            <p><b>Preparation : </b>{{ test.preparation }}</p>
+            <p><b>Test is available in the labs : </b></p>
+            {% for lab in lab %}
+                {{ lab.lab_name }}
+            {% endfor %}
             <p><b>Cost : </b><i class="fa fa-rupee"></i> {{ test.cost }}</p>
+            <p><b>Description :</b> {{ test.procedure }}</p>
+            <p><b>Preparation : </b>{{ test.preparation }}</p>
         </div>
     </div>
 {% endblock %}
