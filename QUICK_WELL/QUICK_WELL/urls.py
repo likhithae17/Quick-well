@@ -34,9 +34,11 @@ urlpatterns = [
     path('med/', include('med.urls')),
     #path('credits/', include('credits.urls')),
     path('lab/', include('labtest.urls')),
+    path('funding/',include('funding.urls')),
+    path('advertisements/', include('advertisements.urls')),
     path('video_conference/', include('video_conference.urls')),
-    path('funding/', include('funding.urls')),
     path('', include('django.contrib.auth.urls')),
+
 
 ]
 urlpatterns += staticfiles_urlpatterns()

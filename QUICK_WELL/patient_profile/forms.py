@@ -14,30 +14,21 @@ class Signup_form(UserCreationForm):
 class profile(forms.ModelForm):
     class Meta:
         model = user_profile
-#         fields = ( 'username', 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country', 'zipcode', 'photo')
-        fields = ('username', 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country','zipcode', 'photo')
-#
-#         fields = ( 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country', 'zipcode', 'photo')
-#         fields = ('username', 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country', 'zipcode',
-#                   'photo',)
+        fields = ('username', 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country',
+                  'zipcode', 'photo')
+
 
 class upload(forms.ModelForm):
     class Meta:
         model = user_reports
         fields = ('username', 'file')
 
+
 class profile_update(forms.ModelForm):
     class Meta:
         model = user_profile
         fields = ('username', 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country', 'zipcode',
                   'photo')
-
-# class profile_update(forms.ModelForm):
-#     class Meta:
-#         model = user_profile
-#         fields = ( 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country', 'zipcode', 'photo')
-# <<<<<<< HEAD
-
 
 class Patient_Update_Form(UserChangeForm):
     class Meta:
@@ -56,6 +47,4 @@ class ReviewForm(forms.ModelForm):
         widgets = {
             'comment': Textarea(attrs={'cols': 40, 'rows': 15}),
         }
-# =======
-#         }
-# >>>>>>> 56a47f6a0f60771243e717bb6e743a8476e72fe4
+

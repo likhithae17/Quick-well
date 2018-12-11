@@ -1,7 +1,6 @@
 import datetime
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
 from django.forms import ModelForm, DateInput, TimeInput, TextInput, EmailInput, forms
 from home.models import Appointment
 
@@ -19,7 +18,6 @@ class AppointmentForm(ModelForm):
 
         helper = FormHelper()
         helper.form_method = 'POST'
-        #helper.add_input(Submit('Confirm Appointment', 'Confirm Apointment', css_class='btn-primary'))
 
 
 def clean_date(self):

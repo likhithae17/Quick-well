@@ -11,7 +11,7 @@ from datetime import date
 
 
 class Doctor(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     firstname = models.CharField(max_length=150)
     lastname = models.CharField(max_length=150)
     experience = models.IntegerField(null=True)
@@ -19,8 +19,8 @@ class Doctor(models.Model):
    # email_id = models.CharField(max_length=150,null=True,blank=True)
     phone_num = models.BigIntegerField(null=True,blank=True)
     #previous_hospitals = models.CharField(max_length=300,null=True)
-    specialization = models.CharField(max_length=150)
-    fee = models.IntegerField(null=True,blank=True)
+    specialization = models.CharField(max_length=150,null=True)
+    fee = models.FloatField(null=True,blank=True)
     hospital = models.CharField(null=True,blank=True,max_length=50)
     address = models.CharField(null=True,blank=True,max_length=50)
 
@@ -88,7 +88,7 @@ class LabTest(models.Model):
 
 
 class user_profile(models.Model):
-    username = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
+    username = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=150)
     age = models.IntegerField(null=True)
     dob = models.DateField(null=True)

@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'channels',
     'chat',
+    'selenium',
     # Machina related apps:
     'mptt',
     'haystack',
@@ -59,10 +60,11 @@ INSTALLED_APPS = [
     'ads',
     #'sekizai',
     'crispy_forms',
-    'labtest.apps.LabtestConfig',
+    'labtest',
     'video_conference',
     'med',
     'funding',
+    'advertisements',
 
 ] + get_machina_apps()
 

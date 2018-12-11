@@ -6,7 +6,9 @@ from . import forms
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from .forms import Signup_form, profile_update
-# from django.shortcuts import render, redirect
+
+
+from django.shortcuts import render, redirect
 from home.models import *
 from django.db.models import Avg, IntegerField
 from . import forms
@@ -171,11 +173,7 @@ def patient_update(request):
     temp = 1
     pat = get_object_or_404(user_profile, username=request.user)
     if request.method == 'POST':
-# <<<<<<< HEAD
         prof_form = profile_update(request.POST, instance=pat or None)
-# =======
-#         prof_form = profile_update(request.POST, instance=request.user or None)
-# >>>>>>> c169738fc3cee4124662d4dd5ac7626cd7886cfb
         if prof_form.is_valid():
             prof_form.save()
             return HttpResponse("done")
