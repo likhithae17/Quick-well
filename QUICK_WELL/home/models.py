@@ -42,49 +42,20 @@ class LabTest(models.Model):
     tests_available = models.ManyToManyField(Tests_info)
 
 
-# class Qualification(models.Model):
-#     doc_name = models.ManyToManyField(Doctor)
-#     qual_name = models.CharField(max_length=500)
-#     institute_name = models.CharField(max_length=500,null=True)
-#     procurement_year = models.DateField()
-#
-#
-# class Hospital_Affiliation(models.Model):
-#     doc_name = models.ManyToManyField(Doctor,default='')
-#     hosp_name = models.CharField(max_length=200)
-#     hosp_photo = models.CharField(max_length=500, null=True,blank=True)
-#     city = models.CharField(max_length=100,blank=True)
-#     country = models.CharField(max_length=100,blank=True)
-#     address = models.CharField(max_length=300,blank=True)
-#     start_date = models.DateField(blank=True)
-#     end_date = models.DateField(null=True,blank=True)
-#
-#     def __str__(self):
-#         return self.hosp_name
-#
-# class Office(models.Model):
-#     doc_id = models.ForeignKey(Doctor, on_delete=models.PROTECT,null=True,blank = True)
-#     hosp_affiliation_id = models.ForeignKey(Hospital_Affiliation, on_delete=models.PROTECT,null=True,blank=True)
-#     first_fee = models.FloatField(null=False)
-#     followup_fee = models.FloatField(null=False)
-#     street_address = models.CharField(max_length=500,blank=True)
-#     city = models.CharField(max_length=100,blank=True)
-#     state = models.CharField(max_length=100,blank=True)
-#     country = models.CharField(max_length=100,blank=True)
-#     zip = models.BigIntegerField(blank=True)
-#
-#     def __str__(self):
-#         return str(self.doc_id)
-#
-#
-# class Office_Docavailability(models.Model):
-#     office_id = models.ForeignKey(Office, on_delete=models.PROTECT)
-#     time_slot_per_patient = models.FloatField(null=True, blank=True)
-#     day = models.CharField(max_length=20)
-#     reason_unavailability = models.CharField(max_length=500,null=True,blank=True)
-#
-#     def __str__(self):
-#         return str(self.office_id)
+class user_profile(models.Model):
+    username = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    name = models.CharField(max_length=150)
+    age = models.IntegerField(null=True)
+    dob = models.DateField(null=True)
+    email = models.CharField(max_length=150)
+    contact_number = models.BigIntegerField(null=False)
+    address = models.CharField(max_length=500)
+    city = models.CharField(max_length=100)
+    district = models.CharField(max_length=100, null=True)
+    state = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
+    zipcode = models.BigIntegerField()
+    photo = models.ImageField(upload_to='media', blank=True)
 
 
 class user_reports(models.Model):
@@ -96,7 +67,7 @@ class Appointment_Status(models.Model):
 
 
 class Appointment(models.Model):
-    user_name = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
+    user_name = models.CharField(max_length=100, null=True)
     #client_accountid = models.ForeignKey(User, on_delete=models.PROTECT)
     doctor_id = models.ForeignKey(Doctor, on_delete=models.PROTECT, null=True)
     #start_time =  models.DateTimeField()
@@ -118,6 +89,22 @@ class labAppointment(models.Model):
     date = models.DateField(blank=True, null=True)
     time = models.TimeField(blank=True, null=True)
     #appoint_status_id = models.ForeignKey(Appointment_Status, on_delete=models.PROTECT)
+
+
+
+class fundraiser(models.Model):
+    user_name = models.ForeignKey(user_profile, on_delete=models.PROTECT)
+    category = models.CharField(max_length=50)
+    Title = models.CharField(max_length=60)
+    goal_amount = models.FloatField()
+    beneficiary_name = models.CharField(max_length=50)
+    beneficiary_relation = models.CharField(max_length=25)
+    Fundraiser_story = models.TextField()
+    End_date = models.DateField()
+    photo = models.FileField(null=True)
+    account_number = models.BigIntegerField()
+    accountholder_name = models.CharField(max_length=50)
+    ifsc_code = models.CharField(max_length=10)
 
 
 class Medicine(models.Model):
@@ -143,9 +130,8 @@ class PurchaseItem(models.Model):
     date_ordered = models.DateTimeField(null=True)
 
 
-
-class user_profile(models.Model):
-    username = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     medicine = models.ManyToManyField(Medicine, blank=True)
     name = models.CharField(max_length=150)
     age = models.IntegerField(null=True)
@@ -184,6 +170,11 @@ class Order(models.Model):
             sum = sum + ((item.medicine.price)*(item.quantity))
         return sum
 
+
+class otp_verify(models.Model):
+    name=models.CharField(max_length=50)
+    otp=models.IntegerField(default=0)
+
     def get_estimated_date(self):
         date1 = self.date_ordered;
         date1 = date1 + datetime.timedelta(days=3);
@@ -204,21 +195,3 @@ class User_Review(models.Model):
     comment = models.CharField(max_length=500, null=True)
 
 
-class fundraiser(models.Model):
-    user_name = models.ForeignKey(user_profile, on_delete=models.PROTECT)
-    category = models.CharField(max_length=50)
-    Title = models.CharField(max_length=60)
-    goal_amount = models.FloatField()
-    beneficiary_name = models.CharField(max_length=50)
-    beneficiary_relation = models.CharField(max_length=25)
-    Fundraiser_story = models.TextField()
-    End_date = models.DateField()
-
-
-class otp_verify(models.Model):
-    name=models.CharField(max_length=50)
-    otp=models.IntegerField(default=0)
-
-
-    def __str__(self):
-        return '{}'.format(self.name)
