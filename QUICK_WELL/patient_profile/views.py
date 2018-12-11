@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 56a47f6a0f60771243e717bb6e743a8476e72fe4
 from django.shortcuts import render, redirect, get_object_or_404
 from home.models import user_profile
 from home.models import user_reports
@@ -10,10 +6,7 @@ from . import forms
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from .forms import Signup_form, profile_update
-<<<<<<< HEAD
 
-=======
->>>>>>> 56a47f6a0f60771243e717bb6e743a8476e72fe4
 from django.shortcuts import render, redirect
 from home.models import *
 from django.db.models import Avg, IntegerField
@@ -21,10 +14,6 @@ from . import forms
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import Signup_form, Patient_Update_Form, passwordchange, ReviewForm
-<<<<<<< HEAD
-
-=======
->>>>>>> 56a47f6a0f60771243e717bb6e743a8476e72fe4
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login, logout as out
