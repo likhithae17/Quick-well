@@ -10,6 +10,7 @@ urlpatterns = [
     path('login/', views.login, name="patient_profile.login"),
     path('logout/', auth_views.LogoutView.as_view(template_name=''), name="patient_profile.logout"),
     path('edit/', views.patient_update, name="patient_update"),
+    path('verify/', views.mail_conf, name="patient_verify"),
     # path('change-password/', views.change_password, name="change_password"),
     path('details/', views.view_profile, name="patient_profile.details"),
     path('reports/', views.reports, name="patient_profile.reports"),

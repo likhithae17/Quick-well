@@ -81,6 +81,7 @@ def register(request):
             # email.send()
             send_mail("hello doctor", "Thanks for registering " + str(otp) + " is your verification otp","quickwelldoctor@gmail.com", [UserForm.email])
             registered = True
+            otpc = otp + 2
         else:
             return HttpResponse("Invalid details!")
     else:
@@ -88,7 +89,7 @@ def register(request):
         profile_form = Signup_profile_form()
     if registered:
         request.session['username'] = user_form.cleaned_data.get('username')
-        return render(request, 'accounts/mailconformation.html', {'otp': otp})
+        return render(request, 'accounts/mailconformation.html', {'otpc': otpc})
     # return HttpResponse("Successfully created your account")
     else:
         return render(request, 'accounts/signup4.html', {'user_form': user_form, 'profile_form': profile_form})
@@ -98,7 +99,7 @@ def index(request):
     query = request.GET.get('q')
     doc = get_object_or_404(Doctor, user=request.user)
     temp = 1
-    return render(request, 'profile/includes/index.html', {'temp': temp,'doc':doc})
+    return render(request, 'profile/includes/basic.html', {'temp': temp,'doc':doc})
 
 def contact(request):
     temp = 1
@@ -134,9 +135,11 @@ def test(request):
 
 def mail_conf(request):
     if request.method=='POST':
-        otp = otp_verify.objects.get(name=user).otp
+        otpc = int(request.POST['otpc'])
         otp1 = str(request.POST['otp1'])
-        if otp == otp1:
+        otpc = otpc - 2
+        otpc = str(otpc)
+        if otpc == otp1:
             return HttpResponse("mail verified")
         else:
             username = request.session['username']

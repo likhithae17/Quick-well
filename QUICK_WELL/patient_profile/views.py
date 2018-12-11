@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 56a47f6a0f60771243e717bb6e743a8476e72fe4
 from django.shortcuts import render, redirect, get_object_or_404
 from home.models import user_profile
 from home.models import user_reports
@@ -7,7 +10,10 @@ from . import forms
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from .forms import Signup_form, profile_update
+<<<<<<< HEAD
 
+=======
+>>>>>>> 56a47f6a0f60771243e717bb6e743a8476e72fe4
 from django.shortcuts import render, redirect
 from home.models import *
 from django.db.models import Avg, IntegerField
@@ -15,7 +21,10 @@ from . import forms
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import Signup_form, Patient_Update_Form, passwordchange, ReviewForm
+<<<<<<< HEAD
 
+=======
+>>>>>>> 56a47f6a0f60771243e717bb6e743a8476e72fe4
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login, logout as out
@@ -24,6 +33,7 @@ from django.contrib.auth import update_session_auth_hash
 import random
 
 def signup_view(request):
+    registered = False
     if request.method == 'POST':
         form = Signup_form(request.POST)
         if form.is_valid():
@@ -31,14 +41,38 @@ def signup_view(request):
             otp = random.randint(100000, 999999)
             # Mail(request, form.email)
             send_mail("hello patient", str(otp), "quickwelldoctor@gmail.com", [form1.email])
-            return redirect("home:home")
+            otpc = otp + 2
+            registered = True
+            # return redirect("home:home")
             #return HttpResponse("registered")
         else:
             print(form.errors)
             return HttpResponse(form.errors)
     else:
         form = Signup_form()
-    return render(request, 'patient_profile/signup.html', {'form': form})
+
+    if registered:
+        request.session['username'] = form.cleaned_data.get('username')
+        return render(request, 'patient_profile/registration/mailconformation.html', {'otpc': otpc})
+    else:
+        return render(request, 'patient_profile/signup.html', {'form': form})
+
+    # return render(request, 'patient_profile/signup.html', {'form': form})
+def mail_conf(request):
+    if request.method=='POST':
+        otpc = int(request.POST['otpc'])
+        otp1 = str(request.POST['otp1'])
+        otpc = otpc - 2
+        otpc = str(otpc)
+        if otpc == otp1:
+            return HttpResponse("mail verified")
+        else:
+            username = request.session['username']
+            dele = username.objects.get(username=username)
+            dele.delete()
+            return HttpResponse("mail unverified")
+    else:
+        return HttpResponse('404 error')
 
 
 def login(request):
