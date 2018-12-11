@@ -102,6 +102,7 @@ class user_profile(models.Model):
     zipcode = models.BigIntegerField()
     photo = models.ImageField(upload_to='media', blank=True)
 
+
 class user_reports(models.Model):
     username = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
     file = models.FileField(upload_to='media', blank=True)
@@ -156,6 +157,11 @@ class fundraiser(models.Model):
     beneficiary_relation = models.CharField(max_length=25)
     Fundraiser_story = models.TextField()
     End_date = models.DateField()
+    photo = models.FileField(null=True)
+    account_number = models.BigIntegerField()
+    accountholder_name = models.CharField(max_length=50)
+    ifsc_code = models.CharField(max_length=10)
+
 
 class Medicine(models.Model):
     name = models.CharField(max_length=100)
@@ -178,8 +184,6 @@ class PurchaseItem(models.Model):
     is_ordered = models.BooleanField(default=False)
     date_added = models.DateTimeField(null=True)
     date_ordered = models.DateTimeField(null=True)
-
-
 
 
 class UserProfile(models.Model):
@@ -215,6 +219,7 @@ class Order(models.Model):
         for item in self.items.all():
             sum = sum + ((item.medicine.price)*(item.quantity))
         return sum
+
 
 class otp_verify(models.Model):
     name=models.CharField(max_length=50)

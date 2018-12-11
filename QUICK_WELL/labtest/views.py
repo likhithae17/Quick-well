@@ -27,6 +27,7 @@ def detail(request,pk):
     lab = LabTest.objects.filter(tests_available__test_name__icontains=test)
     return render(request, 'labtest/details.html', {'lab':lab,'test':test})
 
+
 def labbook(request,pk):
     test = get_object_or_404(Tests_info, pk=pk)
     lab = LabTest.objects.filter(tests_available__test_name__icontains=test)
@@ -48,10 +49,10 @@ def labbook(request,pk):
             print(to_email)
             context = {
                 'name': user_name,
-                #'Appointment_id':appoint_no,
                 'time':time,
                 'date': date,
                 'test':test,
+                'appid': temp.id,
             }
             message = render_to_string('labtest/emailtxt.html', context)
             msg = EmailMessage(subject, message, to=[to_email])
@@ -70,3 +71,28 @@ def labbook(request,pk):
 
     return render(request, 'labtest/booking.html', {'form': form,'test':test,})
 
+
+def delete(request,pk):
+    appointment = get_object_or_404(labAppointment, pk=pk)
+    email_id = appointment.email_id;
+    context={
+        'test': appointment.test_id,
+        'name': appointment.user_name,
+        'time': appointment.time,
+        'date': appointment.date,
+    }
+    appointment.delete()
+    subject = "Appointment Cancelled"
+    to_email = email_id
+    print(to_email)
+    message = render_to_string('labtest/cancelemail.html', context)
+    msg = EmailMessage(subject, message, to=[to_email])
+    msg.content_subtype = 'html'
+
+    try:
+        msg.send()
+        print('Successful')
+    except:
+        print('Unsuccessful')
+
+    return render(request, 'labtest/cancel.html', context)

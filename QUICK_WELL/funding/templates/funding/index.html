@@ -1,11 +1,10 @@
 {% extends 'funding/base.html' %}
 
-{% block title %}Funding{% endblock %}
+{% block title %}{{ project.Title }}{% endblock %}
 {% block style %}
     .panel-heading{
     height: 200px;
     width:100%;
-    background-image: url(http://thecampuscareercoach.com/wp-content/uploads/2017/05/icon-human-services-L.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -59,23 +58,30 @@
 
         <div class="row" style="
         margin: 20px" >
-        {% for i in "111111" %}
+        {% for project in fundraiser %}
             <div class="col-sm-3 col-xs-10" style="padding: 30px">
                 <div class="panel panel-default text-center" style="border-radius: 0px">
 
-                    <div class="panel-heading">
+                    <div class="panel-heading" style="background-image: url({{ project.photo.url }});">
 
                     </div>
+
                     <div class="panel-body" style="padding-left: 0px">
-                        <div class="blockHead" ><span class="blocktext">Health</span></div>
-                        <p><br></p>
+                        <div class="blockHead" ><span class="blocktext">{{ project.category }}</span></div>
+                        <br>
+                        <p>{{ project.Title }}</p>
+                        <p>by {{ project.user_name.username }}</p>
+                        <p><a href="{% url 'funding:fullstory' project.id %}">Read full story</a></p>
+
                     </div>
+
                     <div class="panel-footer" style="background-color:white;">
                         <div class="progress">
                             <div class="progress-bar progress-bar-warning" role="progressbar"  style="width:40%">40%</div>
                         </div>
                         <button onclick="window.location=''" style="border-radius: 10px" class="btn btn-success active">Donate</button>
                     </div>
+
                 </div>
             </div>
         {% endfor %}
