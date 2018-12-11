@@ -90,9 +90,8 @@ class LabTest(models.Model):
 class user_profile(models.Model):
 
     username = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-
     username = models.OneToOneField(User, on_delete=models.PROTECT, null=True)
-
+    username = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=150)
     age = models.IntegerField(null=True)
     dob = models.DateField(null=True)

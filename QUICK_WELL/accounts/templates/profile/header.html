@@ -70,7 +70,7 @@
 
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-right">
-				<li>{% if temp == 1 %}<a href="#'"><span class="fa fa-ambulance" aria-hidden="true" ></span>&nbspBook an Appointment</a>{% else %}<a href="#'"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true" ></span>&nbsp Back</a>{% endif %}</li>
+				<li>{% if temp == 1 %}<a href="http://127.0.0.1:8000/appointment/index/"><span class="fa fa-ambulance" aria-hidden="true" ></span>&nbspBook an Appointment</a>{% else %}<a href="#'"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true" ></span>&nbsp Back</a>{% endif %}</li>
 				<li><a href="{% url 'med:index' %}"><span class="fa fa-medkit" aria-hidden="true"></span>&nbspOrder Medicines</a></li>
 				<li><a href="{% url 'chat:index' %}">Chat with a doctor</a></li>
 				<li><a href="#video call">Video Call</a></li>
