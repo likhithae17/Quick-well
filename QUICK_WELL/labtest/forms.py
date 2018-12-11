@@ -1,18 +1,13 @@
 import datetime
 
-from crispy_forms.bootstrap import FormActions
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
-#from crispy_forms.bootstrap import (PrependedText, PrependedAppendedText, FormActions)
-
-
 from django.forms import ModelForm, DateInput, TimeInput, TextInput, EmailInput, forms
 from home.models import labAppointment
 
 class labAppointmentForm(ModelForm):
     class Meta:
         model = labAppointment
-        fields = ['date','time','user_name','email_id']
+        fields = ['date', 'time', 'user_name', 'email_id']
         widgets = {
             'date': DateInput(attrs={'type': 'date'}),
             'time': TimeInput(attrs={'type': 'time'}),

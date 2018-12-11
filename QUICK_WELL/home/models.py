@@ -100,9 +100,6 @@ class Medicine(models.Model):
     def __str__(self):
         return self.name + ' - ' + self.pharmacy
 
-
-
-
 class user_profile(models.Model):
     username = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     medicine = models.ManyToManyField(Medicine, blank=True)
@@ -123,12 +120,9 @@ class user_profile(models.Model):
 def __str__(self):
     return str(self.username)
 
-
 class user_reports(models.Model):
     username = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
     file = models.FileField(upload_to='media', blank=True)
-
-
 
 class User_Review(models.Model):
     client_accountid = models.ForeignKey(user_profile, on_delete=models.PROTECT, null=True)
@@ -187,6 +181,34 @@ class labAppointment(models.Model):
     #appoint_status_id = models.ForeignKey(Appointment_Status, on_delete=models.PROTECT)
 
 
+class fundraiser(models.Model):
+    user_name = models.ForeignKey(user_profile, on_delete=models.PROTECT)
+    category = models.CharField(max_length=50)
+    Title = models.CharField(max_length=60)
+    goal_amount = models.FloatField()
+    beneficiary_name = models.CharField(max_length=50)
+    beneficiary_relation = models.CharField(max_length=25)
+    Fundraiser_story = models.TextField()
+    End_date = models.DateField()
+    photo = models.FileField(null=True)
+    account_number = models.BigIntegerField()
+    accountholder_name = models.CharField(max_length=50)
+    ifsc_code = models.CharField(max_length=10)
+
+
+class Medicine(models.Model):
+    name = models.CharField(max_length=100)
+    pharmacy = models.CharField(max_length=100)
+    about = models.CharField(max_length=1000, default='0000000')
+    description = models.ImageField(blank=True)
+    mfg_date = models.DateField(null=True)
+    exp_date = models.DateField(null=True)
+    pres_req = models.CharField(max_length=100)
+    price = models.FloatField()
+
+    def __str__(self):
+        return self.name + ' - ' + self.pharmacy
+
 class PurchaseItem(models.Model):
     ref_code = models.CharField(max_length=15, default='0000000')
     medicine = models.ForeignKey(Medicine, on_delete=models.SET_NULL, null=True, unique=None)
@@ -196,6 +218,21 @@ class PurchaseItem(models.Model):
     date_ordered = models.DateTimeField(null=True)
 
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    medicine = models.ManyToManyField(Medicine, blank=True)
+    name = models.CharField(max_length=150)
+    age = models.IntegerField(null=True)
+    dob = models.DateField(null=True)
+    email = models.CharField(max_length=150)
+    contact_number = models.BigIntegerField(null=False)
+    address = models.CharField(max_length=500)
+    city = models.CharField(max_length=100)
+    district = models.CharField(max_length=100, null=True)
+    state = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
+    zipcode = models.BigIntegerField()
+    photo = models.ImageField(upload_to='media', blank=True)
 
 class Order(models.Model):
     ref_code = models.CharField(max_length=15)
@@ -221,6 +258,11 @@ class Order(models.Model):
             sum = sum + ((item.medicine.price)*(item.quantity))
         return sum
 
+
+class otp_verify(models.Model):
+    name=models.CharField(max_length=50)
+    otp=models.IntegerField(default=0)
+
     def get_estimated_date(self):
         date1 = self.date_ordered;
         date1 = date1 + datetime.timedelta(days=3);
@@ -241,21 +283,3 @@ class User_Review(models.Model):
     comment = models.CharField(max_length=500, null=True)
 
 
-class fundraiser(models.Model):
-    user_name = models.ForeignKey(user_profile, on_delete=models.PROTECT)
-    category = models.CharField(max_length=50)
-    Title = models.CharField(max_length=60)
-    goal_amount = models.FloatField()
-    beneficiary_name = models.CharField(max_length=50)
-    beneficiary_relation = models.CharField(max_length=25)
-    Fundraiser_story = models.TextField()
-    End_date = models.DateField()
-
-
-class otp_verify(models.Model):
-    name=models.CharField(max_length=50)
-    otp=models.IntegerField(default=0)
-
-
-    def __str__(self):
-        return '{}'.format(self.name)

@@ -63,20 +63,17 @@ def appbooking(request,pk):
     doc = get_object_or_404(Doctor, pk=pk)
     docid = doc.id
     error_msg=''
-    #office = get_object_or_404(Office, pk=pk)
-    #app = get_object_or_404(Office_Docavailability, pk=pk)
 
-    if request.method == 'post':
+    if request.method == 'POST':
         form = AppointmentForm(request.POST)
 
         if form.is_valid():
+            print('test2')
             date = form.cleaned_data['date']
             time = form.cleaned_data['time']
             user_name = form.cleaned_data['user_name']
             email_id = form.cleaned_data['email_id']
 
-            #bookedslots = Appointment.objects.all()
-            #for slot in  bookedslots:
             samedoc = Appointment.objects.filter(doctor_id__id__icontains=docid)
             flag=1
 
@@ -90,17 +87,17 @@ def appbooking(request,pk):
 
 
             if flag==1:
+                print('test3')
                 temp = Appointment.objects.create(date=date, time=time, user_name=user_name, email_id=email_id,doctor_id=doc)
                 subject = "Appointment booked"
                 to_email = email_id
                 print(to_email)
                 context = {
                     'name': user_name,
-                    #'Appointment_id':appoint_no,
-                    'time':time,
+                    'time': time,
                     'date': date,
-                    'doctor':doc,
-                    'appid':temp.id,
+                    'doctor': doc,
+                    'appid': temp.id,
                 }
                 message = render_to_string('docapp/emailtext.html', context)
                 msg = EmailMessage(subject, message, to=[to_email])
