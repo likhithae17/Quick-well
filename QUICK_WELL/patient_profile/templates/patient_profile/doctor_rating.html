@@ -24,7 +24,7 @@
 {% if rating %}
     {% for k in rating %}
         <div class="jumbotron">
-        {{k.rating__avg}}
+        Rating:{{k.rating__avg}}
     {% endfor %}
 {% endif %}
 </div>
@@ -34,7 +34,7 @@
 {% if comment %}
     {% for k in comment %}
         <div class="jumbotron">
-        {{ k.comment }}
+       comment: {{ k.comment }}
     {% endfor %}
 {% endif %}
 </div>
