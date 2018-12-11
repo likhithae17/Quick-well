@@ -33,7 +33,7 @@ def index(request):
             doc = Doctor.objects.filter(lastname__icontains=query)
             if not doc:
                 doc = Doctor.objects.filter(specialization__icontains=query)
-    if query1:
+    elif query1:
         doc = Doctor.objects.filter(address__icontains=query1)
     else:
         doc = Doctor.objects.all()

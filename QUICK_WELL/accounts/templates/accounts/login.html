@@ -186,9 +186,9 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="appointment/index/"><span class="fa fa-ambulance" aria-hidden="true" ></span>&nbspBook an Appointment</a></li>
-        <li><a href="med/"><span class="fa fa-medkit" aria-hidden="true"></span>&nbspOrder Medicines</a></li>
-        <li onclick="myfunction()"><a href="chat/">Chat with a doctor</a></li>
+        <li><a href="{% url 'docapp:index' %}"><span class="fa fa-ambulance" aria-hidden="true" ></span>&nbspBook an Appointment</a></li>
+        <li><a href="{% url 'med:index' %}"><span class="fa fa-medkit" aria-hidden="true"></span>&nbspOrder Medicines</a></li>
+        <li><a href="{% url 'chat:index' %} }}">Chat with a doctor</a></li>
         <li><a href="video_conference/">Video Call</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
