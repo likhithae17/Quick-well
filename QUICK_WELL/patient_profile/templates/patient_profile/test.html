@@ -227,15 +227,11 @@
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
 
-              <li><a href="lab/">Book lab tests</a></li>
-              <li><a href="forum/">Forum</a></li>
-              <li><a href="#">Media</a></li>
-
-            <li><a href="lab/index/">Book lab tests</a></li>
-            <li><a href="forum/">Forum</a></li>
-
+              <li><a href=http://127.0.0.1:8000/lab/index/>Book lab tests</a></li>
+              <li><a href="http://127.0.0.1:8000/lab/forum/">Forum</a></li>
             <li><a href="#">Media</a></li>
-            <li><a href="funding/">Funding</a></li>
+            <li><a href="http://127.0.0.1:8000/lab/funding/">Funding</a></li>
+              <li><a href=http://127.0.0.1:8000/patient_profile/logout/>Logout</a></li>
 
           </ul>
         </li>
@@ -261,7 +257,7 @@
 <div>
     <center> <img src="{{ details.photo.url }}" style='height:150px;width:150px;border-radius:50px;' /><br>
         {{ details.username }}
-        <input class="Edit" type="button" value="Edit profile">
+
     </center>
 
 
@@ -282,7 +278,7 @@
             <table>
                 <tr>
                     <td>
-                       &nbsp Username:  {{ details.username }}
+                       &nbsp Name:  {{ details.name }}
 
                     </td>
                 </tr>

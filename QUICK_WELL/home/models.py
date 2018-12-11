@@ -107,7 +107,7 @@ class user_reports(models.Model):
     file = models.FileField(upload_to='media', blank=True)
 
 class User_Review(models.Model):
-    client_accountid = models.ForeignKey(user_profile, on_delete=models.PROTECT)
+    client_accountid = models.ForeignKey(user_profile, on_delete=models.PROTECT, null=True)
     doc_id = models.ForeignKey(Doctor, on_delete=models.PROTECT)
     is_anonymous = models.BooleanField(default=False)
     wait_time_rating = models.FloatField(null=True)

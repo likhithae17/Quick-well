@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 56a47f6a0f60771243e717bb6e743a8476e72fe4
 from django.shortcuts import render, redirect, get_object_or_404
 from home.models import user_profile
 from home.models import user_reports
@@ -10,10 +6,6 @@ from . import forms
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from .forms import Signup_form, profile_update
-<<<<<<< HEAD
-
-=======
->>>>>>> 56a47f6a0f60771243e717bb6e743a8476e72fe4
 from django.shortcuts import render, redirect
 from home.models import *
 from django.db.models import Avg, IntegerField
@@ -21,10 +13,6 @@ from . import forms
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import Signup_form, Patient_Update_Form, passwordchange, ReviewForm
-<<<<<<< HEAD
-
-=======
->>>>>>> 56a47f6a0f60771243e717bb6e743a8476e72fe4
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login, logout as out
@@ -82,7 +70,15 @@ def login(request):
             print('working')
             user = form.get_user()
             auth_login(request, user)
-            return HttpResponseRedirect("http://127.0.0.1:8000/patient_profile/create/")
+            # if user.user_profile:
+            #     return HttpResponseRedirect("http://127.0.0.1:8000/patient_profile/details/")
+            # else:
+            #     return HttpResponseRedirect("http://127.0.0.1:8000/patient_profile/create/")
+            # # if user.contact_number:
+            # #     return HttpResponseRedirect("http://127.0.0.1:8000/patient_profile/details/")
+            # # else:
+            # #     return HttpResponseRedirect("http://127.0.0.1:8000/patient_profile/create/")
+        return HttpResponseRedirect("http://127.0.0.1:8000/")
     else:
         form = AuthenticationForm
     return render(request, 'patient_profile/login.html', {'form': form})
@@ -122,7 +118,7 @@ def view_profile(request):
 
 @login_required(login_url="http://127.0.0.1:8000/patient_profile/login/")
 def reports(request):
-    if request.method== "GET":
+    if request.method == "GET":
         uname = request.user
         print("hello", uname)
         viewreports = user_reports.objects.filter(username=uname)
@@ -157,7 +153,9 @@ def create(request):
     if request.method == "POST":
         form = forms.profile(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            profile = form.save(commit=False)
+            profile.username=request.user
+            profile.save()
             return HttpResponseRedirect("/patient_profile/details/")
         else:
             print(form.errors)
@@ -216,7 +214,7 @@ def reviews(request):
         if f.is_valid():
             F= f.save(commit=False)
             try:
-                obj1 = User_Review.objects.get( client_accountid=F.patient_id,  doctorid=F.doc_id)
+                obj1 = User_Review.objects.get( client_accountid=F.client_accountid,  doctorid=F.doc_id)
                 obj1.rating = F.rating
                 obj1.review_date = F.review_date
                 obj1.comment = F.comment
@@ -231,27 +229,10 @@ def reviews(request):
             a.append(b)
         print(a)
 
-        return render(request, 'patient_profile/doctor_rating.html', {'doc_id': doctor, 'rating': a, 'comment': rate})
+        return render(request, 'patient_profile/doctor_rating.html', {'doc_id': doctor, 'rating': a, 'review': rate})
     else:
         f = ReviewForm()
         return render(request, 'patient_profile/review.html', {'form': f})
-
-'''
-def change_password(request):
-    if request.method == "POST":
-        form = PasswordChangeForm(data=request.POST, user=request.user)
-
-        if form.is_valid():
-            form.save()
-            update_session_auth_hash(request, form.user)
-            return redirect("/patient_profile/details/")
-        else:
-            return redirect('/patient_profile/change-password')
-    else:
-        form = PasswordChangeForm(user=request.user)
-        args = {'form': form}
-        return render(request, 'patient_profile/change_password.html', args)'''
-
 
 
 

@@ -21,23 +21,26 @@
 {% endif %}
 </div>
 
-{% if rating %}
-    {% for k in rating %}
+
+{% if review %}
+    {% for k in review %}
         <div class="jumbotron">
-        Rating:{{k.rating__avg}}
+       Review: {{ k.review }}
     {% endfor %}
 {% endif %}
 </div>
 
 
+{##}
+{#{% if rating %}#}
+{##}
+{#        <div class="jumbotron">#}
+{#        Rating:{{rating__avg}}#}
+{##}
+{#{% endif %}#}
+{#</div>#}
 
-{% if comment %}
-    {% for k in comment %}
-        <div class="jumbotron">
-       comment: {{ k.comment }}
-    {% endfor %}
-{% endif %}
-</div>
+
 
 
 </div>

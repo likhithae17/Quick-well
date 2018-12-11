@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.forms import User, UserCreationForm, UserChangeForm, PasswordChangeForm
 from home.models import user_profile, user_reports, User_Review
 from home.models import *
-from django.forms import ModelForm,Textarea
+from django.forms import ModelForm,Textarea,DateInput
 
 class Signup_form(UserCreationForm):
     class Meta:
@@ -14,24 +14,17 @@ class Signup_form(UserCreationForm):
 class profile(forms.ModelForm):
     class Meta:
         model = user_profile
-<<<<<<< HEAD
-        fields = ('username', 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country',
+
+        fields = ('name', 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country',
                   'zipcode', 'photo')
 
-=======
-        fields = ( 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country', 'zipcode', 'photo')
-# =======
-#         fields = ('username', 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country', 'zipcode',
-#                   'photo',)
-# >>>>>>> 3c7fb08664ee49ae263b250542b5d5e7d117dd36
->>>>>>> 56a47f6a0f60771243e717bb6e743a8476e72fe4
+
 
 class upload(forms.ModelForm):
     class Meta:
         model = user_reports
         fields = ('username', 'file')
 
-<<<<<<< HEAD
 
 class profile_update(forms.ModelForm):
     class Meta:
@@ -39,12 +32,11 @@ class profile_update(forms.ModelForm):
         fields = ('username', 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country', 'zipcode',
                   'photo')
 
-=======
 class profile_update(forms.ModelForm):
     class Meta:
         model = user_profile
-        fields = ( 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country', 'zipcode', 'photo')
->>>>>>> 56a47f6a0f60771243e717bb6e743a8476e72fe4
+        fields = ('age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country', 'zipcode', 'photo')
+
 class Patient_Update_Form(UserChangeForm):
     class Meta:
         model = user_profile
@@ -58,11 +50,8 @@ class passwordchange(PasswordChangeForm):
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = User_Review
-        exclude = ('client_accountid',)
+        fields = '__all__'
         widgets = {
-            'comment': Textarea(attrs={'cols': 40, 'rows': 15}),
-<<<<<<< HEAD
+            'review': Textarea(attrs={'cols': 40, 'rows': 15}),
         }
-=======
-        }
->>>>>>> 56a47f6a0f60771243e717bb6e743a8476e72fe4
+

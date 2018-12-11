@@ -204,12 +204,10 @@
               <li><a href="lab/">Book lab tests</a></li>
               <li><a href="forum/">Forum</a></li>
               <li><a href="#">Media</a></li>
+              <li><a href="funding/">Funding</a></li>
+              <li><a href="patient_profile/logout/">Logout</a></li>
+{#            <li><a href="lab/index/">Book lab tests</a></li>#}
 
-            <li><a href="lab/index/">Book lab tests</a></li>
-            <li><a href="forum/">Forum</a></li>
-
-            <li><a href="#">Media</a></li>
-            <li><a href="funding/">Funding</a></li>
 
           </ul>
         </li>
@@ -240,23 +238,31 @@
 
 <div class="container">
         <form action="{% url 'patient_profile.create' %}" method="post" enctype="multipart/form-data">
-        {%csrf_token%}
+        {% csrf_token %}
+
+{#            <div class="form-group">#}
+{##}
+{#                <label for='{{ form.username.id_for_label }}'>User Name</label>#}
+{#                {{form.username}}#}
+{#                {% for error in form.username.errors %}#}
+{#                    <span class="help-block">{{ error }}</span>#}
+{#                {% endfor %}#}
+{#            </div>#}
 
             <div class="form-group">
-                <label for='{{ form.username.id_for_label }}'>User Name</label>
-                {{form.username}}
-                {% for error in form.username.errors %}
-                <span class="help-block">{{ error }}</span>
+                <label for='{{ form.name.id_for_label }}'>Name</label>
+                {{form.name|add_class:'form-control'}}
+                {% for error in form.name.errors %}
+                    <span class="help-block">{{ error }}</span>
                 {% endfor %}
             </div>
-
             <div class="form-group">
-          <label for='{{ form.age.id_for_label }}'>Age</label>
-          {{form.age|add_class:'form-control'}}
-          {% for error in form.age.errors %}
-          <span class="help-block">{{ error }}</span>
-          {% endfor %}
-      </div>
+                <label for='{{ form.age.id_for_label }}'>Age</label>
+                {{form.age|add_class:'form-control' }}
+                {% for error in form.age.errors %}
+                    <span class="help-block">{{ error }}</span>
+                {% endfor %}
+            </div>
 
         <div class="form-group">
           <label for='{{ form.dob.id_for_label }}'>Date of Birth</label>
