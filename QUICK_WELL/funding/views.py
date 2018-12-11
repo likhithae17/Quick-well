@@ -13,7 +13,7 @@ def index(request):
 
 @login_required(login_url='/login/')
 def startproject(request):
-    user = get_object_or_404(user_profile, username=request.user)
+    user = get_object_or_404(user_profile, user=request.user)
 
     if request.method == 'POST':
         form = fundraiserForm(request.POST,request.FILES)

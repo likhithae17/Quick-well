@@ -3,13 +3,13 @@
 {% block body %}
 <div class="container">
 <br>
-    <p style="color:#1D466A; font-size: 25px">User name : {{ order.user.first_name }}</p>
-    <p style="color:#1D466A; font-size: 25px; font-weight: bold">Your orders are:</p>
+    <p style="color:#1D466A; font-size: 25px">User name : {{ order.user.username }}</p>
+    <p style="color:#1D466A; font-size: 25px; font-weight: bold; letter-spacing: 1px">Your orders are:</p>
     <br><br>
 <section>
    <div class="row" style="padding-left: 50px;padding-right: 50px">
     <table class="table table-hover table-bordered text-center" >
-      <tr class="text-center" style="background-color: #B3CDE5;">
+      <tr class="text-center" style="background-color: #DEECF8;">
         <th class="text-center">no.</th>
         <th class="text-center">Medicine</th>
         <th class="text-center">Price</th>
@@ -23,7 +23,7 @@
             {{ item.medicine.name }}
             <span class="pull-right">
               <a href="{% url 'med:delete_item' item.id %}" data-balloon="remove this item from cart" class="text-danger" >
-                <i class="fa fa-trash-o"></i>
+                <i class="fa fa-trash"></i>
 
               </a>
             </span>
@@ -44,7 +44,7 @@
         </td>
 
         <td colspan= 3>
-          $<strong>{{ order.get_cart_total }}</strong>
+          <strong>Rs {{ order.get_cart_total }}</strong>
         </td>
         {% endif %}
       </tr>
@@ -64,4 +64,5 @@
    </div>
  </section>
 </div>
+    <br>
 {% endblock %}
