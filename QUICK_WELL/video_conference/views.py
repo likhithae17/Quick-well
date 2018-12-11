@@ -1,19 +1,31 @@
 from django.core.mail import send_mail, EmailMessage
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
+from django.urls import reverse_lazy
 import random
 import webbrowser
 import os
 from .forms import *
 from .models import *
 from home.models import *
+from django.contrib.auth.decorators import login_required
+@login_required(login_url=reverse_lazy('accounts:login'))
 
+def p_home(request):
+    return render(request,'video_conference/videoconference_p.html')
+def d_home(request):
+    return render(request,'video_conference/videoconference_d.html')
 
 def requester(request):
+    try:
+        if request.user.user:
+            return redirect('d_videocall')
+    except:
+        return redirect('p_videocall')
 
-    if request.method == 'POST':
+    '''if request.method == 'POST':
         form = video_requestForm(request.POST)
         if form.is_valid():
             t = video_request(requester = form.cleaned_data['username'])
@@ -22,7 +34,7 @@ def requester(request):
 
     else:
         form = video_requestForm()
-    return render(request,'video_conference/request.html',{'form':form})
+    return render(request,'video_conference/request.html',{'form':form})'''
 
 def login(request):
     cd = random.randint(100000, 9999999)
