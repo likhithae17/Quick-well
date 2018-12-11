@@ -33,6 +33,8 @@ def index(request):
             doc = Doctor.objects.filter(lastname__icontains=query)
             if not doc:
                 doc = Doctor.objects.filter(specialization__icontains=query)
+    if query1:
+        doc = Doctor.objects.filter(address__icontains=query1)
     else:
         doc = Doctor.objects.all()
 
@@ -59,36 +61,33 @@ def test(request):
     return render(request, 'docprof/includes/test.html')
 
 
-def appbooking(request,pk):
+def appbooking(request, pk):
     doc = get_object_or_404(Doctor, pk=pk)
-    docid = doc.id
-    error_msg=''
+    docid = doc.id;
+    error_msg = '';
 
     if request.method == 'POST':
         form = AppointmentForm(request.POST)
 
         if form.is_valid():
-            print('test2')
             date = form.cleaned_data['date']
             time = form.cleaned_data['time']
             user_name = form.cleaned_data['user_name']
             email_id = form.cleaned_data['email_id']
 
-            samedoc = Appointment.objects.filter(doctor_id__id__icontains=docid)
-            flag=1
+            samedoc = Appointment.objects.filter(test_id__id__icontains=docid)
+            flag = 1
 
             for slot in samedoc:
-                 if slot.date == date and slot.time == time:
-                     error_msg='Sorry, this slot is not available please select a different slot!'
-                     flag=0
-                     #form = AppointmentForm()
-                     print(date)
-                     break;
+                if slot.date == date and slot.time == time:
+                    error_msg = 'Sorry, this slot is not available please select a different slot!'
+                    flag = 0
+                    print(date)
+                    break;
 
+            if flag == 1:
+                temp = Appointment.objects.create(date=date, time=time, user_name=user_name, email_id=email_id, doctor_id=docid)
 
-            if flag==1:
-                print('test3')
-                temp = Appointment.objects.create(date=date, time=time, user_name=user_name, email_id=email_id,doctor_id=doc)
                 subject = "Appointment booked"
                 to_email = email_id
                 print(to_email)
@@ -129,8 +128,26 @@ def greet(request):
 
 def delete(request,pk):
     appointment = get_object_or_404(Appointment, pk=pk)
+    email_id = appointment.email_id;
+    context = {
+        'name': appointment.user_name,
+        'time': appointment.time,
+        'date': appointment.date,
+        'doctor': appointment.doctor_id,
+        'appid': appointment.id,
+    }
     appointment.delete()
-    msg = 'Your appointment is cancelled'
-    #return render(request, 'docapp/greet.html',{'msg':msg})
-    return HttpResponse('<h2>Appointment cancelled</h2>')
+    subject = "Appointment Cancelled"
+    to_email = email_id
+    print(to_email)
+    message = render_to_string('docapp/cancelemail.html', context)
+    msg = EmailMessage(subject, message, to=[to_email])
+    msg.content_subtype = 'html'
 
+    try:
+        msg.send()
+        print('Successful')
+    except:
+        print('Unsuccessful')
+
+    return render(request, 'docapp/cancel.html', context)
