@@ -55,7 +55,7 @@ def mail_conf(request):
         otpc = otpc - 2
         otpc = str(otpc)
         if otpc == otp1:
-            return HttpResponse("mail verified")
+            return redirect("http://127.0.0.1:8000/")
         else:
             username = request.session['username']
             dele = username.objects.get(username=username)

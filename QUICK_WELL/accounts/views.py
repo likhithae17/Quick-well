@@ -81,7 +81,7 @@ def register(request):
             # email.send()
             send_mail("hello doctor", "Thanks for registering " + str(otp) + " is your verification otp","quickwelldoctor@gmail.com", [UserForm.email])
             registered = True
-            otpc = otp + 2
+            otpc = otp + 882413
         else:
             return HttpResponse("Invalid details!")
     else:
@@ -137,10 +137,10 @@ def mail_conf(request):
     if request.method=='POST':
         otpc = int(request.POST['otpc'])
         otp1 = str(request.POST['otp1'])
-        otpc = otpc - 2
+        otpc = otpc - 882413
         otpc = str(otpc)
         if otpc == otp1:
-            return HttpResponse("mail verified")
+            return redirect("http://127.0.0.1:8000/")
         else:
             username = request.session['username']
             dele = User.objects.get(username=username)

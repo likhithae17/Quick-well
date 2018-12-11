@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body bgcolor="purple">
+<br><br><br><br><br>
     <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
+        <center>
         <span style="color: #f4c613">User Name  :</span>
             {{prof_form.username}}<br><br>
             <span style="color: #f4c613">age  :</span>
@@ -32,6 +34,7 @@
             <span style="color: #f4c613">photo:</span>
             {{prof_form.photo}}<br><br>
             <button class='btn-general btn-profile' class="reg" type="submit">Update</button><br><br>
+            </center>
     </form>
 </body>
 </html>
