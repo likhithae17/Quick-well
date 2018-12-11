@@ -20,7 +20,7 @@ class Doctor(models.Model):
     phone_num = models.BigIntegerField(null=True,blank=True)
     #previous_hospitals = models.CharField(max_length=300,null=True)
     specialization = models.CharField(max_length=150,null=True)
-    fee = models.FloatField(null=True,blank=True)
+    fee = models.FloatField(blank=True)
     hospital = models.CharField(null=True,blank=True,max_length=50)
     address = models.CharField(null=True,blank=True,max_length=50)
 
@@ -104,8 +104,8 @@ class user_profile(models.Model):
 
 
 class user_reports(models.Model):
-    username = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
-    file = models.FileField(upload_to='media', blank=True)
+    username = models.OneToOneField(User, on_delete=models.PROTECT, null=True)
+    file = models.FileField(upload_to='media',null=True)
 
 class Appointment_Status(models.Model):
     status = models.CharField(max_length=20)
@@ -215,16 +215,17 @@ class Order(models.Model):
             sum = sum + ((item.medicine.price)*(item.quantity))
         return sum
 
-
-class otp_verify(models.Model):
-    name=models.CharField(max_length=50)
-    otp=models.IntegerField(default=0)
-
     def get_estimated_date(self):
         date1 = self.date_ordered;
         date1 = date1 + datetime.timedelta(days=3);
         return date1
 
+
+
+
+class otp_verify(models.Model):
+    name=models.CharField(max_length=50)
+    otp=models.IntegerField(default=0)
 
 
 class User_Review(models.Model):
