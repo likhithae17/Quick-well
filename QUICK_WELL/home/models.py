@@ -88,7 +88,7 @@ class LabTest(models.Model):
 
 
 class user_profile(models.Model):
-    username = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
+    username = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=150)
     age = models.IntegerField(null=True)
     dob = models.DateField(null=True)
@@ -124,7 +124,7 @@ class Appointment_Status(models.Model):
 
 class Appointment(models.Model):
     #client_accountid = models.ForeignKey(User, on_delete=models.PROTECT)
-    doctor_id = models.ForeignKey(Doctor, on_delete=models.PROTECT)
+    doctor_id = models.ForeignKey(Doctor, on_delete=models.PROTECT, null=True)
     #start_time =  models.DateTimeField()
     #end_time =  models.DateTimeField()
     user_name = models.CharField(max_length=50)
@@ -186,9 +186,10 @@ class UserProfile(models.Model):
     medicine = models.ManyToManyField(Medicine, blank=True)
     first_name = models.CharField(max_length=100, default='0000000')
     last_name = models.CharField(max_length=100, default='0000000')
-    bio = models.CharField(max_length=255, blank=True)
+    email = models.CharField(max_length=100, default='0000000', null=True)
+    address = models.CharField(max_length=1000, blank=True)
     city = models.CharField(max_length=200, blank=False, default='')
-    interests = models.CharField(max_length=255, blank=True)
+
 
 
 def create_profile(sender, **kwargs):
@@ -205,9 +206,17 @@ class Order(models.Model):
     items = models.ManyToManyField(PurchaseItem)
     is_ordered = models.BooleanField(default=False)
     date_ordered = models.DateTimeField(null=True)
+    billing_add = models.CharField(max_length=1000, blank=True)
+    email = models.CharField(max_length=100, default='0000000', null=True)
 
     def get_cart_items(self):
         return self.items.all()
+
+    def get_no_of_purchase(self):
+        sum1 = 0;
+        for item in self.items.all():
+            sum1 = sum1+1;
+        return sum1;
 
     def get_cart_total(self):
         sum = 0 ;
@@ -215,14 +224,14 @@ class Order(models.Model):
             sum = sum + ((item.medicine.price)*(item.quantity))
         return sum
 
-class otp_verify(models.Model):
-    name=models.CharField(max_length=50)
-    otp=models.IntegerField(default=0)
-
     def get_estimated_date(self):
         date1 = self.date_ordered;
         date1 = date1 + datetime.timedelta(days=3);
         return date1
+
+class otp_verify(models.Model):
+    name=models.CharField(max_length=50)
+    otp=models.IntegerField(default=0)
 
 
     def __str__(self):
