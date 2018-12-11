@@ -11,14 +11,11 @@
     <script src="js/bootstrap-transition.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href='https://fonts.googleapis.com/css?family=Satisfy' rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-
-
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <style>
@@ -189,8 +186,36 @@
 .span4 .img-right {
     float: right;
 }
+.overlay {
+  position: absolute;
+  bottom:0px;
+  left: 0px;
+  right: 0px;
+   top:0px;
+  background-color: black;
+  overflow: hidden;
+  width: 360px;
+  height:0;
+  transition: 1s ease ;
+text-align: center;
+}
 
-
+.conti:hover .overlay {
+  bottom: 0;
+  height: 390px;
+  opacity: 0.8;
+}
+      .texting{
+    white-space: nowrap;
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
 </style>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -219,9 +244,11 @@
               <li><a href="patient_profile/login/">SignUp/SignIn</a></li>
               <li><a href="lab/index/">Book lab tests</a></li>
               <li><a href="patient_profile/upload/">Upload</a></li>
-              <li><a href="forum/">Forum</a></li>
-              <li><a href="#">Media</a></li>
               <li><a href="funding/">Funding</a></li>
+            <li><a href="lab/index/">Book lab tests</a></li>
+            <li><a href="http://127.0.0.1:8000/forum/">Forum</a></li>
+              <li><a href="patient_profile/logout/">Logout</a></li>
+            <li><a href="funding/">Funding</a></li>
 
           </ul>
         </li>
@@ -277,12 +304,15 @@
     <!-- Left and right controls -->
 
 </div>
-
+<br>
 
 <!-- Container (The Band Section) -->
 <div id="band" class="container text-center">
-  <h3>QUICKWELL - QUALITY CARE</h3>
-  <p><em>Welcome to the medical services you can trust.</em></p>
+  <h3 style=" color: #2c3e50; font-size: 25px; padding-bottom: 15px">QUICKWELL - QUALITY CARE</h3>
+    <hr style="border: 1px solid #31BDE6;  width: 150px; " size="5">
+  <p style="padding-top: 30px; font-size: 18px"><em>Welcome to the medical services you can trust. Quickwell offers a fast, easy and friendly way to gain access to general practitioners, dieticians, nutritionists, gynaecologists, psychologists, dermatologists, and more.Our doctors will give you a qualified opinion on your health issue and help you identify next steps which may include further tests, a prescription or lifestyle tips. Quickwell has the widest range of medicines online, sourced from our trusted network of pharmacies and medical stores.
+
+</em></p>
 
   <br>
 
@@ -296,7 +326,7 @@
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="single-cool-fact-area text-center mb-100" data-aos="flip-right" data-aos-duration="600">
                         <i class='fas fa-vial' style='font-size:120px;color: #2aabd2; padding-bottom: 18px'></i>
-                        <p style="color: #046A8A; font-weight: bold; font-size: 40px; "><span class="counter">5632</span></p>
+                        <p style="color: #046A8A; font-weight: bold; font-size: 40px; "><span class="counter">5832</span></p>
                         <h2 style="color: #046A8A; font-weight: bold; font-size: 20px">Lab Tests</h2>
                         <p></p>
                     </div>
@@ -349,7 +379,7 @@
       color: #23527c;">INSTANT APPOINTMENT WITH DOCTORS.&nbsp;&nbsp;GUARANTEED.</p></a></div>
           <p>Affordable full body health checkups at home. </p>
           <p>Our doctors revolutionizing healthcare delivery by harnessing technology to help millions lead healthier lives.</p>
-          <p> Quickwell offers a fast, easy and friendly way to gain access to general practitioners, dieticians, nutritionists, gynaecologists, psychologist, dermatologist, and more.</p>
+          <p> Quickwell offers a fast, easy and friendly way to gain access to general practitioners, dieticians, nutritionists, gynaecologists, psychologists, dermatologists, and more.</p>
         </div>
      </div>
      <br/>
@@ -438,7 +468,58 @@
     <!-- Left and right controls -->
 
 </div>
+<div class="container" style="padding-left: 0px; padding-right: 0px ; padding-top: 120px" >
+    <p style="margin: 10px 0 30px 0;
+      letter-spacing: 2px;
+      font-size: 50px;
+      font-weight: bold;
+      color: #23527c; text-align: center">RECENT BLOG</p>
+    <hr style="border: 1px solid #31BDE6;  width: 150px;" size="5">
+    <div style="padding: 20px"></div>
+<div class="col-sm-4 col-xs-12 " >
+                  <a href="https://www.livescience.com/topics/nanotechnology" target="_blank"><div class="panel panel-default text-center" style=" background-color: #F3F3F7; border-color:#F3F3F7" >
+                      <div class="conti" data-aos="zoom-in-up">
+                          <div class="overlay">
+                                <div class="texting" style="text-align: center;">
+                                    <p>Find out about the latest</p>
+                                    <p>technologies in the field of medical </p>
+                                    <p>science</p>
+                                </div>
+                          </div>
+                          <img src="/media/mole.jpg" height="390px" width="360px">
+                      </div>
+                  </div></a>
+</div>
+    <div class="col-sm-4 col-xs-12 ">
+                  <a href="https://www.verywellhealth.com/tips-to-prevent-infections-1958877" target="_blank"> <div class="panel panel-default text-center" style=" background-color: #F3F3F7; border-color:#F3F3F7 ">
+                      <div class="conti" data-aos="zoom-in-up">
+                           <div class="overlay">
+                                <div class="texting">
+                                    <p>What's the best way </p>
+                                    <p>to prevent you and your loved ones </p>
+                                    <p>from getting sick?</p>
+                                </div>
+                           </div>
+                      <img src="/media/clinic.png" height="390px" width="360px">
+                      </div>
+                  </div></a>
+</div>
+    <div class="col-sm-4 col-xs-12 ">
+                 <a href="https://www.autismspeaks.org/blog/my-review-good-doctor-adult-autism" target="_blank"><div class="panel panel-default text-center" style=" background-color: #F3F3F7; border-color:#F3F3F7 ">
+                      <div class="conti" data-aos="zoom-in-up">
+                           <div class="overlay">
+                                <div class="texting">
+                                    <p>Who is a good doctor? </p>
+                                    <p>Patients & Physicians’ </p>
+                                    <p> Perspectives</p>
+                                </div>
+                           </div>
+                      <img src="/media/docc1.jpg" height="390px" width="360px">
+                      </div>
+                 </div></a>
+</div>
 
+</div>
 <div style="padding-bottom: 100px">
 
 </div>
@@ -483,17 +564,17 @@
 
     <div class="footer-center">
 
-        <p class="footer-company-about">
+        <p class="footer-company-about" style="font-size: 20px; padding-top: 20px">
           <span>About the company</span>
           <br> We always put our patients first .
         </p>
 
-        <div class="footer-icons">
+        <div class="footer-icons" style="font-size: 30px">
 
-          <a href="#"><i class="fa fa-facebook"></i></a>
-          <a href="#"><i class="fa fa-twitter"></i></a>
-          <a href="#"><i class="fa fa-linkedin"></i></a>
-          <a href="#"><i class="fa fa-github"></i></a>
+          <a href="#"><i class="fa fa-facebook" style="color: white">&nbsp;</i></a>
+          <a href="#"><i class="fa fa-twitter" style="color: white">&nbsp;</i></a>
+          <a href="#"><i class="fa fa-linkedin" style="color: white">&nbsp;</i></a>
+          <a href="#"><i class="fa fa-github" style="color: white">&nbsp;</i></a>
 
         </div>
 
@@ -536,7 +617,7 @@ $('.counter').each(function () {
     $(this).prop('Counter',0).animate({
         Counter: $(this).text()
     }, {
-        duration: 4000,
+        duration: 4400,
         easing: 'swing',
         step: function (now) {
             $(this).text(Math.ceil(now));

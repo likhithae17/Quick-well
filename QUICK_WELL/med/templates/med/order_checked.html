@@ -4,13 +4,10 @@
 <div class="container">
 <br>
     <p style="color:#1D466A; font-size: 25px">User name : {{ request.user }}</p>
-    <p style="color:#1D466A; font-size: 25px; font-weight: bold">Your Brought:</p>
+    <p style="color:#1D466A; font-size: 25px; font-weight: bold; letter-spacing: 1px">You Bought:</p>
     <br><br>
 <section>
    <div class="row" style="padding-left: 50px;padding-right: 50px">
-
-    <!--<table class="table table-hover table-bordered text-center" >-->
-      <!--<tr class="text-center">-->
     <table class="table table-hover table-bordered text-center">
       <tr class="text-center" style="background-color: #DEECF8;">
           <th class="text-center">No.</th>
@@ -18,7 +15,6 @@
         <th class="text-center">Medicine</th>
         <th class="text-center">Price</th>
           <th class="text-center">Quantity</th>
-          <th class="text-center">Prescription Required</th>
           <th class="text-center">Order&nbsp;total</th>
           <th class="text-center">Estimated delivery date</th>
           <th class="text-center">Remove Order</th>
@@ -28,9 +24,6 @@
             {% for item in itemno.get_cart_items %}
 
         <tr>
-
-          <!--<td>{{ itemno.date_ordered }}</td>-->
-
 {#        <td>{{ forloop.counter }}</td>#}
            {% if forloop.counter == 1 %}
         <td rowspan="{{ itemno.get_no_of_purchase }}" style="padding-top:{{ itemno.get_no_of_purchase }}9px; " class="text-center" >
@@ -43,10 +36,10 @@
    {% endif %}
           <td>
             {{ item.medicine.name }}
+
           </td>
           <td>{{ item.medicine.price }}</td>
         <td>{{ item.quantity }}</td>
-        <!--<td>{{ item.medicine.pres_req }}</td>-->
         {% if forloop.counter == 1 %}
         <td rowspan="{{ itemno.get_no_of_purchase }}" style="padding-top:{{ itemno.get_no_of_purchase }}9px; " class="text-center">Rs {{ itemno.get_cart_total }}</td>
         {% endif %}
@@ -75,8 +68,6 @@
 
           </a>
         </td>
-        <!--<td colspan=4>-->
-            <!--Thanks for purchasing-->
         <td colspan=7 style="font-size: 20px">
             <strong>{% if order %}Thanks for purchasing!{% else %}You haven't ordered anything yet {% endif %}</strong>
         </td>
@@ -87,4 +78,5 @@
 </div>
     <br>
     <br>
+
 {% endblock %}
