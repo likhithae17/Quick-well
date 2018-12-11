@@ -159,7 +159,7 @@
             color: #d5d5d5 !important;
         }
         .navbar-nav li a:hover {
-            color: #DC143C !important;
+            color: #fff !important;
         }
         .navbar-nav li.active a {
             color: #fff !important;
@@ -218,9 +218,8 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-
         <li><a href="http://127.0.0.1:8000/appointment/index/"><span class="fa fa-ambulance" aria-hidden="true" ></span>&nbspBook an Appointment</a></li>
-        <li><a href="http://127.0.0.1:8000/med/"><span class="fa fa-medkit" aria-hidden="true"></span>&nbspOrder Medicines</a></li>
+        <li><a href="med/"><span class="fa fa-medkit" aria-hidden="true"></span>&nbspOrder Medicines</a></li>
         <li onclick="myfunction()"><a href="http://127.0.0.1:8000/chat/">Chat with a doctor</a></li>
         <li><a href="http://127.0.0.1:8000/video_conference/">Video Call</a></li>
         <li class="dropdown">
@@ -228,11 +227,9 @@
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
 
-              <li><a href=http://127.0.0.1:8000/lab/index/>Book lab tests</a></li>
-              <li><a href="http://127.0.0.1:8000/lab/forum/">Forum</a></li>
-            <li><a href="#">Media</a></li>
-            <li><a href="http://127.0.0.1:8000/lab/funding/">Funding</a></li>
-              <li><a href=http://127.0.0.1:8000/patient_profile/logout/>Logout</a></li>
+              <li><a href="http://127.0.0.1:8000/lab/">Book lab tests</a></li>
+              <li><a href="http://127.0.0.1:8000/forum/">Forum</a></li>
+            <li><a href="http://127.0.0.1:8000/funding/">Funding</a></li>
 
           </ul>
         </li>
@@ -242,8 +239,17 @@
 </nav>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
-
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
 <br><br><br><br>
+
+
+
+
 
 <body>
 <div>
@@ -259,97 +265,34 @@
         <ul class="nav nav-pills nav-stacked">
             <li><a href="/patient_profile/details/?profile=profile">PROFILE</a></li>
             <li><a href="/patient_profile/appointment/">APPOINTMENTS</a></li>
-            <li><a href="#">LAB TEST</a></li>
+            <li><a href="/patient_profile/lab_test/">LAB TESTS</a></li>
             <li><a href="/patient_profile/details/?reports=reports">LAB REPORTS</a></li>
-            <li><a href="http://127.0.0.1:8000/patient_profile/edit/">EDIT PROFILE</a></li>
+
         </ul><br>
+
     </div>
-    <div>
-        {% if dask %}
-            <table>
-                <tr>
-                    <td>
-                       &nbsp<strong>Name</strong> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                        :  <strong>{{ details.name }}</strong>
-
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                       &nbsp <strong>Age</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                        : <strong> {{ details.age }}</strong>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                       &nbsp <strong>Date of Birth</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:  <strong>{{ details.dob }}</strong>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                       &nbsp <strong>Contact number</strong>&nbsp&nbsp: <strong>{{ details.contact_number }}</strong>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                       &nbsp<strong> City</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                        : <strong> {{ details.city }}</strong>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                       &nbsp <strong>District</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                        :<strong> {{ details.district }}</strong>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                       &nbsp <strong>State</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                        :<strong> {{ details.state }}</strong>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                       &nbsp <strong>Country</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                        :  <strong>{{ details.country }}</strong>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                      &nbsp <strong> Zipcode</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                        :<strong> {{ details.zipcode }}</strong>
-                    </td>
-                </tr>
-            </table>
-
-        {% endif %}
-
-
-        {% if dask1 %}
-
-        {% for rep in reports %}
+        <div>
            <table>
-               <tr>
-                   <td>
-                      &nbsp <strong>Report</strong> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                        &nbsp &nbsp &nbsp &nbsp <br><embed src="{{rep.file.url}}" width="500px" height="600px"><br><br>
-                   </td>
+              <tr>
+                 <td>
+                    {% for lapp in lappointment %}
+                     Test: {{ lapp.test_id }}
+                     <br>
+                     Email: {{ lapp.email_id }}
+                     <br>
+                     Date:  {{ lapp.date }}
+                     <br>
+                     Time: {{ lapp.time }}
+                     <br><br><br>
+                    {% endfor %}
+                  </td>
                </tr>
-           </table>
-        {% endfor %}
-
-        {% endif %}
-
-
-
-    </div>
+            </table>
+        </div>
+</div>
 </div>
 </body>
-
-</body>
-    <footer class="text-center">
-    </footer>
-</div>
+<footer class="text-center">
+</footer>
 </body>
 </html>
