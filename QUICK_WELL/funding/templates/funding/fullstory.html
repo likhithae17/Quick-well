@@ -9,7 +9,7 @@
         <div class="col-sm-8" style="width: 60%">
         <div class="row" style="background-color: white; padding-left:20px; padding-right:20px; padding-top: 10px; padding-bottom: 10px">
             <p style="font-size: 25px">{{ fundraiser.Title }}</p>
-            <p>by {{ fundraiser.user_name.username }}</p>
+            <p>by {{ fundraiser.user_name.user }}</p>
         </div>
         <br>
 
@@ -44,7 +44,7 @@
                 <p>Campaign Details</p>
                 <hr style="color: rgba(192,192,192,0.1);">
                 <p>About Campaigner</p>
-                <p><span class="glyphicon glyphicon-user" style="color:green; font-size:25px"></span>&nbsp;&nbsp;{{ fundraiser.user_name.username }}</p>
+                <p><span class="glyphicon glyphicon-user" style="color:green; font-size:25px"></span>&nbsp;&nbsp;{{ fundraiser.user_name.user }}</p>
                 <p>About Beneficiary</p>
                 <p><span class="glyphicon glyphicon-user" style="color:green; font-size:25px"></span>&nbsp;&nbsp;{{ fundraiser.beneficiary_name }}</p>
             </div>

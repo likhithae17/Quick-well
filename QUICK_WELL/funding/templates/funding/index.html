@@ -70,7 +70,7 @@
                         <div class="blockHead" ><span class="blocktext">{{ project.category }}</span></div>
                         <br>
                         <p>{{ project.Title }}</p>
-                        <p>by {{ project.user_name.username }}</p>
+                        <p>by {{ project.user_name.user }}</p>
                         <p><a href="{% url 'funding:fullstory' project.id %}">Read full story</a></p>
 
                     </div>

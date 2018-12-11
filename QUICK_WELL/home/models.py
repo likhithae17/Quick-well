@@ -240,21 +240,3 @@ class User_Review(models.Model):
     comment = models.CharField(max_length=500, null=True)
 
 
-class fundraiser(models.Model):
-    user_name = models.ForeignKey(user_profile, on_delete=models.PROTECT)
-    category = models.CharField(max_length=50)
-    Title = models.CharField(max_length=60)
-    goal_amount = models.FloatField()
-    beneficiary_name = models.CharField(max_length=50)
-    beneficiary_relation = models.CharField(max_length=25)
-    Fundraiser_story = models.TextField()
-    End_date = models.DateField()
-
-
-class otp_verify(models.Model):
-    name=models.CharField(max_length=50)
-    otp=models.IntegerField(default=0)
-
-
-    def __str__(self):
-        return '{}'.format(self.name)

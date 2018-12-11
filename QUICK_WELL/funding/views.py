@@ -33,7 +33,7 @@ def startproject(request):
             ifsc_code = form.cleaned_data['ifsc_code']
             temp = fundraiser.objects.create(user_name=user, category=category, Title=Title, goal_amount=goal_amount, beneficiary_name=beneficiary_name, beneficiary_relation=beneficary_relation, Fundraiser_story=Fundraiser_story, End_date=End_date, photo=photo,accountholder_name=accountholder_name, account_number=account_number,ifsc_code=ifsc_code)
 
-            return render(request, 'funding/greet.html', {'form': form,'name': user.username})
+            return render(request, 'funding/greet.html', {'form': form,'name': user.user})
 
         else:
             print(form.errors)
