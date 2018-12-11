@@ -9,7 +9,6 @@ from django.template.loader import render_to_string
 
 
 def index(request):
-    #lab = LabTest.objects.all()
     test = Tests_info.objects.all()
     query = request.GET.get('q')
     if query:
@@ -24,14 +23,18 @@ def index(request):
 
 def detail(request,pk):
     test = get_object_or_404(Tests_info, pk=pk)
-    lab = LabTest.objects.filter(tests_available__test_name__icontains=test)
+    testname = test.test_name;
+    print(testname)
+    lab = LabTest.objects.filter(tests_available__test_name__contains=testname)
     return render(request, 'labtest/details.html', {'lab':lab,'test':test})
 
 
 def labbook(request,pk):
     test = get_object_or_404(Tests_info, pk=pk)
-    lab = LabTest.objects.filter(tests_available__test_name__icontains=test)
-
+    testname = test.test_name
+    lab = LabTest.objects.filter(tests_available__test_name__icontains=testname)
+    testid = test.id;
+    error_msg='';
     if request.method == 'POST':
         form = labAppointmentForm(request.POST)
 
@@ -40,36 +43,48 @@ def labbook(request,pk):
             time = form.cleaned_data['time']
             user_name = form.cleaned_data['user_name']
             email_id = form.cleaned_data['email_id']
-            #appoint_no = ref.generate_app_id()
 
-            temp = labAppointment.objects.create(date=date, time=time, user_name=user_name, email_id=email_id, test_id=test)
+            sametest = labAppointment.objects.filter(test_id__id__icontains=testid)
+            flag = 1
 
-            subject = "Appointment booked"
-            to_email = email_id
-            print(to_email)
-            context = {
-                'name': user_name,
-                'time':time,
-                'date': date,
-                'test':test,
-                'appid': temp.id,
-            }
-            message = render_to_string('labtest/emailtxt.html', context)
-            msg = EmailMessage(subject, message, to=[to_email])
-            msg.content_subtype = 'html'
+            for slot in sametest:
+                if slot.date == date and slot.time == time:
+                    error_msg = 'Sorry, this slot is not available please select a different slot!'
+                    flag = 0
+                    print(date)
+                    break;
 
-            try:
-                msg.send()
-                print('Successful')
-            except:
-                print('Unsuccessful')
 
-            return render(request, 'labtest/greet.html', context)
+            if flag ==1:
+                temp = labAppointment.objects.create(date=date, time=time, user_name=user_name, email_id=email_id, test_id=test)
+
+                subject = "Appointment booked"
+                to_email = email_id
+                print(to_email)
+                context = {
+                    'name': user_name,
+                    'time':time,
+                    'date': date,
+                    'test':test,
+                    'appid': temp.id,
+                    'lab': lab,
+                }
+                message = render_to_string('labtest/emailtxt.html', context)
+                msg = EmailMessage(subject, message, to=[to_email])
+                msg.content_subtype = 'html'
+
+                try:
+                    msg.send()
+                    print('Successful')
+                except:
+                    print('Unsuccessful')
+
+                return render(request, 'labtest/greet.html', context)
 
     else:
         form = labAppointmentForm()
 
-    return render(request, 'labtest/booking.html', {'form': form,'test':test,})
+    return render(request, 'labtest/booking.html', {'form': form,'test':test,'error':error_msg,'lab': lab})
 
 
 def delete(request,pk):

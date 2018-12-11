@@ -20,7 +20,7 @@ class Doctor(models.Model):
     phone_num = models.BigIntegerField(null=True,blank=True)
     #previous_hospitals = models.CharField(max_length=300,null=True)
     specialization = models.CharField(max_length=150,null=True)
-    fee = models.FloatField(null=True,blank=True)
+    fee = models.FloatField(blank=True)
     hospital = models.CharField(null=True,blank=True,max_length=50)
     address = models.CharField(null=True,blank=True,max_length=50)
 
@@ -42,77 +42,17 @@ class LabTest(models.Model):
     tests_available = models.ManyToManyField(Tests_info)
 
 
-# class Qualification(models.Model):
-#     doc_name = models.ManyToManyField(Doctor)
-#     qual_name = models.CharField(max_length=500)
-#     institute_name = models.CharField(max_length=500,null=True)
-#     procurement_year = models.DateField()
-#
-#
-# class Hospital_Affiliation(models.Model):
-#     doc_name = models.ManyToManyField(Doctor,default='')
-#     hosp_name = models.CharField(max_length=200)
-#     hosp_photo = models.CharField(max_length=500, null=True,blank=True)
-#     city = models.CharField(max_length=100,blank=True)
-#     country = models.CharField(max_length=100,blank=True)
-#     address = models.CharField(max_length=300,blank=True)
-#     start_date = models.DateField(blank=True)
-#     end_date = models.DateField(null=True,blank=True)
-#
-#     def __str__(self):
-#         return self.hosp_name
-#
-# class Office(models.Model):
-#     doc_id = models.ForeignKey(Doctor, on_delete=models.PROTECT,null=True,blank = True)
-#     hosp_affiliation_id = models.ForeignKey(Hospital_Affiliation, on_delete=models.PROTECT,null=True,blank=True)
-#     first_fee = models.FloatField(null=False)
-#     followup_fee = models.FloatField(null=False)
-#     street_address = models.CharField(max_length=500,blank=True)
-#     city = models.CharField(max_length=100,blank=True)
-#     state = models.CharField(max_length=100,blank=True)
-#     country = models.CharField(max_length=100,blank=True)
-#     zip = models.BigIntegerField(blank=True)
-#
-#     def __str__(self):
-#         return str(self.doc_id)
-#
-#
-# class Office_Docavailability(models.Model):
-#     office_id = models.ForeignKey(Office, on_delete=models.PROTECT)
-#     time_slot_per_patient = models.FloatField(null=True, blank=True)
-#     day = models.CharField(max_length=20)
-#     reason_unavailability = models.CharField(max_length=500,null=True,blank=True)
-#
-#     def __str__(self):
-#         return str(self.office_id)
-
-
-class user_profile(models.Model):
-    username = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    name = models.CharField(max_length=150)
-    age = models.IntegerField(null=True)
-    dob = models.DateField(null=True)
-    email = models.CharField(max_length=150)
-    contact_number = models.BigIntegerField(null=False)
-    address = models.CharField(max_length=500)
-    city = models.CharField(max_length=100)
-    district = models.CharField(max_length=100, null=True)
-    state = models.CharField(max_length=100)
-    country = models.CharField(max_length=100)
-    zipcode = models.BigIntegerField()
-    photo = models.ImageField(upload_to='media', blank=True)
-
 
 class user_reports(models.Model):
-    username = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
-    file = models.FileField(upload_to='media', blank=True)
+    username = models.OneToOneField(User, on_delete=models.PROTECT, null=True)
+    file = models.FileField(upload_to='media',null=True)
 
 class Appointment_Status(models.Model):
     status = models.CharField(max_length=20)
 
 
 class Appointment(models.Model):
-    user_name = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
+    user_name = models.CharField(max_length=100, null=True)
     #client_accountid = models.ForeignKey(User, on_delete=models.PROTECT)
     doctor_id = models.ForeignKey(Doctor, on_delete=models.PROTECT, null=True)
     #start_time =  models.DateTimeField()
@@ -137,21 +77,6 @@ class labAppointment(models.Model):
 
 
 
-class fundraiser(models.Model):
-    user_name = models.ForeignKey(user_profile, on_delete=models.PROTECT)
-    category = models.CharField(max_length=50)
-    Title = models.CharField(max_length=60)
-    goal_amount = models.FloatField()
-    beneficiary_name = models.CharField(max_length=50)
-    beneficiary_relation = models.CharField(max_length=25)
-    Fundraiser_story = models.TextField()
-    End_date = models.DateField()
-    photo = models.FileField(null=True)
-    account_number = models.BigIntegerField()
-    accountholder_name = models.CharField(max_length=50)
-    ifsc_code = models.CharField(max_length=10)
-
-
 class Medicine(models.Model):
     name = models.CharField(max_length=100)
     pharmacy = models.CharField(max_length=100)
@@ -166,18 +91,9 @@ class Medicine(models.Model):
         return self.name + ' - ' + self.pharmacy
 
 
-class PurchaseItem(models.Model):
-    ref_code = models.CharField(max_length=15, default='0000000')
-    medicine = models.ForeignKey(Medicine, on_delete=models.SET_NULL, null=True, unique=None)
-    quantity = models.IntegerField(null=True)
-    is_ordered = models.BooleanField(default=False)
-    date_added = models.DateTimeField(null=True)
-    date_ordered = models.DateTimeField(null=True)
-
-
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    medicine = models.ManyToManyField(Medicine, blank=True)
+class user_profile(models.Model):
+    username = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    medicine = models.ManyToManyField(Medicine)
     name = models.CharField(max_length=150)
     age = models.IntegerField(null=True)
     dob = models.DateField(null=True)
@@ -190,6 +106,32 @@ class UserProfile(models.Model):
     country = models.CharField(max_length=100)
     zipcode = models.BigIntegerField()
     photo = models.ImageField(upload_to='media', blank=True)
+
+
+class PurchaseItem(models.Model):
+    ref_code = models.CharField(max_length=15, default='0000000')
+    medicine = models.ForeignKey(Medicine, on_delete=models.SET_NULL, null=True, unique=None)
+    quantity = models.IntegerField(null=True)
+    is_ordered = models.BooleanField(default=False)
+    date_added = models.DateTimeField(null=True)
+    date_ordered = models.DateTimeField(null=True)
+
+#
+# class UserProfile(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     medicine = models.ManyToManyField(Medicine, blank=True)
+#     name = models.CharField(max_length=150)
+#     age = models.IntegerField(null=True)
+#     dob = models.DateField(null=True)
+#     email = models.CharField(max_length=150)
+#     contact_number = models.BigIntegerField(null=False)
+#     address = models.CharField(max_length=500)
+#     city = models.CharField(max_length=100)
+#     district = models.CharField(max_length=100, null=True)
+#     state = models.CharField(max_length=100)
+#     country = models.CharField(max_length=100)
+#     zipcode = models.BigIntegerField()
+#     photo = models.ImageField(upload_to='media', blank=True)
 
 class Order(models.Model):
     ref_code = models.CharField(max_length=15)
@@ -215,16 +157,32 @@ class Order(models.Model):
             sum = sum + ((item.medicine.price)*(item.quantity))
         return sum
 
-
-class otp_verify(models.Model):
-    name=models.CharField(max_length=50)
-    otp=models.IntegerField(default=0)
-
     def get_estimated_date(self):
         date1 = self.date_ordered;
         date1 = date1 + datetime.timedelta(days=3);
         return date1
 
+
+
+class fundraiser(models.Model):
+    user_name = models.ForeignKey(user_profile, on_delete=models.PROTECT)
+    category = models.CharField(max_length=50)
+    Title = models.CharField(max_length=60)
+    goal_amount = models.FloatField()
+    beneficiary_name = models.CharField(max_length=50)
+    beneficiary_relation = models.CharField(max_length=25)
+    Fundraiser_story = models.TextField()
+    End_date = models.DateField()
+    photo = models.FileField(null=True)
+    account_number = models.BigIntegerField()
+    accountholder_name = models.CharField(max_length=50)
+    ifsc_code = models.CharField(max_length=10)
+
+
+
+class otp_verify(models.Model):
+    name=models.CharField(max_length=50)
+    otp=models.IntegerField(default=0)
 
 
 class User_Review(models.Model):

@@ -4,34 +4,39 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body bgcolor="purple">
+<br><br><br><br><br>
     <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
+        <center><table>
+            <tr><td>
         <span style="color: #f4c613">User Name  :</span>
-            {{prof_form.username}}<br><br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{prof_form.username}}<br><br>
             <span style="color: #f4c613">age  :</span>
-            {{prof_form.age}}<br><br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{prof_form.age}}<br><br>
             <span style="color: #f4c613">Date of birth   :</span>
-            {{prof_form.dob}}<br><br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{prof_form.dob}}<br><br>
             <span style="color: #f4c613">Email:</span>
-            {{prof_form.email}}<br><br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{prof_form.email}}<br><br>
             <span style="color: #f4c613">contact number:</span>
-            {{prof_form.contact_number}}<br><br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp{{prof_form.contact_number}}<br><br>
             <span style="color: #f4c613">address:</span>
-            {{prof_form.address}}<br><br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{prof_form.address}}<br><br>
             <span style="color: #f4c613">city:</span>
-            {{prof_form.city}}<br><br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{prof_form.city}}<br><br>
             <span style="color: #f4c613">district:</span>
-            {{prof_form.district}}<br><br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{prof_form.district}}<br><br>
             <span style="color: #f4c613">state:</span>
-            {{prof_form.state}}<br><br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{prof_form.state}}<br><br>
             <span style="color: #f4c613">country:</span>
-            {{prof_form.country}}<br><br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{prof_form.country}}<br><br>
             <span style="color: #f4c613">zipcode:</span>
-            {{prof_form.zipcode}}<br><br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{prof_form.zipcode}}<br><br>
             <span style="color: #f4c613">photo:</span>
-            {{prof_form.photo}}<br><br>
-            <button class='btn-general btn-profile' class="reg" type="submit">Update</button><br><br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{prof_form.photo}}<br><br><br><br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button class='btn-general btn-profile' class="reg" type="submit">Update</button><br><br>
+            </td></tr></table>
+        </center>
     </form>
 </body>
 </html>

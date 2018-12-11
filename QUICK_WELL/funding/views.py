@@ -1,4 +1,6 @@
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponse
 from django.shortcuts import render,get_object_or_404,redirect
 from django.core.mail import EmailMessage
@@ -11,9 +13,26 @@ def index(request):
     return render(request, 'funding/index.html',{'fundraiser': fundraisers})
 
 
-@login_required(login_url='/login/')
+
+
+def loginfund(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            if 'next' in request.POST:
+                return redirect(request.POST.get('next'))
+            else:
+                return redirect('funding:index')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'funding/login.html', {'form': form})
+
+
+@login_required(login_url='/funding/login/')
 def startproject(request):
-    user = get_object_or_404(user_profile, user=request.user)
+    user = get_object_or_404(user_profile, username=request.user)
 
     if request.method == 'POST':
         form = fundraiserForm(request.POST,request.FILES)
@@ -33,7 +52,7 @@ def startproject(request):
             ifsc_code = form.cleaned_data['ifsc_code']
             temp = fundraiser.objects.create(user_name=user, category=category, Title=Title, goal_amount=goal_amount, beneficiary_name=beneficiary_name, beneficiary_relation=beneficary_relation, Fundraiser_story=Fundraiser_story, End_date=End_date, photo=photo,accountholder_name=accountholder_name, account_number=account_number,ifsc_code=ifsc_code)
 
-            return render(request, 'funding/greet.html', {'form': form,'name': user.user})
+            return render(request, 'funding/greet.html', {'form': form,'name': user.username})
 
         else:
             print(form.errors)
