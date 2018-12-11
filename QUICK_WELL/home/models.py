@@ -11,7 +11,7 @@ from datetime import date
 
 
 class Doctor(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     firstname = models.CharField(max_length=150)
     lastname = models.CharField(max_length=150)
     experience = models.IntegerField(null=True)
@@ -19,8 +19,8 @@ class Doctor(models.Model):
    # email_id = models.CharField(max_length=150,null=True,blank=True)
     phone_num = models.BigIntegerField(null=True,blank=True)
     #previous_hospitals = models.CharField(max_length=300,null=True)
-    specialization = models.CharField(max_length=150)
-    fee = models.IntegerField(null=True,blank=True)
+    specialization = models.CharField(max_length=150,null=True)
+    fee = models.FloatField(null=True,blank=True)
     hospital = models.CharField(null=True,blank=True,max_length=50)
     address = models.CharField(null=True,blank=True,max_length=50)
 
@@ -87,8 +87,25 @@ class LabTest(models.Model):
 #         return str(self.office_id)
 
 
+class Medicine(models.Model):
+    name = models.CharField(max_length=100)
+    pharmacy = models.CharField(max_length=100)
+    about = models.CharField(max_length=1000, default='0000000')
+    description = models.ImageField(blank=True)
+    mfg_date = models.DateField(null=True)
+    exp_date = models.DateField(null=True)
+    pres_req = models.CharField(max_length=100)
+    price = models.FloatField()
+
+    def __str__(self):
+        return self.name + ' - ' + self.pharmacy
+
+
+
+
 class user_profile(models.Model):
-    username = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
+    username = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    medicine = models.ManyToManyField(Medicine, blank=True)
     name = models.CharField(max_length=150)
     age = models.IntegerField(null=True)
     dob = models.DateField(null=True)
@@ -102,9 +119,16 @@ class user_profile(models.Model):
     zipcode = models.BigIntegerField()
     photo = models.ImageField(upload_to='media', blank=True)
 
+
+def __str__(self):
+    return str(self.username)
+
+
 class user_reports(models.Model):
     username = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
     file = models.FileField(upload_to='media', blank=True)
+
+
 
 class User_Review(models.Model):
     client_accountid = models.ForeignKey(user_profile, on_delete=models.PROTECT, null=True)
@@ -118,6 +142,22 @@ class User_Review(models.Model):
     review_date = models.DateTimeField(default=datetime.datetime.now())
     comment = models.CharField(max_length=500, null=True)
 
+class Review(models.Model):
+    doctor_id = models.ForeignKey(Doctor,on_delete=models.CASCADE)
+    patient_id = models.ForeignKey(User,on_delete=models.CASCADE)
+    pub_date = models.DateTimeField(default=datetime.datetime.now())
+    user_name = models.CharField(max_length=200)
+    comment = models.CharField(max_length=200,null=True)
+    rating = models.IntegerField()
+    likes = models.ManyToManyField(User,related_name='likes',blank=True)
+
+
+def __str__(self):
+    id = self.doctor_id
+    return (id)
+
+
+
 class Appointment_Status(models.Model):
     status = models.CharField(max_length=20)
 
@@ -125,7 +165,7 @@ class Appointment_Status(models.Model):
 class Appointment(models.Model):
     user_name = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
     #client_accountid = models.ForeignKey(User, on_delete=models.PROTECT)
-    doctor_id = models.ForeignKey(Doctor, on_delete=models.PROTECT)
+    doctor_id = models.ForeignKey(Doctor, on_delete=models.PROTECT, null=True)
     #start_time =  models.DateTimeField()
     #end_time =  models.DateTimeField()
     #user_name = models.CharField(max_length=50)
@@ -147,30 +187,6 @@ class labAppointment(models.Model):
     #appoint_status_id = models.ForeignKey(Appointment_Status, on_delete=models.PROTECT)
 
 
-class fundraiser(models.Model):
-    user_name = models.ForeignKey(user_profile, on_delete=models.PROTECT)
-    category = models.CharField(max_length=50)
-    Title = models.CharField(max_length=60)
-    goal_amount = models.FloatField()
-    beneficiary_name = models.CharField(max_length=50)
-    beneficiary_relation = models.CharField(max_length=25)
-    Fundraiser_story = models.TextField()
-    End_date = models.DateField()
-
-class Medicine(models.Model):
-    name = models.CharField(max_length=100)
-    pharmacy = models.CharField(max_length=100)
-    about = models.CharField(max_length=1000, default='0000000')
-    description = models.ImageField(blank=True)
-    mfg_date = models.DateField(null=True)
-    exp_date = models.DateField(null=True)
-    pres_req = models.CharField(max_length=100)
-    price = models.FloatField()
-
-    def __str__(self):
-        return self.name + ' - ' + self.pharmacy
-
-
 class PurchaseItem(models.Model):
     ref_code = models.CharField(max_length=15, default='0000000')
     medicine = models.ForeignKey(Medicine, on_delete=models.SET_NULL, null=True, unique=None)
@@ -181,34 +197,23 @@ class PurchaseItem(models.Model):
 
 
 
-
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    medicine = models.ManyToManyField(Medicine, blank=True)
-    first_name = models.CharField(max_length=100, default='0000000')
-    last_name = models.CharField(max_length=100, default='0000000')
-    bio = models.CharField(max_length=255, blank=True)
-    city = models.CharField(max_length=200, blank=False, default='')
-    interests = models.CharField(max_length=255, blank=True)
-
-
-def create_profile(sender, **kwargs):
-    if kwargs['created']:
-        user_profile = UserProfile.objects.create(user=kwargs['instance'])
-
-
-post_save.connect(create_profile, sender=User)
-
-
 class Order(models.Model):
     ref_code = models.CharField(max_length=15)
-    user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(user_profile, on_delete=models.SET_NULL, null=True)
     items = models.ManyToManyField(PurchaseItem)
     is_ordered = models.BooleanField(default=False)
     date_ordered = models.DateTimeField(null=True)
+    billing_add = models.CharField(max_length=1000, blank=True)
+    email = models.CharField(max_length=100, default='0000000', null=True)
 
     def get_cart_items(self):
         return self.items.all()
+
+    def get_no_of_purchase(self):
+        sum1 = 0;
+        for item in self.items.all():
+            sum1 = sum1+1;
+        return sum1;
 
     def get_cart_total(self):
         sum = 0 ;
@@ -216,14 +221,40 @@ class Order(models.Model):
             sum = sum + ((item.medicine.price)*(item.quantity))
         return sum
 
-class otp_verify(models.Model):
-    name=models.CharField(max_length=50)
-    otp=models.IntegerField(default=0)
-
     def get_estimated_date(self):
         date1 = self.date_ordered;
         date1 = date1 + datetime.timedelta(days=3);
         return date1
+
+
+
+class User_Review(models.Model):
+    client_accountid = models.ForeignKey(user_profile, on_delete=models.PROTECT)
+    doc_id = models.ForeignKey(Doctor, on_delete=models.PROTECT)
+    is_anonymous = models.BooleanField(default=False)
+    wait_time_rating = models.FloatField(null=True)
+    manner_rating = models.FloatField(null=True)
+    rating = models.FloatField(null=True)
+    review = models.CharField(max_length=500,null=True)
+    is_doc_recommended = models.BooleanField(default=True)
+    review_date = models.DateTimeField(default=datetime.datetime.now())
+    comment = models.CharField(max_length=500, null=True)
+
+
+class fundraiser(models.Model):
+    user_name = models.ForeignKey(user_profile, on_delete=models.PROTECT)
+    category = models.CharField(max_length=50)
+    Title = models.CharField(max_length=60)
+    goal_amount = models.FloatField()
+    beneficiary_name = models.CharField(max_length=50)
+    beneficiary_relation = models.CharField(max_length=25)
+    Fundraiser_story = models.TextField()
+    End_date = models.DateField()
+
+
+class otp_verify(models.Model):
+    name=models.CharField(max_length=50)
+    otp=models.IntegerField(default=0)
 
 
     def __str__(self):

@@ -1,5 +1,5 @@
 from django.views import generic
-from home.models import Medicine, PurchaseItem, UserProfile, Order
+from home.models import Medicine, PurchaseItem, Order, user_profile
 from django.contrib.auth import login, logout
 from django.contrib import messages
 from django.http import HttpResponse
@@ -27,8 +27,8 @@ def generate_order_id():
 
 def get_user_pending_order(request):
     # get order for the correct user
-    user_profile = get_object_or_404(UserProfile, user=request.user)
-    order = Order.objects.filter(user=user_profile, is_ordered=False)
+    user_profile1 = get_object_or_404(user_profile, username=request.user)
+    order = Order.objects.filter(user=user_profile1, is_ordered=False)
     if order.exists():
         # get the only order in the list of filtered orders
         return order[0]
@@ -81,15 +81,15 @@ def logout_view(request):
 
 @login_required(login_url='/med/login/')
 def add_to_cart(request, **kwargs):
-    user_profile = get_object_or_404(UserProfile, user=request.user)
+    user_profile1 = get_object_or_404(user_profile, username=request.user)
     medicine = Medicine.objects.filter(id=kwargs.get('medicine_id', "")).first()
     quantity = request.GET.get('quantity')
-    if medicine in request.user.userprofile.medicine.all():
+    if medicine in request.user.user_profile.medicine.all():
         return redirect(reverse('med:index'))
 
     purchase_item, status = PurchaseItem.objects.get_or_create(medicine=medicine, quantity=quantity)
     #purchase_item, _ = PurchaseItem.objects.get_or_create(medicine=medicine, quantity=quantity)
-    user_order, status = Order.objects.get_or_create(user=user_profile, is_ordered=False)
+    user_order, status = Order.objects.get_or_create(user=user_profile1, is_ordered=False)
     user_order.items.add(purchase_item)
     if status:
         # generate a reference code
@@ -107,6 +107,12 @@ def delete_from_cart(request, item_id):
         item_to_delete[0].delete()
     return redirect(reverse('med:order_summary'))
 
+def delete_order(request, order_id):
+    order_to_delete = Order.objects.filter(pk=order_id)
+    if order_to_delete.exists():
+        order_to_delete[0].delete()
+    return redirect(reverse('med:checked'))
+
 #@login_required()
 #def CartView(request, **kwargs):
  #   user_profile = get_object_or_404(UserProfile, user=request.user)
@@ -118,9 +124,15 @@ def delete_from_cart(request, item_id):
 def checkout(request, order_id):
     order_purchased = Order.objects.filter(pk=order_id)
     order_purchased.date_ordered = datetime.datetime.now()
+    address = request.GET.get('address')
+    email = request.GET.get('email')
+    order_purchased.update(email=email)
+    order_purchased.update(billing_add=address)
     # order_items = order_to_purchase.items.all()
     order_purchased.update(is_ordered=True)
     order_purchased.update(date_ordered=datetime.datetime.now())
+
+
     context = {
         'order': order_purchased[0],
     }
@@ -153,9 +165,9 @@ def order_details(request, **kwargs):
 #     order = Order.objects.filter(user=user_profile, is_ordered=True)
 #     if order.exists():
 #         # get the only order in the list of filtered orders
-#         return order[0]
+#         return order
 #     return 0
-
+#
 #
 # @login_required(login_url='/med/login')
 # def checked(request, **kwargs):
@@ -168,8 +180,8 @@ def order_details(request, **kwargs):
 
 @login_required(login_url='/med/login')
 def checked(request, **kwargs):
-    user_profile = get_object_or_404(UserProfile, user=request.user)
-    order = Order.objects.filter(user=user_profile, is_ordered=True)
+    user_profile1 = get_object_or_404(user_profile, username=request.user)
+    order = Order.objects.filter(user=user_profile1, is_ordered=True)
     context = {
         'order': order
     }

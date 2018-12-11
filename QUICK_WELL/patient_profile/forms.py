@@ -1,9 +1,10 @@
-from attr.filters import exclude
+# from attr.filters import exclude
 from django import forms
 from django.contrib.auth.forms import User, UserCreationForm, UserChangeForm, PasswordChangeForm
 from home.models import user_profile, user_reports, User_Review
 from home.models import *
 from django.forms import ModelForm,Textarea,DateInput
+import datetime
 
 class Signup_form(UserCreationForm):
     class Meta:
@@ -14,7 +15,6 @@ class Signup_form(UserCreationForm):
 class profile(forms.ModelForm):
     class Meta:
         model = user_profile
-
         fields = ('name', 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country',
                   'zipcode', 'photo')
 
@@ -32,11 +32,6 @@ class profile_update(forms.ModelForm):
         fields = ('username', 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country', 'zipcode',
                   'photo')
 
-class profile_update(forms.ModelForm):
-    class Meta:
-        model = user_profile
-        fields = ('age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country', 'zipcode', 'photo')
-
 class Patient_Update_Form(UserChangeForm):
     class Meta:
         model = user_profile
@@ -47,11 +42,18 @@ class passwordchange(PasswordChangeForm):
         model = User
         fields = ('old_password', 'new_password1', 'new_password2')
 
-class ReviewForm(forms.ModelForm):
+class DoctorForm(ModelForm):
+    class meta:
+        model = Doctor
+        fields = ['pub_date','doctor_name']
+
+
+class ReviewForm(ModelForm):
     class Meta:
-        model = User_Review
-        fields = '__all__'
+        model = Review
+        exclude = ('pub_date','likes')
         widgets = {
-            'review': Textarea(attrs={'cols': 40, 'rows': 15}),
+            'comment': Textarea(attrs={'class':'comment'}),
         }
+
 

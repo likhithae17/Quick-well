@@ -229,7 +229,7 @@
     <center>
         <h3><strong>ENTER YOUR DETAILS HERE.</strong></h3>
     </center>
-      <form method="POST" action="{% url 'patient_profile.details' %}">
+      <form method="POST" action="http://127.0.0.1:8000/patient_profile/details/">
                 {% csrf_token %}
                 <input type="submit" value="Already Created!">
                 <br><br>

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from home.models import user_profile
-from home.models import user_reports
+# from home.models import user_profile
+# from home.models import user_reports
 #from ..docapp.models import Appointment
 from . import forms
 from django.http import HttpResponse, HttpResponseRedirect
@@ -8,11 +8,12 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from .forms import Signup_form, profile_update
 from django.shortcuts import render, redirect
 from home.models import *
+from home.models import user_profile, LabTest, Appointment, User_Review, Doctor, user_reports, labAppointment, Medicine
 from django.db.models import Avg, IntegerField
 from . import forms
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import Signup_form, Patient_Update_Form, passwordchange, ReviewForm
+from .forms import Signup_form,  passwordchange, ReviewForm
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login, logout as out
@@ -70,15 +71,7 @@ def login(request):
             print('working')
             user = form.get_user()
             auth_login(request, user)
-            # if user.user_profile:
-            #     return HttpResponseRedirect("http://127.0.0.1:8000/patient_profile/details/")
-            # else:
-            #     return HttpResponseRedirect("http://127.0.0.1:8000/patient_profile/create/")
-            # # if user.contact_number:
-            # #     return HttpResponseRedirect("http://127.0.0.1:8000/patient_profile/details/")
-            # # else:
-            # #     return HttpResponseRedirect("http://127.0.0.1:8000/patient_profile/create/")
-        return HttpResponseRedirect("http://127.0.0.1:8000/")
+            return HttpResponseRedirect("http://127.0.0.1:8000/")
     else:
         form = AuthenticationForm
     return render(request, 'patient_profile/login.html', {'form': form})
@@ -139,6 +132,23 @@ def appointment1(request):
     #return HttpResponse("app")
     return render(request, 'patient_profile/app.html', {'appointment': viewappointment, 'details': profile})
 
+
+def lappointment1(request):
+    uname = request.user
+    viewlappointment = labAppointment.objects.filter(user_name=uname)
+    profile = user_profile.objects.get(username=uname)
+    #return HttpResponse("app")
+    return render(request, 'patient_profile/lapp.html', {'lappointment': viewlappointment, 'details': profile})
+
+
+def medicine1(request):
+    uname = request.user
+    viewmedicine = Medicine.objects.filter(user_name=uname)
+    profile = user_profile.objects.get(username=uname)
+    #return HttpResponse("app")
+    return render(request, 'patient_profile/medicine.html', {'appointment': viewmedicine, 'details': profile})
+
+
 def labtest(request):
     uname = request.user
     viewlab_test = LabTest.objects.filter(user_name=uname)
@@ -147,7 +157,7 @@ def labtest(request):
     return render(request, 'patient_profile/lab_test.html', {'lab_test': viewlab_test, 'details': profile})
 
 
-
+#
 @login_required(login_url="http://127.0.0.1:8000/patient_profile/login/")
 def create(request):
     if request.method == "POST":
@@ -160,7 +170,13 @@ def create(request):
         else:
             print(form.errors)
     else:
-        form = forms.profile()
+        us = request.user
+        print(us)
+        try:
+            a = user_profile.objects.get(username=us).contact_number
+            return HttpResponseRedirect('/patient_profile/details')
+        except:
+            form = forms.profile()
     return render(request, 'patient_profile/profile.html', {'form': form})
 
 @login_required(login_url="http://127.0.0.1:8000/patient_profile/login/")
@@ -181,7 +197,7 @@ def patient_update(request):
     temp = 1
     pat = get_object_or_404(user_profile, username=request.user)
     if request.method == 'POST':
-        prof_form = profile_update(request.POST, instance=request.user or None)
+        prof_form = profile_update(request.POST, instance=pat or None)
         if prof_form.is_valid():
             prof_form.save()
             return HttpResponse("done")
@@ -190,6 +206,16 @@ def patient_update(request):
     return render(request, 'patient_profile/profile_update.html', {'prof_form': prof_form, 'temp': temp, 'pat': pat})
 
 
+
+# def patient_update(request):
+#     if request.method == 'POST':
+#         patient_form = Patient_Update_Form(request.POST, instance=request.user or None)
+#         if patient_form.is_valid():
+#                   p patient_form.save()
+#             return HttpResponse("done")
+#     else:
+#         patient_form = Patient_Update_Form(instance=request.user)
+#     return render(request, 'patient_profile/edit_profile.html', {'patient_form': patient_form})
 
 
 
@@ -206,17 +232,20 @@ def change_password(request):
 
 
 @login_required(login_url="http://127.0.0.1:8000/patient_profile/login/")
-def reviews(request):
-    rate = User_Review.objects.all()
+
+
+def review(request):
+    rate = Review.objects.all()
     if request.method == 'POST':
         f = ReviewForm(request.POST)
-        review_details = User_Review.objects.order_by('review_date')
+        review_details = Review.objects.order_by('pub_date')
         if f.is_valid():
-            F= f.save(commit=False)
+            F=f.save(commit=False)
             try:
-                obj1 = User_Review.objects.get( client_accountid=F.client_accountid,  doctorid=F.doc_id)
+                obj1 = Review.objects.get(patient_id = F.patient_id, doctor_id = F.doctor_id)
                 obj1.rating = F.rating
-                obj1.review_date = F.review_date
+                obj1.pub_date = F.pub_date
+                obj1.user_name = F.user_name
                 obj1.comment = F.comment
                 obj1.save()
             except:
@@ -224,16 +253,53 @@ def reviews(request):
         a = []
         doctor = Doctor.objects.all()
         count = Doctor.objects.all().count()
-        for i in range(0, count):
-            b = User_Review.objects.filter(doc_id=doctor[i]).aggregate(Avg('rating', output_field=IntegerField()))
+        for i in range(0,count):
+            b = Review.objects.filter(doctor_id=doctor[i]).aggregate(Avg('rating',output_field=IntegerField()))
             a.append(b)
         print(a)
-
-        return render(request, 'patient_profile/doctor_rating.html', {'doc_id': doctor, 'rating': a, 'review': rate})
+        context ={
+                'doc':doctor, 'rating':a, 'comment':rate
+        }
+        return render(request,'patient_profile/doctor_rating.html',context)
     else:
         f = ReviewForm()
-        return render(request, 'patient_profile/review.html', {'form': f})
+        return render(request,'patient_profile/review.html',{'form':f})
 
+
+
+# def reviews(request):
+#
+#     if request.method == 'POST':
+#         print('fuck')
+#         f = ReviewForm(request.POST)
+#         review_details = User_Review.objects.order_by('review_date')
+#
+#         if f.is_valid():
+#             F= f.save(commit=False)
+#             try:
+#                 obj1 = User_Review()
+#                 obj1.client_accountid = F.client_accountid;
+#                 obj1.doctorid = F.doc_id
+#                 obj1.rating = F.rating
+#                 obj1.review_date = F.review_date
+#                 obj1.comment = F.comment
+#                 obj1.save()
+#             except:
+#                 F.save()
+#         a = []
+#         doctor = Doctor.objects.all()
+#         count = Doctor.objects.all().count()
+#         for i in range(0, count):
+#             b = User_Review.objects.filter(doc_id=doctor[i]).aggregate(Avg('rating', output_field=IntegerField()))
+#             a.append(b)
+#         print(a)
+#         rate=User_Review.objects.all()
+#
+#         return render(request, 'patient_profile/doctor_rating.html', {'doc_id': doctor, 'rating': a, 'review': rate})
+#     else:
+#         f = ReviewForm()
+#         return render(request, 'patient_profile/review.html', {'form': f})
+#
 
 
 

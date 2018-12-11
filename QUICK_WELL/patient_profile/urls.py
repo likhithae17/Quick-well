@@ -20,8 +20,9 @@ urlpatterns = [
     #path('patient_update/', views.patient_update, name="patient_update"),
     path('changepassword', views.change_password, name='changepassword'),
     path('appointment/', views.appointment1, name="patient_profile.appointment"),
+    path('lappointment/', views.lappointment1, name="patient_profile.lappointment"),
     path('lab_test/', views.labtest, name="patient_profile.lab_test"),
-    path('reviews/', views.reviews, name='patient_profile.reviews'),
+    path('review/', views.review, name='patient_profile.review'),
 
 ]
 

@@ -39,7 +39,7 @@
         </h4>
     {% endif %}
 
-    <form action="{% url 'startproject' %}" method="post">
+    <form action="{% url 'funding:startproject' %}" method="post">
 
         {% csrf_token %}
         {% crispy form %}
