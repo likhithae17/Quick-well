@@ -1,6 +1,8 @@
 from django.urls import re_path, include, path
 from . import views
 
+app_name = 'docapp'
+
 
 urlpatterns = [
 
@@ -9,7 +11,7 @@ urlpatterns = [
     path('hospitalnearme/', views.maps, name='maps'),
     path('greet/', views.greet, name='greet'),
     path('profile/<int:pk>', views.profile, name='profile'),
-    path('delete/<int:appid>',views.delete, name='delete'),
+    path('delete/<int:pk>',views.delete, name='delete'),
     path('profile/<int:pk>/home/', views.index1, name='index1'),
     path('profile/<int:pk>/contact', views.contact, name='contact'),
     path('profile/<int:pk>/test', views.test, name='test'),

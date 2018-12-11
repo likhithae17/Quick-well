@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Conference</title>
-</head>
-<body>
+{% extends 'video_conference/base.html' %}
+{% block title %}Video_conference request{% endblock %}
+
+{% block body %}
     <a href="{% url 'call'%}">Call</a>
-</body>
-</html>
+{% endblock %}

@@ -6,7 +6,7 @@
 #     user = models.OneToOneField(User, on_delete=models.CASCADE)
 #     address = models.CharField(null=False, max_length=100)
 #     experience = models.FloatField(null=True)
-#     doc_photo = models.FileField(null=True)
+#     doc_photo = moels.FileField(null=True)
 #     phone_num = models.BigIntegerField(null=True, blank=True)
 #     # previous_hospitals = models.CharField(max_length=300,null=True)
 #     spec = models.CharField(max_length=150)

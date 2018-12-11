@@ -4,19 +4,22 @@
 
 {% block body %}
 
-    <div class="container">
-        <br>
+    <div class="container"style="padding-top: 80px; padding-bottom: 100px; padding-left: 150px; padding-right: 150px; ">
+    <br>
+        <div class="row" style="background-color: white; padding-left:50px; padding-right:50px; padding-top: 40px; padding-bottom: 40px">
         <center>
-            <div class="well"><h3> Thank you {{ name }} for booking appointment.</h3><br></div>
-            <div style="font-size: 25px">
-                <b><p>Appointment Details:</p></b>
-            </div>
-            <div style="font-size: 18px"><p>Doctor : {{ doctor.firstname }} {{ doctor.lastname }}</p>
-                <p>Time : {{ time }}</p>
+            <p style="color:#1D466A; font-size: 25px;">Thank you {{ name }} for booking appointment</p>
+            <p style="color:#1D466A; font-size: 35px; font-weight: bold; text-align: center; letter-spacing: 2px">Appointment Details</p>
+            <hr style="border: 1px solid #afd9ee;  width: 150px; " size="5">
+            <div style="font-size: 18px;color:#1D466A; "><p>Doctor : {{ doctor.firstname }} {{ doctor.lastname }}</p>
                 <p>Date : {{ date }}</p>
+                <p>Time : {{ time }}</p>
             </div>
+            <br>
 
-            <form action="{% url 'delete' appid %}" method="post">
+
+            <form action="{% url 'docapp:delete' appid %}" method="post">
+                {% csrf_token %}
                 <button type="submit" class="btn btn-primary">Cancel Appointment</button>
             </form>
 
@@ -24,6 +27,7 @@
                 <h3>msg</h3>
             {% endif %}
         </center>
+        </div>
     </div>
 
 {% endblock %}

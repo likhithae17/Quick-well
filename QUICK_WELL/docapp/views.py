@@ -13,6 +13,16 @@ from .forms import AppointmentForm
 from django.template.loader import render_to_string
 
 
+
+#from googleapiclient import discovery
+#from oauth2client import tools
+#from oauth2client.client import OAuth2WebServerFlow
+#from oauth2client.file import Storage
+#import httplib
+
+
+#from django.db.models import Q
+
 def index(request):
     doc = Doctor.objects.all()
     query = request.GET.get('q')
@@ -120,27 +130,10 @@ def greet(request):
     return render(request, 'docapp/greet.html')
 
 
-def delete(request,appid):
-    appointment = get_object_or_404(Appointment, pk=appid)
+def delete(request,pk):
+    appointment = get_object_or_404(Appointment, pk=pk)
     appointment.delete()
     msg = 'Your appointment is cancelled'
-    return render(request, 'docapp/greet.html',{'msg':msg})
-"""
+    #return render(request, 'docapp/greet.html',{'msg':msg})
+    return HttpResponse('<h2>Appointment cancelled</h2>')
 
-class IndexView(generic.ListView):
-    template_name = 'docapp/index.html'
-    #context_object_name = 'all_specialization'
-
-    def get_queryset(self):
-        return Specialization.objects.all()
-
-
-class DetailView(generic.DetailView):
-    model = Specialization
-    template_name = 'docapp/index.html'
-    
-    def get_queryset(self):
-        self.spec = get_object_or_404(Specialization, pk=self.kwargs['pk'])
-        return Specialization.objects.filter(spec_name__icontains='str(self.spec)')
-
-"""

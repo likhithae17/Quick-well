@@ -32,10 +32,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 # Application definition
 
 INSTALLED_APPS = [
+    'patient_profile',
     #'med.apps.MedConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,8 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'docapp.apps.DocappConfig',
-    'force.apps.ForceConfig',
-    #'force'
+    #'patient_profile.apps.ForceConfig',
+    #'patient_profile'
     'accounts',
     #'credits.apps.CreditsConfig',
     'home.apps.HomeConfig',
@@ -64,7 +65,6 @@ INSTALLED_APPS = [
     'med',
     'funding',
     'advertisements',
-    'feedback',
 
 ] + get_machina_apps()
 
@@ -210,7 +210,7 @@ HAYSTACK_CONNECTIONS = {
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -220,3 +220,4 @@ EMAIL_HOST_USER = 'quickwelldoctor@gmail.com'
 EMAIL_HOST_PASSWORD = 'doctor@123'
 
 LOGOUT_REDIRECT_URL = 'http://127.0.0.1:8000/'
+LOGIN_URL= 'http://127.0.0.1:8000/patient_profile/login/'

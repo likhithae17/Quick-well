@@ -19,12 +19,14 @@ from machina.app import board
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from django.conf import settings
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, \
+    PasswordResetCompleteView
 
 urlpatterns = [
     path('', include('home.urls')),
     path('admin/', admin.site.urls),
     path('appointment/', include('docapp.urls')),
-    path('force/', include('force.urls')),
+    path('patient_profile/', include('patient_profile.urls')),
     path('', include('accounts.urls')),
     path('chat/', include('chat.urls')),
     path('forum/', include(board.urls)),
@@ -32,10 +34,12 @@ urlpatterns = [
     path('med/', include('med.urls')),
     #path('credits/', include('credits.urls')),
     path('lab/', include('labtest.urls')),
-    path('video_conference/',include('video_conference.urls')),
     path('funding/',include('funding.urls')),
     path('advertisements/', include('advertisements.urls')),
-    path('feedback/', include('feedback.urls')),
+    path('video_conference/', include('video_conference.urls')),
+    path('', include('django.contrib.auth.urls')),
+
+
 ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

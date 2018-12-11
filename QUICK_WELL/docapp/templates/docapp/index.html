@@ -2,6 +2,12 @@
 
 {% block title %}Doctor Details{% endblock %}
 
+{% block style %}
+   .table.no-border tr td, .table.no-border tr th {
+  border-width: 0;
+}
+{% endblock %}
+
 {% block body %}
 
     <script>
@@ -42,14 +48,13 @@
             }
 
             var querylocation = "{{ query }}" ;
-            var geocoder = new google.maps.Geocoder();
+            var geocoder =  new google.maps.Geocoder();
 
             if (geocoder && querylocation) {
                 geocoder.geocode({
                     'address': querylocation
                 }, function (results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
-
                         var latitude = results[0].geometry.location.lat();
                         var longitude = results[0].geometry.location.lng();
 
@@ -58,15 +63,14 @@
                             lng: longitude
                         };
 
-                        /*
-                        if (querylocation==None || querylocation==''){
-                            window.alert(querylocation)
+
+                        if (querylocation == 'query' || querylocation=='None'){
                             var myLocation = {
                                 lat: 13.5232,
                                 lng: 79.9982
                             };
                         }
-                        */
+
 
                         setPos(myLocation);
 
@@ -138,42 +142,49 @@
 
     </script>
 
-    <div id="map" style="height: 500px;
-    margin: 10px auto;
-    width: 700px;
+    <div id="map" style="height: 450px;
+    margin: 20px auto;
+    width: 650px;
     position:absolute;
-    right:0;"> ></div>
+    right:20px;
+    border: 1px black">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBDDHXhrCzm5a2cemyN2QtIb8B11hvHQE&signed_in=true&libraries=places&callback=initMap" async defer></script>
+    </div>
+
 
 
     {% for doc in doctor %}
-    <br><br>
-    <div class="row" style="margin: auto" >
+    <div class="row" style="margin: auto;padding-left: 50px" >
         <div class="col-sm-4 col-xs-12">
-            <div class="panel panel-default text-center">
+            <div class="panel panel-default">
 
                 <div class="panel-body">
-
-                    {% if doc.doc_photo %}
-                            <img src='media/images.jpg'/>
-                    {% else %}
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvbZce8PCEuRg737ca11EXEzzAn0Qmj2HSYg8hfp0-1k13Enc1sg" height="150" width="150"/>
-                    {% endif %}
-
-                    <p><br></p>
-                    <p>{{ doc.specialization }}</p>
-                    <p>{{ doc.firstname }}  {{ doc.lastname }}</p>
-                    <p>{{ doc.experience }}  years experience</p>
-                    <p><a href="{% url 'profile' pk=doc.id %}">View Profile</a></p>
+                    <table class="table no-border">
+                        <tr>
+                            <td>
+                                {% if doc.doc_photo %}
+                                    <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvbZce8PCEuRg737ca11EXEzzAn0Qmj2HSYg8hfp0-1k13Enc1sg" height="100" width="100"/>
+                                {% else %}
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvbZce8PCEuRg737ca11EXEzzAn0Qmj2HSYg8hfp0-1k13Enc1sg" height="100" width="100"/>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <p>{{ doc.specialization }}</p>
+                                <p>{{ doc.firstname }}  {{ doc.lastname }}</p>
+                                <p>{{ doc.experience }}  years experience</p>
+                                <p><a href="{% url 'docapp:profile' pk=doc.id %}">View Profile</a></p>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-                <div class="panel-footer">
-                    <button onclick="window.location='{% url 'appbooking' pk=doc.id %}'" class="btn btn-primary active" >Book Appointment</button>
+                <div class="panel-footer" style="text-align:center">
+                    <button onclick="window.location='{% url 'docapp:appbooking' pk=doc.id %}'" class="btn btn-primary" >Book Appointment</button>
                 </div>
             </div>
         </div>
     </div>
     {% empty %}
-            <h3>Nothing found with name "{{ request.GET.q }}"</h3>
+            <h4>Sorry, Nothing found with name "{{ request.GET.q }}"</h4>
     {% endfor %}
 
 
