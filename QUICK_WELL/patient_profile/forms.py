@@ -27,7 +27,7 @@ class upload(forms.ModelForm):
 class profile_update(forms.ModelForm):
     class Meta:
         model = user_profile
-        fields = ('age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country', 'zipcode',
+        fields = ('username', 'age', 'dob', 'email', 'contact_number', 'address', 'city', 'district', 'state', 'country', 'zipcode',
                   'photo')
 
 class Patient_Update_Form(UserChangeForm):

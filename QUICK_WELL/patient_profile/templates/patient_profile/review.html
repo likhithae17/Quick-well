@@ -10,14 +10,14 @@
 <div class = "container" >
 	<form method="POST">
 		{% csrf_token %}
-		doc_id: {{form.doc_id}}<br>
-		Is anonymous: {{form.is_anonymous}}<br>
-		wait_time_rating: {{ form.wait_time_rating }}<br>
-		manner_rating: {{ manner_rating }}  <br>
-		rating: {{ form.rating }}<br>
-		review: {{ review }}  <br>
-		is_doc_recommended: {{  is_doc_recommended }}<br>
-		review_date: {{  review_date }}  <br>
+		doc_id: {{form.doc_id}}<br><br>
+		Is anonymous: {{form.is_anonymous}}<br><br>
+		wait_time_rating[/5]: {{ form.wait_time_rating }}<br><br>
+		manner_rating[/5]: {{ form.manner_rating }}  <br><br>
+		  <br><br>
+		is_doc_recommended: {{  form.is_doc_recommended }}<br><br>
+		review_date: {{  form.review_date }}  <br><br>
+        Comment: {{ form.comment }}<br><br>
 		Rating:
 		<div class="star-rating">
 			<input id="star-5" type="radio" name="rating" value="5">
