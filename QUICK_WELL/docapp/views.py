@@ -64,8 +64,8 @@ def test(request):
 
 def appbooking(request, pk):
     doc = get_object_or_404(Doctor, pk=pk)
-    docid = doc.id;
-    error_msg = '';
+    docid = doc.id
+    error_msg = ''
 
     if request.method == 'POST':
         form = AppointmentForm(request.POST)
@@ -76,18 +76,18 @@ def appbooking(request, pk):
             user_name = form.cleaned_data['user_name']
             email_id = form.cleaned_data['email_id']
 
-            samedoc = Appointment.objects.filter(test_id__id__icontains=docid)
+            samedoc = Appointment.objects.filter(doctor_id__id__icontains=docid)
             flag = 1
 
             for slot in samedoc:
-                if slot.date == date and slot.time == time:
-                    error_msg = 'Sorry, this slot is not available please select a different slot!'
-                    flag = 0
-                    print(date)
-                    break;
+                 if slot.date == date and slot.time == time:
+                     error_msg = 'Sorry, this slot is not available please select a different slot!'
+                     flag = 0
+                     print(date)
+                     break;
 
             if flag == 1:
-                temp = Appointment.objects.create(date=date, time=time, user_name=user_name, email_id=email_id, doctor_id=docid)
+                temp = Appointment.objects.create(date=date, time=time, user_name=user_name, email_id=email_id, doctor_id=doc)
 
                 subject = "Appointment booked"
                 to_email = email_id
