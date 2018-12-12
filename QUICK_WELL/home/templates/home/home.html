@@ -55,7 +55,7 @@
       border-color: #f1f1f1;
   }
   .carousel-inner img {
-      {#-webkit-filter: grayscale(90%);#}
+      /*{#-webkit-filter: grayscale(90%);#}*/
       width: 100%; /* Set width to 100% */
       margin: auto;
       height: 700px;
@@ -127,12 +127,12 @@
   .navbar {
       font-family: Montserrat, sans-serif;
       margin-bottom: 0;
-      {#background-color: #2b669a;#}
+      /*background-color: #2b669a;*/
       background: -webkit-linear-gradient(to right, #3573A9, #00002C);
       background: linear-gradient(to right, #3573A9, #00002C);
       border: 0;
       font-size: 15px !important;
-      {#letter-spacing: 1px;#}
+      /*letter-spacing: 1px;*/
       opacity: 0.8;
       padding-top: 10px;
       padding-bottom: 10px;
@@ -236,18 +236,20 @@ text-align: center;
         <li><a href="{% url 'med:index' %}"><span class="fa fa-medkit" aria-hidden="true"></span>&nbspOrder Medicines</a></li>
         <li><a href="{% url 'chat:index' %}">Chat with a doctor</a></li>
         <li><a href="video_conference/">Video Call</a></li>
+          <li><a href="patient_profile/login/">Signin/Signup</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
 
-              <li><a href="patient_profile/login/">SignUp/SignIn</a></li>
-              <li><a href="{% url 'labtest:index' %}">Book lab tests</a></li>
+
+              <li><a href="patient_profile/create/">Create/View Profile</a></li>
               <li><a href="patient_profile/upload/">Upload</a></li>
               <li><a href="funding/">Funding</a></li>
-            <li><a href="http://127.0.0.1:8000/forum/">Forum</a></li>
-            <li><a href="{% url 'funding:index' %}">Funding</a></li>
 
+              <li><a href="lab/index/">Book lab tests</a></li>
+            <li><a href="http://127.0.0.1:8000/forum/">Forum</a></li>
+              <li><a href="patient_profile/logout/">Logout</a></li>
           </ul>
         </li>
       </ul>

@@ -202,10 +202,10 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="appointment/index/"><span class="fa fa-ambulance" aria-hidden="true" ></span>&nbspBook an Appointment</a></li>
-        <li><a href="med/"><span class="fa fa-medkit" aria-hidden="true"></span>&nbspOrder Medicines</a></li>
-        <li onclick="myfunction()"><a href="chat/">Chat with a doctor</a></li>
-        <li><a href="video_conference/">Video Call</a></li>
+{#        <li><a href="appointment/index/"><span class="fa fa-ambulance" aria-hidden="true" ></span>&nbspBook an Appointment</a></li>#}
+{#        <li><a href="med/"><span class="fa fa-medkit" aria-hidden="true"></span>&nbspOrder Medicines</a></li>#}
+{#        <li onclick="myfunction()"><a href="chat/">Chat with a doctor</a></li>#}
+{#        <li><a href="video_conference/">Video Call</a></li>#}
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
           <span class="caret"></span></a>
@@ -220,11 +220,6 @@
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
 
     <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
@@ -238,7 +233,16 @@
      <form action="{% url 'patient_profile.upload' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
          <center>
-    {{ form1 }}<br>
+
+
+<label for="id_username">Username:</label><select name="username" required id="id_username">
+  <option value="" selected>---------</option>
+
+  <option value="1">lab_admin</option>
+
+</select>
+<pre>
+<br><label for="id_file">File:</label><input type="file" name="file" id="id_file"><br><br></pre>
     <input type="submit" value="Upload">
          </center>
      </form>

@@ -7,6 +7,7 @@ from django.db import models
 from .models import Patientdetails
 from django.http import HttpResponseRedirect
 from advertisements.models import Advertisements
+from home.models import Doctor,user_profile
 
 
 
@@ -35,8 +36,12 @@ def consult(request):
 
 @login_required
 def room(request, room_name):
+    all_Doctors = Doctor.objects.all()
+    all_user_profiles = user_profile.objects.all()
     return render(request, 'chat/room.html', {
         'room_name_json': mark_safe(json.dumps(room_name)),
-        'username': mark_safe(json.dumps(request.user.username)),
-    })
+        'username': mark_safe(json.dumps(request.user.username)),'all_Doctors':all_Doctors,'all_user_profiles':all_user_profiles
+        },
+
+    )
 

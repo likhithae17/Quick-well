@@ -2,22 +2,22 @@
 {% block content %}
     <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <div style="color: black">
-            <span>FirstName  :</span>
+            <div style="color: darkgreen">
+            <h6>FirstName  :</h6>
             {{doc_form.firstname}}<br><br>
-            <span>LastName   :</span>
+            <h6>LastName   :</h6>
             {{doc_form.lastname}}<br><br>
-            <span>Experience:</span>
+            <h6>Experience:</h6>
             {{doc_form.experience}}<br><br>
-            <span>doc_photo:</span>
+            <h6>doc_photo:</h6>
             {{doc_form.doc_photo}}<br><br>
-            <span>Specialization:</span>
+            <h6>Specialization:</h6>
             {{doc_form.specialization}}<br><br>
-            <span>Fee:</span>
+            <h6>Fee:</h6>
             {{doc_form.fee}}<br><br>
-            <span>Hospital Tied up with:</span>
+            <h6>Hospital Tied up with:</h6>
             {{doc_form.hospital}}<br><br>
-            <span>address:</span>
+            <h6>address:</h6>
             {{doc_form.address}}<br><br>
             <button class='btn-general btn-profile' class="reg" type="submit">Update</button><br><br>
                     </div>

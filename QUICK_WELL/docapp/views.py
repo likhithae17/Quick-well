@@ -54,12 +54,13 @@ def index1(request):
     query = request.GET.get('q')
     return render(request, 'docprof/includes/index.html' )
 
-def contact(request):
-    return render(request, 'docprof/includes/basic.html', {'content': ['contact me at', 'sandeshjatla@gmail.com']})
+# def contact(request):
+#     doc = get_object_or_404(Doctor, pk=pk)
+#     return render(request, 'docprof/includes/basic.html', {'content': ['contact me at', 'sandeshjatla@gmail.com']})
 
 def test(request):
-    return render(request, 'docprof/includes/test.html')
-
+    doc = get_object_or_404(Doctor, pk=pk)
+    return render(request, 'docprof/includes/test.html', {'doc':doc})
 
 def appbooking(request, pk):
     doc = get_object_or_404(Doctor, pk=pk)
