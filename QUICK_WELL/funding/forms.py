@@ -38,3 +38,23 @@ class fundraiserForm(ModelForm):
         return date
 
 
+# class DonateForm(ModelForm):
+#     class Meta:
+#         model = Donar
+#         fields = ['name','email_id', 'Contribution_amount','comment','Creditcard_no','Cardholdername','expiry_date','cvv_no','city']
+#         widgets = {
+#             'name':TextInput(attrs={'type':'text'}),
+#             'email_id': TextInput(attrs={'type': 'text'}),
+#             'Contribution_amount':NumberInput(attrs={'type': 'float'}),
+#             'comment':TextInput(attrs={'type': 'text'}),
+#             'Creditcard_no':NumberInput(attrs={'type': 'float'}),
+#             'Cardholdername': TextInput(attrs={'type': 'text'}),
+#             'expiry_date': TextInput(attrs={'type': 'text'}),
+#             'cvv_no': TextInput(attrs={'type': 'text'}),
+#             'city': TextInput(attrs={'type': 'text'}),
+#         }
+#
+#         helper = FormHelper()
+#         helper.form_method = 'POST'
+
+#

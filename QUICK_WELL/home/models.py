@@ -177,7 +177,20 @@ class fundraiser(models.Model):
     account_number = models.BigIntegerField()
     accountholder_name = models.CharField(max_length=50)
     ifsc_code = models.CharField(max_length=10)
+    #received_amount = models.FloatField(default=100,null=True,blank=True)
 
+
+# class Donar(models.Model):
+#     fundraiser = models.ForeignKey(fundraiser, on_delete=models.PROTECT)
+#     name = models.CharField(max_length=30)
+#     email_id = models.EmailField()
+#     Contribution_amount = models.FloatField()
+#     comment = models.TextField(max_length=250)
+#     Creditcard_no = models.IntegerField()
+#     Cardholdername = models.CharField(max_length=60)
+#     expiry_date = models.IntegerField()
+#     cvv_no = models.IntegerField()
+#     city = models.CharField(max_length=25)
 
 
 class otp_verify(models.Model):

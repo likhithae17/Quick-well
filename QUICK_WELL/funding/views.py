@@ -66,3 +66,8 @@ def startproject(request):
 def fullstory(request,pk):
     fundraise = get_object_or_404(fundraiser, pk=pk)
     return render(request, 'funding/fullstory.html', {'fundraiser': fundraise})
+
+
+def donate(request,pk):
+    fundraise = get_object_or_404(fundraiser,pk=pk)
+    return render(request, 'funding/donate.html', {'fundraiser':fundraise})

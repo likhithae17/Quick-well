@@ -71,15 +71,17 @@
                         <br>
                         <p>{{ project.Title }}</p>
                         <p>by {{ project.user_name.username }}</p>
+                        <p>Money Required : <i class="fa fa-rupee"></i> {{ project.goal_amount }}</p>
                         <p><a href="{% url 'funding:fullstory' project.id %}">Read full story</a></p>
 
                     </div>
 
                     <div class="panel-footer" style="background-color:white;">
+                        <!--
                         <div class="progress">
                             <div class="progress-bar progress-bar-warning" role="progressbar"  style="width:40%">40%</div>
-                        </div>
-                        <button onclick="window.location=''" style="border-radius: 10px" class="btn btn-success active">Donate</button>
+                        </div>-->
+                        <button onclick="window.location='{% url 'funding:donate' project.id %}'" style="border-radius: 10px" class="btn btn-success active">Donate</button>
                     </div>
 
                 </div>
