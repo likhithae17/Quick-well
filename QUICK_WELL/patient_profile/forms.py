@@ -1,7 +1,7 @@
 # from attr.filters import exclude
 from django import forms
 from django.contrib.auth.forms import User, UserCreationForm, UserChangeForm, PasswordChangeForm
-from home.models import user_profile, user_reports, User_Review
+from home.models import user_profile, User_Review
 from home.models import *
 from django.forms import ModelForm,Textarea,DateInput
 import datetime
@@ -26,12 +26,12 @@ class profile(forms.ModelForm):
                   'zipcode', 'photo')
 
 
-
-class upload(forms.ModelForm):
-    class Meta:
-        model = user_reports
-        fields = ('username', 'file')
-
+#
+# class upload(forms.ModelForm):
+#     class Meta:
+#         model = user_reports
+#         fields = ('username', 'file')
+#
 
 class profile_update(forms.ModelForm):
     class Meta:

@@ -101,9 +101,9 @@ class LabTest(models.Model):
 #     def __str__(self):
 #         return self.name + ' - ' + self.pharmacy
 
-class user_reports(models.Model):
-    username = models.OneToOneField(User, on_delete=models.PROTECT, null=True)
-    file = models.FileField(upload_to='media',null=True)
+# class user_reports(models.Model):
+#     username = models.OneToOneField(User, on_delete=models.PROTECT, null=True)
+#     file = models.FileField(upload_to='media',null=True)
 
 
 

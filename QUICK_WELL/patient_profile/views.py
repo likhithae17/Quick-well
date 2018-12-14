@@ -8,7 +8,7 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from .forms import Signup_form, profile_update
 from django.shortcuts import render, redirect
 from home.models import *
-from home.models import user_profile, LabTest, Appointment, Doctor, user_reports, labAppointment, Medicine
+from home.models import user_profile, LabTest, Appointment, Doctor, labAppointment, Medicine
 from django.db.models import Avg, IntegerField
 from . import forms
 from django.http import HttpResponse, HttpResponseRedirect
