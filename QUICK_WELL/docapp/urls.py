@@ -12,14 +12,6 @@ urlpatterns = [
     path('greet/', views.greet, name='greet'),
     path('profile/<int:pk>', views.profile, name='profile'),
     path('delete/<int:pk>',views.delete, name='delete'),
-    # path('profile/<int:pk>/home/', views.index1, name='index1'),
-    # path('profile/<int:pk>/contact', views.contact, name='contact'),
-    # path('profile/<int:pk>/test', views.test, name='test'),
+    path('login/', views.logindocapp, name='login'),
 
-    #path('book/<int:pk>/', views.confirm, name='confirm'),
-    # re_path('appbooking/?P<pk>[0-9]/',views.appbooking,name='appbooking'),
-    # path('spec/add/',views.SpecializationCreate.as_view(), name='spec-add'),
-
-    # /music/<album_id>/favorite/
-    # re_path('(?P<album_id>[0-9])/favorite/$', views.favorite, name='favorite'),
 ]

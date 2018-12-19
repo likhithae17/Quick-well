@@ -41,35 +41,7 @@ class LabTest(models.Model):
     phone_num = models.BigIntegerField(null=True, blank=True)
     tests_available = models.ManyToManyField(Tests_info)
 
-class Medicine(models.Model):
-    name = models.CharField(max_length=100)
-    pharmacy = models.CharField(max_length=100)
-    about = models.CharField(max_length=1000, default='0000000')
-    description = models.ImageField(blank=True)
-    mfg_date = models.DateField(null=True)
-    exp_date = models.DateField(null=True)
-    pres_req = models.CharField(max_length=100)
-    price = models.FloatField()
 
-    def __str__(self):
-        return self.name + ' - ' + self.pharmacy
-
-
-class user_profile(models.Model):
-    username = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    medicine = models.ManyToManyField(Medicine)
-    name = models.CharField(max_length=150)
-    age = models.IntegerField(null=True)
-    dob = models.DateField(null=True)
-    email = models.CharField(max_length=150)
-    contact_number = models.BigIntegerField(null=False)
-    address = models.CharField(max_length=500)
-    city = models.CharField(max_length=100)
-    district = models.CharField(max_length=100, null=True)
-    state = models.CharField(max_length=100)
-    country = models.CharField(max_length=100)
-    zipcode = models.BigIntegerField()
-    photo = models.ImageField(upload_to='media', blank=True)
 
 # class Qualification(models.Model):
 #     doc_name = models.ManyToManyField(Doctor)
@@ -141,17 +113,28 @@ class Appointment_Status(models.Model):
 
 
 class Appointment(models.Model):
-    user_name = models.ForeignKey(user_profile, on_delete=models.PROTECT)
+    user_name = models.CharField(max_length=100, null=True)
+    #client_accountid = models.ForeignKey(User, on_delete=models.PROTECT)
     doctor_id = models.ForeignKey(Doctor, on_delete=models.PROTECT, null=True)
+    #start_time =  models.DateTimeField()
+    #end_time =  models.DateTimeField()
+    #user_name = models.CharField(max_length=50)
+    email_id = models.EmailField()
+    #appointment_id = models.CharField(blank=False, null=False, max_length=200)
     date = models.DateField(blank=True, null=True)
     time = models.TimeField(blank=True, null=True)
+    #appoint_status_id = models.ForeignKey(Appointment_Status, on_delete=models.PROTECT)
+
 
 
 class labAppointment(models.Model):
     test_id = models.ForeignKey(Tests_info, on_delete=models.PROTECT)
-    user_name = models.ForeignKey(user_profile, on_delete=models.PROTECT)
+    user_name = models.CharField(max_length=50)
+    email_id = models.EmailField()
+    #appointment_id = models.CharField(blank=False, null=False, max_length=200)
     date = models.DateField(blank=True, null=True)
     time = models.TimeField(blank=True, null=True)
+    #appoint_status_id = models.ForeignKey(Appointment_Status, on_delete=models.PROTECT)
 
 
 #
@@ -164,12 +147,42 @@ class labAppointment(models.Model):
 #     date_ordered = models.DateTimeField(null=True)
 
 
+class Medicine(models.Model):
+    name = models.CharField(max_length=100)
+    pharmacy = models.CharField(max_length=100)
+    about = models.CharField(max_length=1000, default='0000000')
+    description = models.ImageField(blank=True)
+    mfg_date = models.DateField(null=True)
+    exp_date = models.DateField(null=True)
+    pres_req = models.CharField(max_length=100)
+    price = models.FloatField()
+
+    def __str__(self):
+        return self.name + ' - ' + self.pharmacy
+
 
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     medicine = models.ManyToManyField(Medicine, blank=True)
 
+
+
+class user_profile(models.Model):
+    username = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    medicine = models.ManyToManyField(Medicine)
+    name = models.CharField(max_length=150)
+    age = models.IntegerField(null=True)
+    dob = models.DateField(null=True)
+    email = models.CharField(max_length=150)
+    contact_number = models.BigIntegerField(null=False)
+    address = models.CharField(max_length=500)
+    city = models.CharField(max_length=100)
+    district = models.CharField(max_length=100, null=True)
+    state = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
+    zipcode = models.BigIntegerField()
+    photo = models.ImageField(upload_to='media', blank=True)
 
 
 class PurchaseItem(models.Model):

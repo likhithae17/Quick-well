@@ -3,11 +3,12 @@
 
 #CLIENT ID -  798679894892-qa3o7qpo5l5g923qd6sdfvku2u0hi7fh.apps.googleusercontent.com
 #CLIENT SECRET - Xedby0HI2bczZrVHt1-Bfs_3
-
-
+from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse
-from home.models import Doctor, Appointment
+from home.models import Doctor, Appointment, user_profile
 from django.core.mail import EmailMessage
 from .forms import AppointmentForm
 from django.template.loader import render_to_string
@@ -62,10 +63,29 @@ def test(request):
     doc = get_object_or_404(Doctor, pk=pk)
     return render(request, 'docprof/includes/test.html', {'doc':doc})
 
+
+def logindocapp(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            if 'next' in request.POST:
+                return redirect(request.POST.get('next'))
+            else:
+                return redirect('docapp:index')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'docapp/login.html', {'form': form})
+
+
+
+@login_required(login_url='/appointment/login/')
 def appbooking(request, pk):
     doc = get_object_or_404(Doctor, pk=pk)
     docid = doc.id
     error_msg = ''
+    user = get_object_or_404(user_profile, username=request.user)
 
     if request.method == 'POST':
         form = AppointmentForm(request.POST)
@@ -73,8 +93,6 @@ def appbooking(request, pk):
         if form.is_valid():
             date = form.cleaned_data['date']
             time = form.cleaned_data['time']
-            user_name = form.cleaned_data['user_name']
-            email_id = form.cleaned_data['email_id']
 
             samedoc = Appointment.objects.filter(doctor_id__id__icontains=docid)
             flag = 1
@@ -87,7 +105,10 @@ def appbooking(request, pk):
                      break;
 
             if flag == 1:
-                temp = Appointment.objects.create(date=date, time=time, user_name=user_name, email_id=email_id, doctor_id=doc)
+                temp = Appointment.objects.create(date=date, time=time, user_name=user, doctor_id=doc)
+
+                email_id = user.email
+                user_name = user.username
 
                 subject = "Appointment booked"
                 to_email = email_id
@@ -129,9 +150,10 @@ def greet(request):
 
 def delete(request,pk):
     appointment = get_object_or_404(Appointment, pk=pk)
-    email_id = appointment.email_id;
+    email_id = appointment.user_name.email;
+    print(email_id)
     context = {
-        'name': appointment.user_name,
+        'name': appointment.user_name.username,
         'time': appointment.time,
         'date': appointment.date,
         'doctor': appointment.doctor_id,
