@@ -1,8 +1,4 @@
-#API KEY for geolocation - AIzaSyBBDDHXhrCzm5a2cemyN2QtIb8B11hvHQE
-#API Key for calendar  --  AIzaSyAMumSF2Rkulpco3sQ-LWvtfwFEzAn0j7o
 
-#CLIENT ID -  798679894892-qa3o7qpo5l5g923qd6sdfvku2u0hi7fh.apps.googleusercontent.com
-#CLIENT SECRET - Xedby0HI2bczZrVHt1-Bfs_3
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
