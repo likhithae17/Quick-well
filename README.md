@@ -9,7 +9,7 @@ Emmadi Likhitha
 
 Srishti
 
-Venkata Siva DurgaSandesh Jatla  
+Venkata Siva Durga Sandesh Jatla  
 
 Baddam Kalyan 
 
